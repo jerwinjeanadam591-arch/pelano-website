@@ -1,0 +1,28 @@
+# Robots.txt for Pelano Resources Ltd
+# This file controls search engine crawler access
+
+# Allow all bots
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /uploads/
+Disallow: /documents/
+Disallow: /js/
+Disallow: /css/
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+
+# Specific rules for Google
+User-agent: Googlebot
+Allow: /
+
+# Specific rules for Bing
+User-agent: Bingbot
+Allow: /
+
+# Crawl delay for other bots (5 seconds)
+User-agent: *
+Crawl-delay: 5
+
+# Sitemap location
+Sitemap: https://pelanoresources.co.tz/sitemap.xml

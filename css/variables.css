@@ -1,0 +1,238 @@
+/* ===== CSS VARIABLES FOR CONSISTENCY ===== */
+
+:root {
+    /* Colors - Forest Products Professional Branding */
+    --primary-color: #1b7034;
+    --secondary-color: #3d5a47;
+    --accent-color: #d4a574;
+    --yellow-accent: #FFDD00;
+    --logo-yellow: #FFD700;
+    --logo-green: #1b7034;
+    --logo-navy: #1a2d5a;
+    --success-color: #4CAF50;
+    --warning-color: #f39c12;
+    --danger-color: #e74c3c;
+    --text-color: #2c3e50;
+    --light-text: #5d6d7b;
+    --bg-light: #f4f6f5;
+    --white: #ffffff;
+    
+    /* Dark Mode Colors */
+    --dark-bg: #1a1a1a;
+    --dark-text: #e8e8e8;
+    --dark-card: #2d2d2d;
+    --dark-border: #3d3d3d;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.15);
+    --shadow-dark: 0 8px 25px rgba(0, 0, 0, 0.3);
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+    
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 50%;
+    
+    /* Border Radius (alias) */
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    
+    /* Font Sizes (alias) */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    
+    /* Color Variations */
+    --primary-light: #48d597;
+    --primary-dark: #27ae5a;
+    
+    /* Background Variations */
+    --bg-light-secondary: #f5f5f5;
+    --bg-dark: #1a1a1a;
+    --bg-dark-secondary: #2d2d2d;
+    
+    /* Border Color */
+    --border-color: #e0e0e0;
+    --border-dark: #3d3d3d;
+    
+    /* Text Color Variations */
+    --text-primary: #333;
+    --text-secondary: #666;
+    --text-tertiary: #999;
+    --text-light: #e0e0e0;
+    
+    /* Transitions */
+    --transition: all 0.3s ease;
+    --transition-fast: all 0.15s ease;
+    --transition-slow: all 0.5s ease;
+    
+    /* Font Family */
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-mono: 'Courier New', monospace;
+    
+    /* Font Sizes */
+    --font-xs: 0.75rem;
+    --font-sm: 0.875rem;
+    --font-base: 1rem;
+    --font-lg: 1.125rem;
+    --font-xl: 1.25rem;
+    --font-2xl: 1.5rem;
+    --font-3xl: 1.875rem;
+    --font-4xl: 2.25rem;
+    --font-5xl: 3rem;
+    
+    /* Line Heights */
+    --line-tight: 1.25;
+    --line-normal: 1.5;
+    --line-relaxed: 1.75;
+    --line-loose: 2;
+    
+    /* Z-Index */
+    --z-hide: -1;
+    --z-base: 1;
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    --text-color: var(--dark-text);
+    --light-text: #a0a0a0;
+    --bg-light: var(--dark-card);
+    --white: var(--dark-bg);
+    --secondary-color: #ecf0f1;
+}
+
+/* ===== UTILITY CLASSES ===== */
+
+.hidden {
+    display: none !important;
+}
+
+.invisible {
+    visibility: hidden !important;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-col {
+    flex-direction: column;
+}
+
+.gap-xs { gap: var(--spacing-xs); }
+.gap-sm { gap: var(--spacing-sm); }
+.gap-md { gap: var(--spacing-md); }
+.gap-lg { gap: var(--spacing-lg); }
+.gap-xl { gap: var(--spacing-xl); }
+
+.m-0 { margin: 0; }
+.m-xs { margin: var(--spacing-xs); }
+.m-sm { margin: var(--spacing-sm); }
+.m-md { margin: var(--spacing-md); }
+.m-lg { margin: var(--spacing-lg); }
+.m-xl { margin: var(--spacing-xl); }
+
+.mt-xs { margin-top: var(--spacing-xs); }
+.mt-sm { margin-top: var(--spacing-sm); }
+.mt-md { margin-top: var(--spacing-md); }
+.mt-lg { margin-top: var(--spacing-lg); }
+.mt-xl { margin-top: var(--spacing-xl); }
+
+.mb-xs { margin-bottom: var(--spacing-xs); }
+.mb-sm { margin-bottom: var(--spacing-sm); }
+.mb-md { margin-bottom: var(--spacing-md); }
+.mb-lg { margin-bottom: var(--spacing-lg); }
+.mb-xl { margin-bottom: var(--spacing-xl); }
+
+.p-0 { padding: 0; }
+.p-xs { padding: var(--spacing-xs); }
+.p-sm { padding: var(--spacing-sm); }
+.p-md { padding: var(--spacing-md); }
+.p-lg { padding: var(--spacing-lg); }
+.p-xl { padding: var(--spacing-xl); }
+
+.rounded-sm { border-radius: var(--radius-sm); }
+.rounded-md { border-radius: var(--radius-md); }
+.rounded-lg { border-radius: var(--radius-lg); }
+.rounded-full { border-radius: var(--radius-full); }
+
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow { box-shadow: var(--shadow); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+
+.opacity-50 { opacity: 0.5; }
+.opacity-75 { opacity: 0.75; }
+.opacity-100 { opacity: 1; }

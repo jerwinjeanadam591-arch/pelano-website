@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Pelano Resources</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+    <!-- Admin Navigation -->
+    <nav class="navbar admin-navbar">
+        <div class="container">
+            <div class="logo">
+                <h1>🌿 Pelano Admin</h1>
+            </div>
+            <button class="btn btn-small" id="logout-btn">Logout</button>
+        </div>
+    </nav>
+
+    <div class="admin-container">
+        <div class="admin-sidebar">
+            <h2>Upload Manager</h2>
+            <ul class="admin-menu">
+                <li class="active" data-tab="products">📸 Products</li>
+                <li data-tab="gallery">🖼️ Gallery</li>
+                <li data-tab="videos">🎥 Videos</li>
+                <li data-tab="documents">📄 Documents</li>
+            </ul>
+        </div>
+
+        <div class="admin-main">
+            <!-- Products Tab -->
+            <div class="admin-tab active" id="products-tab">
+                <h2>Upload Product Images</h2>
+                <div class="upload-section">
+                    <div class="upload-area" id="product-upload-area">
+                        <input type="file" id="product-file" accept="image/*" multiple>
+                        <div class="upload-placeholder">
+                            <span>📸 Drag & drop or click to upload product images</span>
+                            <p>Supported: JPG, PNG, GIF, WebP</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="product-upload-btn">Upload Products</button>
+                </div>
+                <div class="files-list" id="product-files-list"></div>
+            </div>
+
+            <!-- Gallery Tab -->
+            <div class="admin-tab" id="gallery-tab">
+                <h2>Upload Gallery Images</h2>
+                <div class="upload-section">
+                    <div class="upload-area" id="gallery-upload-area">
+                        <input type="file" id="gallery-file" accept="image/*" multiple>
+                        <div class="upload-placeholder">
+                            <span>🖼️ Drag & drop or click to upload gallery images</span>
+                            <p>Supported: JPG, PNG, GIF, WebP</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="gallery-upload-btn">Upload Gallery</button>
+                </div>
+                <div class="files-list" id="gallery-files-list"></div>
+            </div>
+
+            <!-- Videos Tab -->
+            <div class="admin-tab" id="videos-tab">
+                <h2>Upload Videos</h2>
+                <div class="upload-section">
+                    <div class="upload-area" id="video-upload-area">
+                        <input type="file" id="video-file" accept="video/*" multiple>
+                        <div class="upload-placeholder">
+                            <span>🎥 Drag & drop or click to upload videos</span>
+                            <p>Supported: MP4, AVI, MOV</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="video-upload-btn">Upload Videos</button>
+                </div>
+                <div class="files-list" id="video-files-list"></div>
+            </div>
+
+            <!-- Documents Tab -->
+            <div class="admin-tab" id="documents-tab">
+                <h2>Upload Documents (PDFs)</h2>
+                <div class="upload-section">
+                    <div class="upload-area" id="document-upload-area">
+                        <input type="file" id="document-file" accept=".pdf" multiple>
+                        <div class="upload-placeholder">
+                            <span>📄 Drag & drop or click to upload PDFs</span>
+                            <p>Supported: PDF</p>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="document-upload-btn">Upload Documents</button>
+                </div>
+                <div class="files-list" id="document-files-list"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/admin.js"></script>
+</body>
+</html>

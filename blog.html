@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Latest news, insights, and articles from Pelano Resources. Learn about industry trends, tips, and case studies.">
+    <meta name="keywords" content="blog, news, articles, insights, resources, guides, case studies">
+    <meta name="author" content="Pelano Resources Ltd">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Blog - Pelano Resources Ltd">
+    <meta property="og:description" content="Read latest news and insights from Pelano Resources">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pelanoresources.co.tz/blog.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Blog - Pelano Resources Ltd">
+    <meta name="twitter:description" content="Read latest news and insights from Pelano Resources">
+    <link rel="canonical" href="https://pelanoresources.co.tz/blog.html">
+    <title>Blog - Pelano Resources Ltd | News & Insights</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/blog.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <a href="index.html" class="brand-logo">
+                    <img src="images/pelano-logo.png" alt="Pelano Resources logo">
+                    <span>Pelano Resources</span>
+                </a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Toggle menu">☰</button>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="testimonials.html">Testimonials</a></li>
+                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header" style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color));">
+        <div class="container">
+            <h1>Our Blog</h1>
+            <p>Latest news, insights, and articles from Pelano Resources</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section style="padding: var(--spacing-2xl) var(--spacing-lg);">
+            <div class="container">
+                <!-- Search -->
+                <div class="blog-search">
+                    <input 
+                        type="text" 
+                        id="blog-search" 
+                        placeholder="Search articles..." 
+                        aria-label="Search blog articles"
+                    >
+                </div>
+
+                <!-- Filters -->
+                <div class="blog-filters" id="blog-filters">
+                    <button data-blog-filter="all" class="active">All Articles</button>
+                </div>
+
+                <!-- Blog Posts -->
+                <div id="blog-posts"></div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: white; padding: var(--spacing-2xl) var(--spacing-lg); text-align: center;">
+            <div class="container">
+                <h2>Subscribe to Our Newsletter</h2>
+                <p style="margin: var(--spacing-lg) 0; opacity: 0.9; font-size: var(--font-size-lg);">Get the latest insights and updates delivered to your inbox</p>
+                <div style="display: flex; justify-content: center; gap: var(--spacing-md); flex-wrap: wrap; max-width: 500px; margin: 0 auto;">
+                    <input 
+                        type="email" 
+                        placeholder="Your email..." 
+                        id="newsletter-email"
+                        style="flex: 1; min-width: 200px; padding: var(--spacing-sm) var(--spacing-lg); border: none; border-radius: var(--border-radius-md); font-size: var(--font-size-sm);"
+                        aria-label="Email for newsletter subscription"
+                    >
+                    <button 
+                        class="btn btn-light"
+                        onclick="subscribeNewsletter()"
+                        aria-label="Subscribe to newsletter"
+                    >Subscribe</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Pelano Resources Ltd</h3>
+                    <p>Quality resources and products from Mafinga, Tanzania. Committed to excellence and customer satisfaction.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li><svg class="location-marker" style="height: 12px; width: 12px; margin-right: 4px;" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12c0 7 10 13 10 13s10-6 10-13c0-5.52-4.48-10-10-10zm0 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg> Mafinga, Tanzania</li>
+                        <li>📞 +255 755 885 888</li>
+                        <li>✉️ info@pelanoresources.co.tz</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links footer-social-links">
+                        <a href="https://facebook.com/pelanoresources" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 12.07C22 6.48 17.52 2 11.93 2S2 6.48 2 12.07C2 17.09 5.65 21.18 10.44 22v-7.03H8.08v-2.9h2.36V9.41c0-2.33 1.39-3.61 3.52-3.61 1.02 0 2.09.18 2.09.18v2.3h-1.18c-1.16 0-1.52.72-1.52 1.46v1.76h2.59l-.41 2.9h-2.18V22C18.35 21.18 22 17.09 22 12.07z"/></svg>
+                        </a>
+                        <a href="https://twitter.com/pelanoresources" target="_blank" rel="noopener noreferrer" aria-label="X">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M22 5.92c-.63.28-1.3.47-2 .55.72-.43 1.27-1.1 1.53-1.9-.68.4-1.43.68-2.23.84C18.86 4.52 17.9 4 16.82 4c-1.42 0-2.57 1.15-2.57 2.57 0 .2.02.4.06.59C11.6 7.02 8.13 5.1 6.1 2.28c-.22.38-.35.82-.35 1.29 0 .89.45 1.67 1.13 2.13-.53-.02-1.03-.16-1.46-.4v.04c0 1.24.88 2.27 2.05 2.5-.21.06-.43.1-.66.1-.16 0-.32-.02-.47-.05.32 1 1.26 1.73 2.37 1.75-0.87.68-1.98 1.08-3.19 1.08-.21 0-.42-.01-.62-.04C7.97 18.3 9.72 19 11.62 19c5.02 0 7.77-4.16 7.77-7.77v-.35c.52-.38.97-.85 1.33-1.39-.48.22-.99.36-1.52.42z"/></svg>
+                        </a>
+                        <a href="https://linkedin.com/company/pelano-resources" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6 1.1 6 0 4.88 0 3.5 0 2.12 1.1 1 2.48 1c1.38 0 2.5 1.12 2.5 2.5zM0 8h5v16H0zM7.5 8h4.78v2.16h.07c.67-1.27 2.3-2.6 4.73-2.6 5.06 0 6 3.33 6 7.66V24h-5V16.5c0-1.82-.03-4.16-2.54-4.16-2.55 0-2.94 1.99-2.94 4.04V24h-5z"/></svg>
+                        </a>
+                        <a href="https://instagram.com/pelanoresources" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2.2c3.2 0 3.584.012 4.85.07 1.17.055 1.97.24 2.43.4.6.22 1.03.48 1.48.93.45.45.71.88.93 1.48.16.46.34 1.26.4 2.43.058 1.27.07 1.65.07 4.85s-.012 3.584-.07 4.85c-.055 1.17-.24 1.97-.4 2.43-.22.6-.48 1.03-.93 1.48-.45.45-.88.71-1.48.93-.46.16-1.26.34-2.43.4-1.27.058-1.65.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.055-1.97-.24-2.43-.4-.6-.22-1.03-.48-1.48-.93-.45-.45-.71-.88-.93-1.48-.16-.46-.34-1.26-.4-2.43C2.212 15.584 2.2 15.204 2.2 12s.012-3.584.07-4.85c.055-1.17.24-1.97.4-2.43.22-.6.48-1.03.93-1.48.45-.45.88-.71 1.48-.93.46-.16 1.26-.34 2.43-.4C8.416 2.212 8.796 2.2 12 2.2zm0 3.6A6.2 6.2 0 1 0 18.2 12 6.208 6.208 0 0 0 12 5.8zm0 10.2A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm4.8-8.9a1.44 1.44 0 1 1-1.44-1.44A1.44 1.44 0 0 1 16.8 6.1z"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Pelano Resources Ltd - Mafinga. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/utils.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/blog.js" defer></script>
+    <script src="js/social.js" defer></script>
+    <script>
+        // Initialize blog page
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get query parameters
+            const params = new URLSearchParams(window.location.search);
+            const categoryFilter = params.get('category');
+            const tagFilter = params.get('tag');
+            const searchQuery = params.get('q');
+
+            // Render filter buttons
+            const filtersContainer = document.getElementById('blog-filters');
+            const categories = Blog.getCategories();
+            categories.forEach(category => {
+                const btn = document.createElement('button');
+                btn.setAttribute('data-blog-filter', category.toLowerCase());
+                btn.textContent = category;
+                btn.addEventListener('click', () => {
+                    Blog.filterPostsByCategory(category);
+                    document.querySelectorAll('[data-blog-filter]').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                });
+                filtersContainer.appendChild(btn);
+            });
+
+            // Render posts
+            const container = document.getElementById('blog-posts');
+            let posts;
+
+            if (tagFilter) {
+                posts = Blog.getByTag(tagFilter);
+                document.querySelector('h1').textContent = `Articles tagged with "${tagFilter}"`;
+            } else if (categoryFilter) {
+                posts = Blog.getByCategory(categoryFilter);
+                document.querySelector('h1').textContent = `${categoryFilter} Articles`;
+            } else if (searchQuery) {
+                posts = Blog.search(searchQuery);
+                document.querySelector('h1').textContent = `Search results for "${searchQuery}"`;
+            } else {
+                posts = Blog.getPublishedPosts();
+            }
+
+            Blog.renderPosts(posts, container);
+        });
+
+        // Newsletter subscription
+        function subscribeNewsletter() {
+            const email = document.getElementById('newsletter-email').value;
+            if (!email || !Validation.email(email)) {
+                Notify.error('Please enter a valid email address');
+                return;
+            }
+
+            const subscribers = Storage.get('newsletter_subscribers') || [];
+            if (!subscribers.includes(email)) {
+                subscribers.push(email);
+                Storage.set('newsletter_subscribers', subscribers);
+            }
+
+            document.getElementById('newsletter-email').value = '';
+            Notify.success('Thank you for subscribing!');
+            Analytics.trackEvent('newsletter_subscribe', 'email');
+        }
+    </script>
+</body>
+</html>
