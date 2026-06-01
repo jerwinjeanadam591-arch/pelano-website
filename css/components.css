@@ -16,6 +16,27 @@
     transition: all 0.3s ease;
 }
 
+@media (max-width: 768px) {
+    .notification {
+        min-width: auto;
+        max-width: calc(100% - 20px);
+        right: 10px;
+        left: 10px;
+        padding: 14px 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .notification {
+        top: 10px;
+        right: 8px;
+        left: 8px;
+        max-width: calc(100% - 16px);
+        padding: 12px 14px;
+        font-size: 0.9rem;
+    }
+}
+
 @keyframes slideInRight {
     from {
         opacity: 0;
@@ -340,4 +361,82 @@ body.dark-mode ::-webkit-scrollbar-track {
 /* Prevent transition on scroll-related changes */
 html.scroll * {
     transition: none !important;
+}
+
+/* ===== MOBILE FORM OPTIMIZATION ===== */
+@media (max-width: 768px) {
+    /* Better form field styling on mobile */
+    input[type="text"],
+    input[type="email"],
+    input[type="phone"],
+    input[type="number"],
+    textarea,
+    select {
+        font-size: 16px;
+        padding: 12px 14px;
+        border: 2px solid #e0e0e0;
+        border-radius: 6px;
+        width: 100%;
+        font-family: inherit;
+        line-height: 1.5;
+    }
+    
+    /* Focus states for mobile */
+    input:focus,
+    textarea:focus,
+    select:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(27, 112, 52, 0.1);
+    }
+    
+    /* Better placeholder text on mobile */
+    input::placeholder,
+    textarea::placeholder {
+        color: #999;
+        font-size: 14px;
+    }
+    
+    /* Disable text size adjustment on iOS input focus */
+    input[type="text"],
+    input[type="email"],
+    input[type="phone"],
+    textarea {
+        font-size: 16px;
+        -webkit-text-size-adjust: 100%;
+    }
+    
+    /* Better button states on mobile */
+    button {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+}
+
+/* ===== MOBILE UTILITY CLASSES ===== */
+@media (max-width: 768px) {
+    .hidden-mobile {
+        display: none !important;
+    }
+    
+    .visible-mobile {
+        display: block !important;
+    }
+    
+    .flex-mobile {
+        display: flex !important;
+    }
+    
+    .flex-col-mobile {
+        flex-direction: column !important;
+    }
+    
+    .w-full {
+        width: 100% !important;
+    }
+    
+    .mx-auto {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
 }
