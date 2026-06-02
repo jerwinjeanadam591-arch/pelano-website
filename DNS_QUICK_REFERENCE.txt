@@ -1,0 +1,138 @@
+╔═══════════════════════════════════════════════════════════════════════════╗
+║               DUHOSTING DNS CONFIGURATION - QUICK REFERENCE               ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+DOMAIN: pelanoresources.co.tz
+REGISTRAR: Duhosting
+
+───────────────────────────────────────────────────────────────────────────
+
+🔑 CRITICAL INFORMATION YOU'LL NEED:
+
+1. Your Hosting Provider's IP Address
+   Format: 123.45.67.89
+   WHERE TO GET IT: Email your hosting provider and ask for:
+   - "A record value"
+   - "Server IP address"
+   - "Primary IP"
+
+───────────────────────────────────────────────────────────────────────────
+
+📋 DNS RECORDS TO ADD IN DUHOSTING:
+
+Record 1 - A Record (REQUIRED)
+┌─────────────────────────────────────────┐
+│ Type:  A                                │
+│ Name:  @ (or blank)                     │
+│ Value: [YOUR_HOSTING_IP_ADDRESS]        │
+│ TTL:   3600                             │
+└─────────────────────────────────────────┘
+
+Record 2 - CNAME Record (REQUIRED for www)
+┌─────────────────────────────────────────┐
+│ Type:  CNAME                            │
+│ Name:  www                              │
+│ Value: pelanoresources.co.tz            │
+│ TTL:   3600                             │
+└─────────────────────────────────────────┘
+
+Record 3 - MX Record (OPTIONAL for email)
+┌─────────────────────────────────────────┐
+│ Type:  MX                               │
+│ Name:  @ (or blank)                     │
+│ Value: mail.pelanoresources.co.tz       │
+│ Priority: 10                            │
+│ TTL:   3600                             │
+└─────────────────────────────────────────┘
+
+───────────────────────────────────────────────────────────────────────────
+
+⚡ STEP-BY-STEP (5 MINUTES):
+
+Step 1: Login to Duhosting
+        https://www.duhosting.com → Login
+
+Step 2: Navigate to Domain Settings
+        My Services → pelanoresources.co.tz
+
+Step 3: Find DNS Management
+        Look for "DNS" / "DNS Records" / "Manage DNS"
+
+Step 4: Add A Record
+        Type: A | Name: @ | Value: [YOUR_IP] | TTL: 3600 → Save
+
+Step 5: Add CNAME Record
+        Type: CNAME | Name: www | Value: pelanoresources.co.tz | TTL: 3600 → Save
+
+Step 6: Wait & Verify
+        Wait 15-60 minutes → Check at https://www.whatsmydns.net
+
+Step 7: Test
+        Open https://pelanoresources.co.tz in browser
+
+───────────────────────────────────────────────────────────────────────────
+
+✅ VERIFICATION CHECKLIST:
+
+After saving DNS records:
+
+☐ Wait 15-60 minutes for propagation
+☐ Go to https://www.whatsmydns.net
+☐ Enter: pelanoresources.co.tz
+☐ Should show your hosting IP in A record
+☐ Open https://pelanoresources.co.tz (should load)
+☐ Open https://www.pelanoresources.co.tz (should load)
+☐ Both http and https should work
+☐ No error messages or blank pages
+
+───────────────────────────────────────────────────────────────────────────
+
+⏱️ TIMING:
+
+DNS Propagation Timeline:
+- 15 minutes:   50-60% of world sees changes
+- 1 hour:       80-90% of world sees changes
+- 24 hours:     99%+ of world sees changes
+
+Don't worry if not instant - this is normal!
+
+───────────────────────────────────────────────────────────────────────────
+
+🆘 TROUBLESHOOTING:
+
+Problem: Domain not working after 1 hour
+Solution: Check DNS records saved correctly → Verify at whatsmydns.net
+
+Problem: www subdomain not working
+Solution: Make sure CNAME record exists for "www"
+
+Problem: Still seeing old website
+Solution: Clear browser cache → Try incognito mode → Wait 24 hours
+
+Problem: SSL/HTTPS not working
+Solution: Make sure hosting has SSL certificate → Usually auto-installed
+
+───────────────────────────────────────────────────────────────────────────
+
+📞 IF YOU GET STUCK:
+
+1. Check: https://www.whatsmydns.net for DNS status
+2. Email hosting provider for your IP address
+3. Verify A and CNAME records in Duhosting panel
+4. Clear browser cache and try again
+5. Contact Duhosting support if DNS won't save
+
+───────────────────────────────────────────────────────────────────────────
+
+✨ EXPECTED RESULT:
+
+After DNS setup completes:
+
+✓ https://pelanoresources.co.tz → Shows your website ✓
+✓ https://www.pelanoresources.co.tz → Shows your website ✓
+✓ http://pelanoresources.co.tz → Redirects to https ✓
+✓ Your mobile-optimized website is LIVE ✓
+
+🎉 DEPLOYMENT COMPLETE!
+
+═════════════════════════════════════════════════════════════════════════════
