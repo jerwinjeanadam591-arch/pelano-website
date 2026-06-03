@@ -8,11 +8,17 @@
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: var(--spacing-lg);
     margin: var(--spacing-xl) 0;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 @media (max-width: 768px) {
     #blog-posts {
         grid-template-columns: 1fr;
+        gap: 15px;
+        margin: 15px 0;
+        padding: 0 10px;
     }
 }
 
