@@ -3768,43 +3768,7 @@ select {
     }
 }
 
-/* Ensure navbar doesn't overflow on any device */
-@media (max-width: 768px) {
-    .navbar {
-        width: 100vw;
-        position: fixed;
-        left: 0;
-        right: 0;
-    }
-    
-    .navbar .container {
-        width: 100%;
-        max-width: none;
-        padding: 12px 15px;
-        display: flex;
-        align-items: center;
-        box-sizing: border-box;
-    }
-    
-    .logo a.brand-logo {
-        flex-shrink: 0;
-        gap: 0.5rem;
-    }
-    
-    .logo a.brand-logo img {
-        flex-shrink: 0;
-    }
-    
-    .logo a.brand-logo span {
-        flex-shrink: 0;
-        font-size: 1.2rem;
-    }
-    
-    .hamburger {
-        flex-shrink: 0;
-        margin-left: auto;
-    }
-}
+
 
 /* Ensure all grids are single column on small phones */
 @media (max-width: 600px) {
@@ -3829,24 +3793,7 @@ select {
     }
 }
 
-/* Ensure images don't overflow */
-@media (max-width: 768px) {
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-    
-    picture {
-        max-width: 100%;
-    }
-    
-    .product-image,
-    .service-image,
-    .blog-image {
-        max-width: 100%;
-        height: auto;
-    }
-}
+
 
 /* Fix modals and overlays on mobile */
 @media (max-width: 600px) {
