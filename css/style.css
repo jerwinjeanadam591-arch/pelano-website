@@ -2400,1423 +2400,357 @@ body.dark-mode .logo-label p {
     }
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
+
+/* ===== CLEAN MOBILE-FIRST RESPONSIVE DESIGN ===== */
+/* Single comprehensive mobile breakpoint to prevent conflicts */
+
+/* ===== TABLET & MOBILE (768px and below) ===== */
 @media (max-width: 768px) {
-    .container {
-        padding: 0 15px;
-        max-width: 100%;
-    }
-
-    .hamburger {
-        display: block;
-        z-index: 1001;
-    }
-
-    .nav-menu {
-        position: fixed;
-        left: 0;
-        top: 60px;
-        flex-direction: column;
-        background: var(--white);
+    /* Prevent all horizontal overflow */
+    html, body {
         width: 100%;
         max-width: 100%;
-        text-align: center;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.1);
-        padding: 15px 0;
-        gap: 0;
-        max-height: calc(100vh - 60px);
-        overflow-y: auto;
-        z-index: 999;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-out;
-    }
-
-    .nav-menu.active {
-        transform: translateX(0);
-    }
-
-    .nav-menu li {
-        margin: 8px 0;
+        overflow-x: hidden !important;
+        margin: 0;
         padding: 0;
     }
-
-    .nav-menu a {
-        display: block;
-        padding: 12px 20px;
-        font-size: 1rem;
-        white-space: normal;
-        border-radius: 0;
-        background: transparent;
+    
+    * {
+        max-width: 100%;
+    }
+    
+    /* Fix navbar */
+    .navbar {
+        width: 100%;
+        max-width: 100%;
+        padding: 0;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        overflow-x: hidden;
+    }
+    
+    .navbar .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 10px 15px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .logo a.brand-logo img {
+        height: 50px;
+        width: auto;
+    }
+    
+    .logo a.brand-logo span {
+        font-size: 1.2rem;
+    }
+    
+    /* Show hamburger menu */
+    .hamburger {
+        display: block !important;
+        z-index: 1001;
+        background: none;
         border: none;
-        box-shadow: none;
-        border-bottom: 1px solid rgba(31, 122, 76, 0.1);
+        font-size: 1.8rem;
+        cursor: pointer;
         color: var(--secondary-color);
     }
-
-    .nav-menu a:hover {
-        background: rgba(31, 122, 76, 0.08);
-        border-color: rgba(31, 122, 76, 0.2);
-    }
-
-    .nav-menu a::before {
-        display: none;
-    }
-
-    .hero-content {
-        padding: 20px 15px;
-        max-width: 100%;
+    
+    /* Mobile navigation menu */
+    .nav-menu {
+        position: fixed;
+        top: 60px;
+        left: -100%;
         width: 100%;
-    }
-
-    .hero-content h1 {
-        font-size: 1.6rem;
-        line-height: 1.2;
         max-width: 100%;
-        margin-bottom: 12px;
-    }
-
-    .hero-content p {
-        font-size: 0.9rem;
-        max-width: 100%;
-        margin-bottom: 15px;
-    }
-
-    .hero-buttons {
+        height: auto;
+        max-height: calc(100vh - 60px);
+        background: white;
         flex-direction: column;
-        align-items: stretch;
-        gap: 8px;
+        padding: 0;
+        margin: 0;
+        gap: 0;
+        overflow-y: auto;
+        transition: left 0.3s ease-out;
+        z-index: 999;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-menu li {
         width: 100%;
+        margin: 0;
+        padding: 0;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
     }
-
-    .hero-buttons .btn {
-        width: 100%;
-        padding: 12px 16px;
-        font-size: 0.9rem;
-    }
-
-    .hero-carousel-nav {
-        padding: 8px 10px;
-        font-size: 1.2rem;
-        opacity: 0.6;
-    }
-
-    .hero-carousel-prev {
-        left: 8px;
-    }
-
-    .hero-carousel-next {
-        right: 8px;
-    }
-
-    .hero-carousel-dots {
-        bottom: 12px;
-        gap: 8px;
-    }
-
-    .hero-carousel-dot {
-        width: 8px;
-        height: 8px;
-    }
-
-    .hero-carousel-dot.active {
-        width: 20px;
-    }
-
-    .about-grid,
-    .contact-grid,
-    .contact-grid-large,
-    .mv-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
-    }
-
-    .about-image .placeholder-img {
-        height: 300px;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-
-    .section-subtitle {
-        font-size: 1.1rem;
-    }
-
-    .section-details {
-        font-size: 0.95rem;
-    }
-
-    .page-header h1 {
-        font-size: 2.2rem;
-    }
-
-    .products-grid,
-    .services-grid,
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .gallery-controls {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .gallery-info,
-    .load-more-btn {
-        width: 100%;
-        text-align: center;
-    }
-
-    .gallery-counter {
+    
+    .nav-menu a {
         display: block;
+        width: 100%;
+        padding: 15px 20px;
+        text-align: left;
+        font-size: 1rem;
+        color: var(--secondary-color);
+        text-decoration: none;
+        background: transparent;
+        border: none;
+        border-radius: 0;
+    }
+    
+    /* Hero section */
+    .hero {
+        width: 100%;
+        max-width: 100%;
+        min-height: 60vh;
+        margin-top: 60px;
+        padding: 20px 15px;
+        overflow: hidden;
+    }
+    
+    .hero-content {
+        position: relative;
+        z-index: 5;
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.8rem;
         margin-bottom: 10px;
     }
-
-    .modal-content {
-        margin: 10% auto;
-        width: 90%;
-    }
-
-    .modal-body {
-        padding: 25px;
-    }
-
-    .contact-form-large {
-        padding: 25px;
-    }
     
-    /* Better button sizing */
-    .btn {
-        padding: 11px 22px;
-        font-size: 0.9rem;
-        display: inline-block;
-    }
-    
-    .btn-small {
-        padding: 10px 18px;
-        font-size: 0.85rem;
-    }
-}
-
-/* ===== PICTURE CAROUSEL ===== */
-.picture-carousel {
-    position: relative;
-    width: 100%;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    background: var(--white);
-}
-
-.carousel-wrapper {
-    position: relative;
-    width: 100%;
-    padding-bottom: 66.67%;
-    overflow: hidden;
-}
-
-.carousel-inner {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.carousel-item {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.carousel-item.active {
-    opacity: 1;
-}
-
-.carousel-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.carousel-controls {
-    position: absolute;
-    bottom: 15px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 10px;
-    z-index: 10;
-}
-
-.carousel-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.5);
-    border: 2px solid white;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.carousel-dot.active {
-    background: var(--accent-color);
-    width: 30px;
-    border-radius: 6px;
-}
-
-.carousel-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.3);
-    color: white;
-    border: none;
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    transition: all 0.3s ease;
-    z-index: 5;
-}
-
-.carousel-nav:hover {
-    background: rgba(0, 0, 0, 0.5);
-    transform: translateY(-50%) scale(1.1);
-}
-
-.carousel-nav-prev {
-    left: 15px;
-}
-
-.carousel-nav-next {
-    right: 15px;
-}
-
-/* Picture Carousel Section */
-.picture-carousel-section {
-    padding: var(--spacing-2xl) var(--spacing-lg);
-    background: linear-gradient(135deg, #ffffff 0%, #f0f8ff 100%);
-    margin: var(--spacing-2xl) 0;
-}
-
-.picture-carousel-section .container {
-    max-width: 900px;
-}
-
-.carousel-section-title {
-    text-align: center;
-    margin-bottom: var(--spacing-xl);
-    font-size: var(--font-size-2xl);
-    color: var(--text-color);
-    font-weight: 600;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .carousel-nav {
-        width: 40px;
-        height: 40px;
-        font-size: 18px;
-    }
-
-    .carousel-nav-prev {
-        left: 10px;
-    }
-
-    .carousel-nav-next {
-        right: 10px;
-    }
-
-    .carousel-controls {
-        bottom: 10px;
-        gap: 8px;
-    }
-
-    .carousel-dot {
-        width: 10px;
-        height: 10px;
-    }
-
-    .carousel-dot.active {
-        width: 25px;
-    }
-}
-
-@media (max-width: 480px) {
-    .carousel-nav {
-        width: 35px;
-        height: 35px;
-        font-size: 16px;
-    }
-
-    .carousel-section-title {
-        font-size: 1.5rem;
-    }
-}
-
-/* ===== LEGAL CONTENT PAGES ===== */
-.content-section {
-    background: var(--white);
-    padding: 60px 0;
-    min-height: calc(100vh - 400px);
-}
-
-body.dark-mode .content-section {
-    background: #0f1720;
-}
-
-.legal-content {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 0 20px;
-    line-height: 1.8;
-}
-
-.legal-content h2 {
-    font-size: 2.2rem;
-    color: var(--primary-color);
-    margin: 40px 0 20px;
-    font-weight: 700;
-}
-
-.legal-content h3 {
-    font-size: 1.4rem;
-    color: var(--primary-color);
-    margin: 30px 0 15px;
-    font-weight: 600;
-}
-
-.legal-content p {
-    color: var(--text-color);
-    margin-bottom: 15px;
-    text-align: justify;
-}
-
-.legal-content ul {
-    margin: 15px 0 15px 30px;
-    color: var(--text-color);
-}
-
-.legal-content ul li {
-    margin-bottom: 10px;
-    list-style-type: disc;
-}
-
-.legal-content strong {
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-body.dark-mode .legal-content h2,
-body.dark-mode .legal-content h3 {
-    color: #7fc97f;
-}
-
-body.dark-mode .legal-content p,
-body.dark-mode .legal-content ul {
-    color: #d1d5db;
-}
-
-body.dark-mode .legal-content strong {
-    color: #7fc97f;
-}
-
-/* ===== PAGE HEADER ===== */
-.page-header {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    color: var(--white);
-    padding: 80px 20px;
-    text-align: center;
-}
-
-.page-header h1 {
-    font-size: 2.8rem;
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.page-header p {
-    font-size: 1.1rem;
-    opacity: 0.9;
-}
-
-@media (max-width: 768px) {
-    .page-header h1 {
-        font-size: 2rem;
-    }
-    
-    .page-header p {
+    .hero-content p {
         font-size: 1rem;
-    }
-
-    .legal-content h2 {
-        font-size: 1.8rem;
-    }
-
-    .legal-content h3 {
-        font-size: 1.2rem;
-    }
-
-    .legal-content {
-        padding: 0 15px;
-    }
-}
-
-/* ===== LOCATION MARKER ICON ===== */
-.location-marker {
-    height: 0.05em;
-    width: 0.05em;
-    display: inline-block;
-    margin-right: 2px;
-    vertical-align: middle;
-    color: var(--primary-color);
-}
-
-/* ===== ENHANCED MOBILE OPTIMIZATION ===== */
-
-/* Ensure no horizontal scroll on any mobile device */
-html, body {
-    overflow-x: hidden;
-    width: 100%;
-}
-
-/* Mobile optimization for images */
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Improve touch targets for mobile (44px minimum) */
-@media (max-width: 768px) {
-    button, a.btn, input[type="button"], input[type="submit"] {
-        min-height: 44px;
-        min-width: 44px;
-        padding: 12px 16px;
-        font-size: 16px;
+        margin-bottom: 15px;
     }
     
-    /* Ensure all sections have proper mobile padding */
-    section {
-        padding: 40px 0;
-    }
-    
-    section.featured-products,
-    section.why-choose-us,
-    section.about-preview,
-    section.testimonials-section {
-        padding: 40px 15px;
-    }
-    
-    /* Fix potential text overflow */
-    h1, h2, h3, h4, h5, h6 {
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        hyphens: auto;
-    }
-    
-    /* Ensure proper spacing for grids */
-    .features-grid {
-        gap: 20px;
-        grid-template-columns: 1fr;
-    }
-    
-    .product-card {
-        margin: 0 auto;
-        width: 100%;
-    }
-    
-    .feature-card {
-        padding: 20px;
-    }
-    
-    /* Optimize button sizing for mobile */
-    .btn {
-        display: inline-block;
-        width: auto;
-        min-height: 44px;
-        padding: 12px 20px;
-        font-size: 14px;
-    }
-    
-    .btn-small {
-        min-height: 40px;
-        padding: 10px 16px;
-        font-size: 14px;
-    }
-    
-    /* Fix hero buttons on mobile */
+    /* Hero buttons - FIXED SIZE FOR MOBILE */
     .hero-buttons {
-        gap: 10px;
+        display: flex;
         flex-wrap: wrap;
+        gap: 10px;
         justify-content: center;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 20px;
         padding: 0 10px;
     }
     
     .hero-buttons .btn {
-        width: auto;
-        max-width: calc(100% - 20px);
-        min-width: auto;
-        flex: 0 1 auto;
+        display: inline-block;
         padding: 11px 18px;
         font-size: 0.95rem;
+        width: auto;
+        max-width: calc(50% - 5px);
         white-space: normal;
+        min-height: 44px;
     }
     
-    /* Ensure form inputs are mobile-friendly */
-    input, textarea, select {
-        font-size: 16px;
-        padding: 12px;
-        border-radius: 6px;
-        border: 1px solid #ddd;
+    /* All sections */
+    section {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+        padding: 25px 15px;
+    }
+    
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 15px;
+        margin: 0 auto;
+    }
+    
+    /* Typography */
+    h1 { font-size: 1.5rem; }
+    h2 { font-size: 1.3rem; }
+    h3 { font-size: 1.1rem; }
+    h4 { font-size: 1rem; }
+    p { font-size: 0.95rem; }
+    
+    /* All cards */
+    .feature-card,
+    .product-card,
+    .service-card,
+    .gallery-item,
+    .testimonial-card {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    /* Grids to single column */
+    .features-grid,
+    .products-grid,
+    .services-grid,
+    .gallery-grid,
+    .about-grid,
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+        gap: 15px !important;
+    }
+    
+    /* Buttons */
+    .btn {
+        display: inline-block;
+        padding: 11px 18px;
+        font-size: 0.95rem;
+        min-height: 44px;
+        width: auto;
+        max-width: 100%;
+    }
+    
+    .btn-full {
         width: 100%;
     }
     
-    /* Better spacing for sections */
-    .container {
-        padding: 0 15px;
+    /* Images */
+    img, video, iframe {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
     }
     
-    /* Optimize about section */
-    .about-preview {
-        padding: 40px 15px;
+    /* Forms */
+    input, textarea, select {
+        width: 100%;
+        max-width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        box-sizing: border-box;
     }
     
-    .about-grid {
-        gap: 30px;
-    }
-    
-    /* Fix gallery and modal on mobile */
-    .modal {
-        padding: 10px;
-    }
-    
-    .modal-content {
-        width: 95%;
-        border-radius: 8px;
-    }
-    
-    /* Optimize carousel on mobile */
-    .hero-carousel-nav {
-        padding: 8px 12px;
-        font-size: 20px;
-    }
-    
-    /* Fix footer spacing */
+    /* Footer */
     .footer {
-        padding: 40px 0 20px;
+        width: 100%;
+        max-width: 100%;
+        padding: 30px 15px;
     }
     
-    .footer-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    /* Ensure text is readable on mobile */
-    body {
-        font-size: 16px;
-        line-height: 1.5;
-    }
-    
-    p {
-        font-size: 16px;
-        line-height: 1.6;
-    }
-    
-    /* Hide overflow on body */
-    body {
-        overflow-x: hidden;
+    .footer-section {
+        width: 100%;
+        margin-bottom: 20px;
     }
 }
 
-/* Extra small devices (320px and below) */
+/* ===== SMALL PHONES (max-width: 480px) ===== */
 @media (max-width: 480px) {
-    /* Tighter margins for very small screens */
+    .navbar .container {
+        padding: 8px 12px;
+    }
+    
+    .logo a.brand-logo img {
+        height: 40px;
+    }
+    
+    .logo a.brand-logo span {
+        font-size: 1rem;
+    }
+    
+    .hero {
+        padding: 15px 12px;
+        min-height: 50vh;
+        margin-top: 50px;
+    }
+    
+    .hero-content h1 {
+        font-size: 1.4rem;
+    }
+    
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+    
+    .hero-buttons {
+        gap: 8px;
+        padding: 0 8px;
+    }
+    
+    .hero-buttons .btn {
+        padding: 10px 14px;
+        font-size: 0.85rem;
+        max-width: calc(50% - 4px);
+    }
+    
+    h1 { font-size: 1.3rem; }
+    h2 { font-size: 1.1rem; }
+    h3 { font-size: 0.95rem; }
+    
     section {
-        padding: 30px 10px;
+        padding: 20px 12px;
     }
     
     .container {
         padding: 0 12px;
     }
     
-    h1 {
-        font-size: 1.5rem;
-    }
-    
-    h2 {
-        font-size: 1.3rem;
-    }
-    
-    h3 {
-        font-size: 1.1rem;
-    }
-    
-    p {
-        font-size: 14px;
-    }
-    
-    .feature-card {
-        padding: 15px;
-    }
-    
-    /* Stack buttons fully on smallest screens */
-    .hero-buttons {
-        gap: 10px;
-        flex-direction: column;
-        align-items: stretch;
-    }
-    
-    .hero-buttons .btn {
-        width: 100%;
-        padding: 12px 14px;
-        font-size: 0.9rem;
-    }
-    
     .btn {
-        padding: 11px 14px;
-        font-size: 0.9rem;
+        padding: 10px 14px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ===== EXTRA SMALL PHONES (max-width: 320px) ===== */
+@media (max-width: 320px) {
+    .navbar .container {
+        padding: 8px 10px;
     }
     
-    /* Reduce logo size on smallest screens */
     .logo a.brand-logo img {
-        height: 50px;
+        height: 35px;
     }
     
-    /* Better spacing for forms */
-    .form-group {
-        margin-bottom: 16px;
-    }
-    
-    input, textarea, select {
-        font-size: 16px;
-        padding: 10px;
-    }
-    
-    /* Optimize footer for very small screens */
-    .footer-section h3,
-    .footer-section h4 {
+    .logo a.brand-logo span {
         font-size: 0.9rem;
     }
     
-    .footer-section p {
-        font-size: 0.85rem;
-    }
-}
-
-/* ===== MOBILE OVERFLOW FIX ===== */
-/* Prevent horizontal scrolling on all viewports */
-* {
-    box-sizing: border-box;
-}
-
-html, body {
-    width: 100%;
-    overflow-x: hidden;
-}
-
-/* Ensure all major sections respect viewport width */
-section, .container, .navbar {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-}
-
-/* Fix for images and media that might overflow */
-img, video, iframe {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Ensure form elements don't overflow */
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="number"],
-textarea,
-select {
-    max-width: 100%;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* Mobile-first button sizing */
-@media (max-width: 768px) {
-    .btn, a.btn {
-        white-space: normal;
-        word-break: break-word;
-    }
-    
-    .hero-buttons {
-        padding: 0 5px;
-        margin: 20px 0;
-    }
-    
-    section {
-        overflow-x: hidden;
-    }
-    
-    .container {
-        overflow-x: hidden;
-    }
-}
-
-/* Ultra-mobile devices (less than 375px) */
-@media (max-width: 374px) {
-    .btn {
-        padding: 10px 12px;
-        font-size: 0.85rem;
-    }
-    
-    .hero-buttons {
-        gap: 8px;
-        padding: 0;
-    }
-    
-    .container {
-        padding: 0 10px !important;
-    }
-    
-    section {
-        padding: 25px 10px !important;
-    }
-    
-    h1 {
-        font-size: 1.3rem;
-    }
-    
-    h2 {
-        font-size: 1.1rem;
-    }
-    
-    .section-title {
-        font-size: 1.1rem;
-    }
-}
-
-/* Landscape mode optimization */
-@media (max-height: 500px) and (orientation: landscape) {
     .hero {
-        height: auto;
-        min-height: 60vh;
-        padding: 20px 0;
+        padding: 12px 10px;
+        min-height: 45vh;
+        margin-top: 50px;
     }
     
-    .hero-content {
-        padding: 20px 0;
-    }
-    
-    .section {
-        padding: 30px 0;
-    }
-}
-
-/* ========================================
-   COMPREHENSIVE MOBILE OPTIMIZATION
-   ======================================== */
-
-/* Ensure all elements fit viewport width */
-* {
-    box-sizing: border-box;
-}
-
-html, body {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0;
-}
-
-/* All sections must respect viewport */
-section, .section, .container {
-    width: 100%;
-    max-width: 100%;
-    overflow-x: hidden;
-    margin: 0;
-    padding: 0 15px;
-}
-
-/* Navbar fixes */
-.navbar {
-    width: 100%;
-    max-width: 100%;
-}
-
-.navbar .container {
-    width: 100%;
-    max-width: 100%;
-    padding: 12px 15px;
-    overflow: hidden;
-}
-
-/* Logo responsive sizing */
-.logo a.brand-logo img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* Navigation menu responsive */
-.nav-menu {
-    max-width: 100%;
-}
-
-/* Media elements responsive */
-img, video, picture, iframe {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Form elements fill container */
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="number"],
-input[type="password"],
-textarea,
-select {
-    max-width: 100%;
-    width: 100%;
-    box-sizing: border-box;
-    font-size: 16px;
-}
-
-/* Grid and flex fixes */
-.features-grid,
-.products-grid,
-.services-grid,
-.gallery-grid,
-.blog-grid,
-.testimonials-grid {
-    width: 100%;
-    max-width: 100%;
-}
-
-/* Footer responsive */
-.footer {
-    width: 100%;
-    max-width: 100%;
-    padding: 40px 15px 20px;
-}
-
-.footer-grid {
-    width: 100%;
-    max-width: 100%;
-    grid-template-columns: 1fr;
-    gap: 20px;
-}
-
-.footer-section {
-    padding: 0 5px;
-}
-
-/* Hero section responsive */
-.hero {
-    width: 100%;
-    max-width: 100%;
-    padding: 40px 15px;
-}
-
-.hero-content {
-    width: 100%;
-    max-width: 100%;
-    padding: 20px 15px;
-}
-
-/* Cards responsive */
-.card, .feature-card, .product-card, .service-card, .blog-card, .testimonial-card {
-    width: 100%;
-    max-width: 100%;
-}
-
-/* Button responsive */
-.btn, a.btn {
-    display: inline-block;
-    max-width: 100%;
-    word-break: break-word;
-    white-space: normal;
-}
-
-/* Specific mobile breakpoint fixes */
-@media (max-width: 1024px) {
-    section {
-        padding: 40px 20px;
-    }
-    
-    .container {
-        padding: 0 20px;
-    }
-}
-
-@media (max-width: 768px) {
-    section {
-        padding: 30px 15px;
-    }
-    
-    .container {
-        padding: 0 15px;
-        max-width: 100%;
-    }
-    
-    /* Logo sizing on tablets */
-    .logo a.brand-logo img {
-        height: 60px;
-        max-width: 150px;
-    }
-    
-    /* Hero content responsive */
     .hero-content h1 {
-        font-size: 1.8rem;
+        font-size: 1.2rem;
+        line-height: 1.2;
     }
     
     .hero-content p {
-        font-size: 1rem;
+        font-size: 0.85rem;
     }
     
-    /* Buttons stack on mobile */
     .hero-buttons {
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
+        gap: 6px;
+        padding: 0 6px;
     }
     
     .hero-buttons .btn {
-        width: 100%;
+        padding: 9px 12px;
+        font-size: 0.8rem;
+        max-width: calc(50% - 3px);
     }
     
-    /* Footer grid on tablet */
-    .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-    
-    /* Forms responsive */
-    .form-group {
-        margin-bottom: 15px;
-    }
-    
-    input, textarea, select {
-        font-size: 16px;
-        padding: 12px;
-        width: 100%;
-    }
-}
-
-
-@media (max-width: 480px) {
-    html, body {
-        font-size: 14px;
-    }
+    h1 { font-size: 1.1rem; }
+    h2 { font-size: 0.95rem; }
     
     section {
-        padding: 20px 10px;
+        padding: 15px 10px;
     }
     
     .container {
         padding: 0 10px;
     }
     
-    /* Logo sizing on small phones */
-    .logo a.brand-logo img {
-        height: 45px;
-        max-width: 100px;
-    }
-    
-    /* Hero minimum sizing */
-    .hero {
-        min-height: 70vh;
-        padding: 25px 10px;
-        margin-top: 50px;
-    }
-    
-    .hero-content {
-        padding: 15px 10px;
-    }
-    
-    .hero-content h1 {
-        font-size: 1.3rem;
-        line-height: 1.2;
-        margin-bottom: 10px;
-    }
-    
-    .hero-content p {
-        font-size: 0.9rem;
-        margin-bottom: 12px;
-    }
-    
-    /* Hero buttons stack and full width */
-    .hero-buttons {
-        flex-direction: column;
-        gap: 8px;
-        margin-top: 15px;
-        padding: 0;
-    }
-    
-    .hero-buttons .btn {
-        width: 100%;
-        padding: 10px 12px;
-        font-size: 0.85rem;
-    }
-    
-    /* Reduce all headings */
-    h1 {
-        font-size: 1.3rem;
-    }
-    
-    h2 {
-        font-size: 1.1rem;
-    }
-    
-    h3 {
-        font-size: 1rem;
-    }
-    
-    .section-title {
-        font-size: 1.5rem;
-    }
-    
-    .section-subtitle {
-        font-size: 0.95rem;
-    }
-    
-    /* Buttons smaller */
     .btn {
-        padding: 10px 12px;
-        font-size: 0.8rem;
-        min-height: 36px;
-    }
-    
-    .btn-small {
-        padding: 8px 10px;
-        font-size: 0.75rem;
-    }
-    
-    /* Cards minimal padding */
-    .card, .feature-card, .product-card, .service-card, .blog-card {
-        padding: 12px;
-    }
-    
-    /* Footer text smaller */
-    .footer-section h3,
-    .footer-section h4 {
-        font-size: 0.9rem;
-    }
-    
-    .footer-section p {
-        font-size: 0.85rem;
-    }
-    
-    .footer-social-links a {
-        width: 30px;
-        height: 30px;
-        font-size: 0.7rem;
-    }
-    
-    /* Navbar padding */
-    .navbar .container {
-        padding: 8px 10px;
-    }
-    
-    /* Navigation text */
-    .nav-menu a {
-        padding: 10px 12px;
-        font-size: 0.9rem;
-    }
-    
-    /* Form elements */
-    input, textarea, select {
-        font-size: 16px;
-        padding: 10px;
-    }
-    
-    /* Stats number smaller */
-    .stats-section .stat-number {
-        font-size: 32px;
-    }
-    
-    .stats-section .feature-card h3 {
-        font-size: 1rem;
-    }
-    
-    .stats-section .feature-card p {
-        font-size: 0.85rem;
-    }
-}
-
-@media (max-width: 374px) {
-    section {
-        padding: 15px 8px;
-    }
-    
-    .container {
-        padding: 0 8px !important;
-    }
-    
-    .hero {
-        min-height: 65vh;
-        padding: 20px 8px;
-        margin-top: 45px;
-    }
-    
-    .hero-content {
-        padding: 10px 8px;
-    }
-    
-    .hero-content h1 {
-        font-size: 1.2rem;
-        line-height: 1.1;
-    }
-    
-    .hero-buttons {
-        gap: 6px;
-        margin-top: 12px;
-    }
-    
-    .hero-buttons .btn {
-        padding: 9px 10px;
+        padding: 9px 12px;
         font-size: 0.8rem;
     }
-    
-    .btn {
-        padding: 9px 10px;
-        font-size: 0.75rem;
-    }
-    
-    h1 {
-        font-size: 1.2rem;
-    }
-    
-    h2 {
-        font-size: 1rem;
-    }
-    
-    .section-title {
-        font-size: 1.3rem;
-    }
-}
-
-/* Ultra-wide mobile landscape */
-@media (max-width: 480px) and (orientation: landscape) {
-    .hero {
-        min-height: auto;
-        height: 60vh;
-        padding: 15px 10px;
-        margin-top: 45px;
-    }
-    
-    .hero-content h1 {
-        font-size: 1.2rem;
-        margin-bottom: 8px;
-    }
-    
-    .hero-content p {
-        font-size: 0.85rem;
-        margin-bottom: 10px;
-    }
-    
-    section {
-        padding: 20px 10px;
-    }
-}
-
-/* ===== EXTRA COMPREHENSIVE MOBILE FIXES ===== */
-/* Ensure no horizontal overflow on any device */
-@media (max-width: 320px) {
-    body {
-        font-size: 14px;
-    }
-    
-    .container {
-        padding: 0 6px !important;
-        max-width: 100% !important;
-        width: 100% !important;
-    }
-    
-    .navbar .container {
-        padding: 8px 6px !important;
-    }
-    
-    .hero {
-        padding: 15px 6px;
-        min-height: 60vh;
-    }
-    
-    .hero-content {
-        padding: 5px 6px;
-    }
-    
-    .hero-content h1 {
-        font-size: 1rem;
-        line-height: 1;
-    }
-    
-    .hero-content p {
-        font-size: 0.75rem;
-    }
-    
-    .hero-buttons .btn {
-        font-size: 0.75rem;
-    }
-    
-    .btn {
-        padding: 8px 10px;
-    }
-    
-    .navbar .container {
-        padding: 6px 4px !important;
-    }
 }
 
 
-
-/* Ensure all grids are single column on small phones */
-@media (max-width: 600px) {
-    .features-grid,
-    .products-grid,
-    .services-grid,
-    .gallery-grid,
-    .about-grid {
-        grid-template-columns: 1fr !important;
-        gap: 12px !important;
-    }
-    
-    .footer-grid {
-        grid-template-columns: 1fr !important;
-    }
-    
-    .services-grid,
-    .feature-card,
-    .product-card,
-    .service-card {
-        width: 100%;
-    }
-}
-
-
-
-/* Fix modals and overlays on mobile */
-@media (max-width: 600px) {
-    .modal-content,
-    .modal-dialog {
-        max-width: 100% !important;
-        margin: 10px auto !important;
-        width: calc(100% - 20px);
-    }
-}
-
-/* Ensure scrollable elements work properly */
-@media (max-width: 768px) {
-    .nav-menu {
-        overflow-y: auto;
-        max-height: calc(100vh - 60px);
-    }
-    
-    .table-wrapper,
-    .overflow-x-auto {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-    }
-}
-
-/* Fix typography overflow */
-@media (max-width: 600px) {
-    h1, h2, h3, h4, h5, h6 {
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-        hyphens: auto;
-    }
-    
-    p, span, a, li {
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-    }
-}
-
-/* ===== COMPREHENSIVE MOBILE FIXES ===== */
-@media (max-width: 768px) {
-    /* Prevent all horizontal scrolling */
-    html, body {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden !important;
-    }
-    
-    /* Fix navbar to prevent horizontal overflow */
-    .navbar {
-        position: fixed;
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-    
-    .navbar .container {
-        max-width: 100%;
-        padding: 12px 15px;
-    }
-    
-    /* Hero section mobile fix */
-    .hero {
-        width: 100%;
-        max-width: 100%;
-        padding: 30px 15px;
-        margin-top: 60px;
-    }
-    
-    .hero-content {
-        width: 100%;
-        max-width: 100%;
-    }
-    
-    .hero-buttons {
-        width: 100%;
-        max-width: 100%;
-        padding: 0;
-    }
-    
-    /* All sections responsive */
-    section {
-        width: 100%;
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-    
-    .container {
-        width: 100%;
-        max-width: 100%;
-        padding: 0 15px;
-    }
-    
-    /* All major content sections */
-    .feature-card,
-    .product-card,
-    .service-card,
-    .gallery-item {
-        width: 100%;
-        max-width: 100%;
-    }
-    
-    /* Ensure images never overflow */
-    img {
-        width: 100%;
-        height: auto;
-        display: block;
-        max-width: 100%;
-    }
-}
