@@ -1,4 +1,10 @@
 /* ===== RESET & BASE STYLES ===== */
+html {
+    width: 100%;
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -3682,5 +3688,200 @@ select {
     
     section {
         padding: 20px 10px;
+    }
+}
+
+/* ===== EXTRA COMPREHENSIVE MOBILE FIXES ===== */
+/* Ensure no horizontal overflow on any device */
+@media (max-width: 320px) {
+    body {
+        font-size: 14px;
+    }
+    
+    .container {
+        padding: 0 6px !important;
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+    
+    .navbar .container {
+        padding: 8px 6px !important;
+    }
+    
+    .hero {
+        padding: 15px 6px;
+        min-height: 60vh;
+    }
+    
+    .hero-content {
+        padding: 5px 6px;
+    }
+    
+    .hero-content h1 {
+        font-size: 1rem;
+        line-height: 1;
+    }
+    
+    .hero-content p {
+        font-size: 0.75rem;
+    }
+    
+    .hero-buttons .btn {
+        font-size: 0.75rem;
+        padding: 8px 8px;
+    }
+    
+    section {
+        padding: 15px 6px;
+    }
+    
+    .section-title {
+        font-size: 1.2rem;
+    }
+    
+    h2 {
+        font-size: 0.95rem;
+    }
+    
+    h3 {
+        font-size: 0.9rem;
+    }
+    
+    p {
+        font-size: 0.85rem;
+    }
+    
+    .btn {
+        padding: 8px 10px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Ultra-small phones with safe zone */
+@media (max-width: 280px) {
+    .container {
+        padding: 0 4px !important;
+    }
+    
+    .navbar .container {
+        padding: 6px 4px !important;
+    }
+}
+
+/* Ensure navbar doesn't overflow on any device */
+@media (max-width: 768px) {
+    .navbar {
+        width: 100vw;
+        position: fixed;
+        left: 0;
+        right: 0;
+    }
+    
+    .navbar .container {
+        width: 100%;
+        max-width: none;
+        padding: 12px 15px;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+    }
+    
+    .logo a.brand-logo {
+        flex-shrink: 0;
+        gap: 0.5rem;
+    }
+    
+    .logo a.brand-logo img {
+        flex-shrink: 0;
+    }
+    
+    .logo a.brand-logo span {
+        flex-shrink: 0;
+        font-size: 1.2rem;
+    }
+    
+    .hamburger {
+        flex-shrink: 0;
+        margin-left: auto;
+    }
+}
+
+/* Ensure all grids are single column on small phones */
+@media (max-width: 600px) {
+    .features-grid,
+    .products-grid,
+    .services-grid,
+    .gallery-grid,
+    .about-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .services-grid,
+    .feature-card,
+    .product-card,
+    .service-card {
+        width: 100%;
+    }
+}
+
+/* Ensure images don't overflow */
+@media (max-width: 768px) {
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    picture {
+        max-width: 100%;
+    }
+    
+    .product-image,
+    .service-image,
+    .blog-image {
+        max-width: 100%;
+        height: auto;
+    }
+}
+
+/* Fix modals and overlays on mobile */
+@media (max-width: 600px) {
+    .modal-content,
+    .modal-dialog {
+        max-width: 100% !important;
+        margin: 10px auto !important;
+        width: calc(100% - 20px);
+    }
+}
+
+/* Ensure scrollable elements work properly */
+@media (max-width: 768px) {
+    .nav-menu {
+        overflow-y: auto;
+        max-height: calc(100vh - 60px);
+    }
+    
+    .table-wrapper,
+    .overflow-x-auto {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+/* Fix typography overflow */
+@media (max-width: 600px) {
+    h1, h2, h3, h4, h5, h6 {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    p, span, a, li {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 }
