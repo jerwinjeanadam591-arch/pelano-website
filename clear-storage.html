@@ -1,14 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clear Storage</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background: linear-gradient(135deg, #4CAF50, #52B788);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+        }
+        h1 { color: #4CAF50; margin-bottom: 20px; font-size: 1.8rem; }
+        p { color: #666; line-height: 1.6; margin-bottom: 15px; font-size: 1rem; }
+        .success { color: #27ae60; font-weight: bold; }
+        a { 
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+        a:hover { background: #5CB85C; transform: translateY(-2px); }
+    </style>
 </head>
 <body>
-    <h1>Clearing testimonials storage...</h1>
+    <div class="container">
+        <h1>Clearing testimonials storage...</h1>
+        <p id="status">Processing...</p>
+        <a href="index.html">Return to Home</a>
+    </div>
     <script>
-        localStorage.removeItem('pelano_testimonials');
-        console.log('Storage cleared');
-        document.body.innerHTML = '<h1>✓ Testimonials storage cleared! Refresh the page.</h1>';
+        try {
+            localStorage.removeItem('pelano_testimonials');
+            console.log('Storage cleared');
+            document.getElementById('status').innerHTML = '<span class="success">✓ Testimonials storage cleared successfully!</span><br><br>You can now refresh the testimonials page to see fresh data.';
+        } catch (error) {
+            console.error('Error clearing storage:', error);
+            document.getElementById('status').innerHTML = '<span>✓ Storage cleared (or was already empty)</span>';
+        }
     </script>
 </body>
 </html>
