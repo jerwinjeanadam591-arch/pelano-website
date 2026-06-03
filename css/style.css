@@ -2065,8 +2065,13 @@ body.dark-mode .logo-label p {
 }
 
 @media (max-width: 600px) {
+    section {
+        padding: 25px 12px;
+    }
+    
     .logo a.brand-logo img {
         height: 50px;
+        max-width: 120px;
     }
     
     .navbar .container {
@@ -2100,7 +2105,6 @@ body.dark-mode .logo-label p {
         font-size: 1.8rem;
     }
     
-    /* Ensure no horizontal overflow */
     .container {
         padding: 0 12px;
         width: 100%;
@@ -2110,9 +2114,14 @@ body.dark-mode .logo-label p {
     .features-grid,
     .products-grid,
     .services-grid,
-    .gallery-grid {
+    .gallery-grid,
+    .about-grid {
         grid-template-columns: 1fr;
         gap: 15px;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 1fr;
     }
     
     .feature-card {
@@ -2121,6 +2130,33 @@ body.dark-mode .logo-label p {
     
     .product-card {
         margin: 0;
+    }
+    
+    .services-grid,
+    .feature-card,
+    .product-card,
+    .service-card {
+        width: 100%;
+    }
+    
+    /* Fix modals and overlays */
+    .modal-content,
+    .modal-dialog {
+        max-width: 100% !important;
+        margin: 10px auto !important;
+        width: calc(100% - 20px);
+    }
+    
+    /* Fix typography overflow */
+    h1, h2, h3, h4, h5, h6 {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    p, span, a, li {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
 }
 
@@ -3403,77 +3439,6 @@ select {
     }
 }
 
-@media (max-width: 600px) {
-    section {
-        padding: 25px 12px;
-    }
-    
-    .container {
-        padding: 0 12px;
-    }
-    
-    /* Logo sizing on phones */
-    .logo a.brand-logo img {
-        height: 50px;
-        max-width: 120px;
-    }
-    
-    /* Hero sizing */
-    .hero {
-        min-height: 80vh;
-        padding: 30px 12px;
-    }
-    
-    .hero-content h1 {
-        font-size: 1.5rem;
-        line-height: 1.2;
-    }
-    
-    .hero-content p {
-        font-size: 0.95rem;
-    }
-    
-    /* Section titles */
-    .section-title {
-        font-size: 1.8rem;
-    }
-    
-    .section-subtitle {
-        font-size: 1rem;
-    }
-    
-    /* All grids single column */
-    .features-grid,
-    .products-grid,
-    .services-grid,
-    .gallery-grid,
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: 15px;
-    }
-    
-    /* Button sizing */
-    .btn {
-        padding: 11px 16px;
-        font-size: 0.9rem;
-    }
-    
-    .btn-small {
-        padding: 9px 12px;
-        font-size: 0.85rem;
-    }
-    
-    /* Cards reduce padding */
-    .card, .feature-card, .product-card, .service-card, .blog-card {
-        padding: 15px;
-    }
-    
-    /* Navigation menu text */
-    .nav-menu a {
-        padding: 12px 15px;
-        font-size: 0.95rem;
-    }
-}
 
 @media (max-width: 480px) {
     html, body {
@@ -3728,39 +3693,10 @@ select {
     
     .hero-buttons .btn {
         font-size: 0.75rem;
-        padding: 8px 8px;
-    }
-    
-    section {
-        padding: 15px 6px;
-    }
-    
-    .section-title {
-        font-size: 1.2rem;
-    }
-    
-    h2 {
-        font-size: 0.95rem;
-    }
-    
-    h3 {
-        font-size: 0.9rem;
-    }
-    
-    p {
-        font-size: 0.85rem;
     }
     
     .btn {
         padding: 8px 10px;
-        font-size: 0.8rem;
-    }
-}
-
-/* Ultra-small phones with safe zone */
-@media (max-width: 280px) {
-    .container {
-        padding: 0 4px !important;
     }
     
     .navbar .container {
