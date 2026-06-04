@@ -1,8 +1,8 @@
 /* ===== RESET & BASE STYLES ===== */
 html {
     width: 100%;
-    max-width: 100vw;
-    overflow-x: hidden;
+    max-width: 100%;
+    overflow-x: clip;
 }
 
 * {
@@ -23,6 +23,8 @@ html {
     --shadow-lg: 0 24px 60px rgba(15, 23, 42, 0.18);
     --shadow-dark: 0 14px 40px rgba(0, 0, 0, 0.35);
     --transition: all 0.3s ease;
+    --header-height: 72px;
+    --header-height-mobile: 56px;
 }
 
 body {
@@ -30,10 +32,26 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     background: linear-gradient(180deg, #f8f7f1 0%, #e7ede5 100%);
-    overflow-x: hidden;
+    overflow-x: clip;
     transition: background 0.3s ease, color 0.3s ease;
     width: 100%;
-    max-width: 100vw;
+    max-width: 100%;
+}
+
+body.dark-mode {
+    background: #1B4D2E;
+    color: #e5e7eb;
+}
+
+/* ===== STICKY HEADER SCROLL FIX ===== */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: var(--header-height);
+}
+
+section[id],
+[id] {
+    scroll-margin-top: var(--header-height);
 }
 
 body.dark-mode {
@@ -136,7 +154,29 @@ body.dark-mode .section-details {
     margin: 0 auto;
     padding: 0 20px;
     width: 100%;
+    max-width: 100%;
     box-sizing: border-box;
+}
+
+/* ===== RESPONSIVE MEDIA FIX ===== */
+img, video, iframe, svg, canvas {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ===== PREVENT TEXT OVERFLOW ===== */
+p, span, a, li, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
+
+/* ===== SECTION OVERFLOW PREVENTION ===== */
+section, main, nav, footer {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 /* ===== NAVIGATION ===== */
@@ -315,7 +355,7 @@ body.dark-mode .logo a.brand-logo span {
     text-align: center;
     color: var(--white);
     position: relative;
-    margin-top: 60px;
+    margin-top: var(--header-height);
     overflow: hidden;
     padding: 40px 20px;
 }
@@ -2084,22 +2124,97 @@ body.dark-mode .logo-label p {
 }
 
 @media (max-width: 600px) {
+    /* Adjust header height on mobile */
+    :root {
+        --header-height: var(--header-height-mobile);
+    }
+
+    html {
+        scroll-padding-top: var(--header-height-mobile);
+    }
+
     section {
         padding: 25px 12px;
     }
     
+    .navbar {
+        min-height: var(--header-height-mobile);
+        padding: 8px 12px;
+    }
+
+    .navbar .container {
+        padding: 8px 12px;
+    }
+    
     .logo a.brand-logo img {
-        height: 50px;
+        height: 40px;
         max-width: 120px;
     }
     
-    .navbar .container {
-        padding: 10px 15px;
+    /* TAP TARGET FIX: Navigation links */
+    .nav-menu a,
+    .nav a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        min-width: 44px;
+        padding: 12px 16px;
+        font-size: 0.95rem;
+        line-height: 1.2;
+        border-bottom: 1px solid rgba(31, 122, 76, 0.1);
+        gap: 8px;
     }
-    
-    .nav-menu a {
-        padding: 10px 14px;
-        font-size: 0.9rem;
+
+    /* TAP TARGET FIX: Footer links */
+    .footer-section a,
+    .footer a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 10px 12px;
+        gap: 6px;
+    }
+
+    /* TAP TARGET FIX: Social icons */
+    .footer-social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 48px;
+        min-height: 48px;
+        padding: 6px;
+        margin: 4px;
+    }
+
+    .footer-social-links a svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* TAP TARGET FIX: Menu spacing */
+    .mobile-menu,
+    .nav-menu {
+        gap: 4px 0;
+        flex-direction: column;
+    }
+
+    .mobile-menu a:not(:last-child) {
+        margin-bottom: 4px;
+    }
+
+    /* TAP TARGET FIX: Hamburger button */
+    .hamburger {
+        min-height: 48px;
+        min-width: 48px;
+        padding: 8px 12px;
+        font-size: 1.4rem;
+    }
+
+    /* TAP TARGET FIX: All buttons */
+    button, a[role="button"], [role="button"] {
+        min-height: 44px;
+        min-width: 44px;
     }
     
     .hero-content {
@@ -2161,6 +2276,40 @@ body.dark-mode .logo-label p {
         margin: 0;
     }
     
+    /* CARD TEXT FIX: Allow text to wrap and grow naturally */
+    .feature-card,
+    .product-card,
+    .service-card {
+        height: auto;
+        min-height: unset;
+    }
+
+    .feature-card h3,
+    .product-card h3,
+    .service-card h3,
+    .card-title {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        overflow-wrap: anywhere;
+        display: block;
+        min-height: auto;
+    }
+
+    .feature-card p,
+    .product-card p,
+    .service-card p,
+    .card-text,
+    .card-description {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
+        overflow-wrap: anywhere;
+        display: block;
+        min-height: auto;
+        max-height: unset;
+    }
+    
     .services-grid,
     .feature-card,
     .product-card,
@@ -2211,6 +2360,53 @@ body.dark-mode .logo-label p {
         height: 45px;
     }
 
+    /* TAP TARGET FIX: Enhance touch targets on very small screens */
+    .footer-social-links a {
+        width: 48px;
+        height: 48px;
+        min-width: 48px;
+        min-height: 48px;
+        padding: 6px;
+        margin: 4px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .footer-social-links {
+        gap: 6px;
+    }
+
+    /* TAP TARGET FIX: Navigation and footer links */
+    .nav-menu a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        min-width: 44px;
+        padding: 12px 14px;
+    }
+
+    .footer-section a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 10px 12px;
+    }
+
+    /* TAP TARGET FIX: Hamburger menu */
+    .hamburger {
+        min-width: 48px;
+        min-height: 48px;
+        padding: 8px 12px;
+    }
+
+    /* TAP TARGET FIX: All buttons */
+    button, a[role="button"], [role="button"] {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
     .footer-grid {
         grid-template-columns: 1fr;
         gap: 24px;
@@ -2218,11 +2414,6 @@ body.dark-mode .logo-label p {
 
     .footer-social-links {
         justify-content: flex-start;
-    }
-
-    .footer-social-links a {
-        width: 36px;
-        height: 36px;
     }
 
     .footer-section h3,
@@ -2754,6 +2945,56 @@ body.dark-mode .logo-label p {
     .logo a.brand-logo span {
         font-size: 0.9rem;
     }
+
+    /* TAP TARGET FIX: Ensure minimum touch targets */
+    .nav-menu a {
+        display: block;
+        width: 100%;
+        padding: 14px 16px;
+        min-height: 44px;
+        text-align: left;
+        font-size: 0.95rem;
+    }
+
+    .hamburger {
+        min-width: 48px;
+        min-height: 48px;
+        padding: 8px 10px;
+    }
+
+    .footer-social-links a {
+        min-width: 44px;
+        min-height: 44px;
+        width: 44px;
+        height: 44px;
+        padding: 5px;
+        margin: 3px;
+    }
+
+    .footer-section a {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 9px 10px;
+    }
+
+    /* CARD TEXT FIX: Text wrapping on ultra-small screens */
+    .feature-card h3,
+    .product-card h3,
+    .service-card h3 {
+        white-space: normal;
+        overflow: visible;
+        overflow-wrap: anywhere;
+        min-height: auto;
+    }
+
+    .feature-card p,
+    .product-card p,
+    .service-card p {
+        white-space: normal;
+        overflow: visible;
+        overflow-wrap: anywhere;
+    }
     
     .hero {
         padding: 12px 10px;
@@ -2778,10 +3019,10 @@ body.dark-mode .logo-label p {
     }
     
     .hero-buttons .btn {
-        padding: 9px 12px;
-        font-size: 0.8rem;
+        padding: 10px 12px;
+        font-size: 0.85rem;
         max-width: 100%;
-        min-height: 40px;
+        min-height: 44px;
         width: 100%;
     }
     
@@ -2797,10 +3038,10 @@ body.dark-mode .logo-label p {
     }
     
     .btn {
-        padding: 8px 12px;
-        font-size: 0.8rem;
-        min-height: 40px;
-        min-width: auto;
+        padding: 10px 12px;
+        font-size: 0.85rem;
+        min-height: 44px;
+        min-width: 44px;
     }
 }
 
