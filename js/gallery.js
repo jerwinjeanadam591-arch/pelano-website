@@ -53,6 +53,9 @@ class GalleryManager {
     init() {
         if (!this.galleryGrid) return;
         
+        // Verify all images exist
+        console.log(`Gallery: Loading ${this.totalImages} images`);
+        
         // Load initial batch
         this.loadMoreImages();
         
@@ -70,14 +73,13 @@ class GalleryManager {
         
         item.innerHTML = `
             <picture>
-                <source srcset="images/gallery/${imageData.file}" type="image/webp">
-                <source srcset="images/gallery/${imageData.file}" type="image/jpeg">
                 <img 
                     src="images/gallery/${imageData.file}" 
                     alt="Pelano Resources - ${imageData.file}" 
                     class="gallery-image" 
                     loading="lazy" 
                     decoding="async"
+                    onerror="this.src='images/gallery/gallery-1.jpg'; this.style.opacity='0.5';"
                 >
             </picture>
             <p class="image-description">${imageData.quote}</p>
