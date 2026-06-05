@@ -107,9 +107,9 @@ class GalleryManager {
 
     // Create gallery item element
     createGalleryItem(imageNumber) {
-        const imgIndex = (imageNumber - 1) % this.imageFiles.length;
+        const imgIndex = imageNumber - 1;
         const imageName = this.imageFiles[imgIndex];
-        const description = this.imageDescriptions[imageNumber - 1] || 'Premium forest products from Pelano Resources';
+        const description = this.imageDescriptions[imgIndex] || 'Premium forest products from Pelano Resources';
         
         const item = document.createElement('div');
         item.className = 'gallery-item';
