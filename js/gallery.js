@@ -66,10 +66,14 @@ class GalleryManager {
     }
 
     // Create gallery item element with image and quote
-    createGalleryItem(imageData) {
+    createGalleryItem(imageData, index) {
         const item = document.createElement('div');
         item.className = 'gallery-item';
         item.setAttribute('data-image-file', imageData.file);
+        
+        // Only use lazy loading for images after the first batch
+        const isEager = index < this.imagesPerLoad;
+        const loading = isEager ? 'eager' : 'lazy';
         
         item.innerHTML = `
             <picture>
@@ -77,9 +81,9 @@ class GalleryManager {
                     src="images/gallery/${imageData.file}" 
                     alt="Pelano Resources - ${imageData.file}" 
                     class="gallery-image" 
-                    loading="lazy" 
+                    loading="${loading}" 
                     decoding="async"
-                    onerror="this.src='images/gallery/gallery-1.jpg'; this.style.opacity='0.5';"
+                    onerror="this.style.display='none'; this.parentElement.style.background='#f0f0f0';"
                 >
             </picture>
             <p class="image-description">${imageData.quote}</p>
@@ -95,7 +99,7 @@ class GalleryManager {
         
         // Add new images to gallery using direct index access
         for (let i = startIndex; i < endIndex; i++) {
-            const item = this.createGalleryItem(this.imageData[i]);
+            const item = this.createGalleryItem(this.imageData[i], i);
             this.galleryGrid.appendChild(item);
         }
         
