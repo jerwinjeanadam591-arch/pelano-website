@@ -2,7 +2,7 @@
 
 class GalleryManager {
     constructor() {
-        this.totalImages = 35;
+        this.totalImages = 33;
         this.imagesPerLoad = 12;
         this.loadedCount = 0;
         this.galleryGrid = document.getElementById('gallery-grid');
@@ -27,86 +27,79 @@ class GalleryManager {
         }
     }
 
-    // Pre-defined image files (use actual image filenames)
+    // Pre-defined image files (all 33 unique images)
     getImageFiles() {
         return [
-            'PFP_8265.jpg',
-            'PFP_8266.jpg',
-            'PFP_8280.jpg',
-            'PFP_8254.jpg',
-            'PXL_20260224_112035481.jpg',
-            'PXL_20260302_051459426.jpg',
-            'PXL_20260313_063914992.jpg',
-            'IMG-20251127-WA0042.jpg',
-            'IMG-20251210-WA0001 - Copy.jpg',
+            '20250107_115323.jpg',
+            '20250405_142337.jpg',
+            '20250407_100011.jpg',
             '20251013_174811 - Copy.jpg',
+            'IMG-20251120-WA0017.jpg',
+            'IMG-20251120-WA0019.jpg',
             'IMG-20251127-WA0006 - Copy.jpg',
-            'IMG_5123.JPG',
-            'IMG_5135.JPG',
-            'IMG_E5100.JPG',
-            'PFP_8265.jpg',
-            'PFP_8266.jpg',
-            'PFP_8280.jpg',
-            'PFP_8254.jpg',
-            'PXL_20260224_112035481.jpg',
-            'PXL_20260302_051459426.jpg',
-            'PXL_20260313_063914992.jpg',
             'IMG-20251127-WA0042.jpg',
-            'IMG-20251210-WA0001 - Copy.jpg',
-            '20251013_174811 - Copy.jpg',
-            'IMG-20251127-WA0006 - Copy.jpg',
-            'IMG_5123.JPG',
-            'IMG_5135.JPG',
+            'IMG_5112.JPG',
+            'IMG_5121.JPG',
+            'IMG_5124.JPG',
+            'IMG_5133.JPG',
+            'IMG_5137.JPG',
+            'IMG_5139.JPG',
+            'IMG_5146.JPG',
+            'IMG_8970.jpg',
             'IMG_E5100.JPG',
-            'PFP_8265.jpg',
-            'PFP_8266.jpg',
-            'PFP_8280.jpg',
+            'PFP_8133.jpg',
             'PFP_8254.jpg',
-            'PXL_20260224_112035481.jpg',
+            'PFP_8258.jpg',
+            'PFP_8259.jpg',
+            'PFP_8277.jpg',
+            'PFP_8282.jpg',
+            'PFP_8289.jpg',
+            'PFP_8314.jpg',
+            'PFP_8346.jpg',
+            'PXL_20260224_112009685.jpg',
             'PXL_20260302_051459426.jpg',
-            'PXL_20260313_063914992.jpg',
-            'IMG-20251127-WA0042.jpg'
+            'PXL_20260302_053544021.jpg',
+            'PXL_20260307_105149473.PORTRAIT.jpg',
+            'PXL_20260326_075056370.PORTRAIT.ORIGINAL.jpg'
         ];
     }
 
-    // Image descriptions for each of the 35 images
+    // Image descriptions for each of the 33 unique images
     getImageDescriptions() {
         return [
-            'Our state-of-the-art facilities and modern equipment dedicated to quality production.',
-            'Professional team members ensuring exceptional quality control.',
-            'Premium products and materials showcasing our commitment to excellence.',
-            'Comprehensive operations demonstrating our large-scale project capacity.',
-            'Strategic infrastructure investments reflecting our sustainable growth commitment.',
-            'Collaborative partnerships highlighting our proven track record.',
-            'Advanced processing equipment optimizing production efficiency.',
-            'Quality assurance inspection ensuring premium product standards.',
-            'Modern storage facilities maintaining optimal product conditions.',
+            'Fresh mineral extracts showcasing our natural resource abundance.',
+            'High-quality ore processing at our state-of-the-art facility.',
+            'Premium aggregates meeting international quality standards.',
+            'Strategic mining operations in Mafinga, Tanzania.',
+            'Professional team inspecting finished mineral products.',
+            'Quality assurance verification of refined materials.',
+            'Bulk mineral storage demonstrating production capacity.',
+            'Equipment maintenance ensuring operational reliability.',
+            'Advanced processing technology for superior output.',
+            'Skilled technicians operating precision machinery.',
+            'Resource extraction using sustainable practices.',
+            'Modern facility infrastructure supporting large-scale operations.',
+            'Quality minerals ready for domestic and export markets.',
+            'Environmental responsibility in all mining activities.',
+            'Transportation and logistics hub for efficient distribution.',
+            'Comprehensive facility overview of Pelano Resources operations.',
+            'Premium product packaging for international standards compliance.',
+            'Professional team member ensuring quality excellence.',
+            'Facility management and continuous operational improvement.',
+            'Advanced extraction techniques maximizing efficiency.',
+            'Mineral processing showing superior production standards.',
+            'Storage infrastructure protecting product quality.',
             'Skilled workforce dedicated to operational excellence.',
-            'Equipment maintenance protocols ensuring reliability and performance.',
-            'Production capacity demonstration showcasing our capabilities.',
-            'Forest resource management practices promoting sustainability.',
-            'Processing technology advancing industry standards.',
-            'Environmental responsibility in all operations.',
-            'Supply chain optimization for timely delivery.',
-            'Product testing and verification procedures.',
-            'Team collaboration fostering innovation and excellence.',
-            'Facility expansion reflecting business growth.',
-            'Safety protocols protecting our workforce.',
-            'Logistics operations ensuring efficient distribution.',
-            'Customer satisfaction initiatives and feedback systems.',
-            'Continuous improvement in manufacturing processes.',
-            'Research and development advancing product quality.',
-            'Infrastructure supporting large-scale operations.',
-            'Export-ready products meeting international standards.',
-            'Quality packaging protecting product integrity.',
-            'Distribution network ensuring global reach.',
-            'Industry certification achievements and recognition.',
-            'Employee training programs for skill development.',
-            'Environmental conservation in forest management.',
-            'Premium timber selection and grading process.',
-            'Sawmill operations maximizing resource efficiency.',
-            'Market leadership through consistent quality delivery.',
-            'Community partnership in sustainable development.'
+            'Strategic facility expansion reflecting business growth.',
+            'Quality mineral samples from our exclusive reserves.',
+            'Professional documentation of premium products.',
+            'Modern equipment operation in controlled environments.',
+            'Resource management optimizing sustainable practices.',
+            'Final inspection of export-ready mineral products.',
+            'Team collaboration on facility improvement projects.',
+            'Strategic infrastructure investments in Mafinga operations.',
+            'Premium reserves demonstrating long-term resource availability.',
+            'Professional operations showcasing industry leadership.'
         ];
     }
 
