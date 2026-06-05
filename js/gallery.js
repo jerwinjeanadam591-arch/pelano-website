@@ -129,11 +129,6 @@ class GalleryManager {
 }
 
 // Initialize gallery when DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    new GalleryManager();
-});
-
-// Alternative initialization if script loads after DOM ready
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         new GalleryManager();
