@@ -59,7 +59,9 @@ class GalleryManager {
             'PXL_20260224_112009685.jpg',
             'PXL_20260302_051459426.jpg',
             'PXL_20260302_053544021.jpg',
+            'PXL_20260306_062927733.jpg',
             'PXL_20260307_105149473.PORTRAIT.jpg',
+            'PXL_20260323_062339246.jpg',
             'PXL_20260326_075056370.PORTRAIT.ORIGINAL.jpg'
         ];
     }
