@@ -59,75 +59,111 @@ const detailsBtns = document.querySelectorAll('.btn-details');
 // Product data (expand this with real product information)
 const productsData = {
     '1': {
-        title: 'Product Name 1',
-        image: 'images/products/product-1.jpg',
-        description: 'High-quality product with excellent features. Perfect for your needs and built to last with premium materials. This product has been tested and proven to deliver outstanding results for our customers.',
+        title: 'Treated Timber',
+        image: 'images/products/treated-timber.jpg',
+        description: 'Premium pressure-treated timber for long-lasting construction and outdoor use.',
         features: [
-            'High-quality materials',
-            'Durable and long-lasting',
-            'Excellent customer support',
-            'Competitive pricing',
-            'Warranty included'
+            'Pressure-treated for durability',
+            'Ideal for construction and decking',
+            'Moisture and rot-resistant',
+            'Consistent sizing and grading',
+            'Built for long-term performance'
         ]
     },
     '2': {
-        title: 'Product Name 2',
-        image: 'images/products/product-2.jpg',
-        description: 'Premium quality product designed for durability and performance. Meets all quality standards and certified for excellence. Perfect for both residential and commercial use.',
+        title: 'Utility Poles',
+        image: 'images/products/utility-poles.jpg',
+        description: 'Strong utility poles manufactured for power distribution and infrastructure projects.',
         features: [
-            'Premium quality',
-            'Certified excellence',
-            'Versatile use',
-            'Easy maintenance',
-            'Eco-friendly'
+            'High strength and stability',
+            'Treated for outdoor durability',
+            'Certified for utility use',
+            'Perfect for power and lighting',
+            'Designed for easy installation'
+        ]
+    },
+    '2b': {
+        title: 'Telecom Poles',
+        image: 'images/products/telecom-poles.jpg',
+        description: 'Robust telecom poles designed to support telecommunications and broadband connectivity.',
+        features: [
+            'Engineered for telecom networks',
+            'Impact and weather resistant',
+            'Precision-treated for longevity',
+            'Suitable for rural and urban installations',
+            'Reliable performance across environments'
+        ]
+    },
+    '2c': {
+        title: 'Premium Telecom Poles',
+        image: 'images/products/telecom2.jpeg',
+        description: 'Premium-grade telecom poles for demanding telecom and infrastructure installations.',
+        features: [
+            'Extra-durable pole material',
+            'High load-bearing capacity',
+            'Superior treatment for longevity',
+            'Designed for mission-critical networks',
+            'Delivered ready for installation'
         ]
     },
     '3': {
-        title: 'Product Name 3',
-        image: 'images/products/product-3.jpg',
-        description: 'Reliable product backed by our commitment to quality. Excellent value and dependable performance with proven track record of customer satisfaction.',
+        title: 'Standard Pallets',
+        image: 'images/products/palettes-1.jpeg',
+        description: 'Durable wooden pallets for storage, shipping, and material handling operations.',
         features: [
-            'Reliable performance',
-            'Great value',
-            'Customer favorite',
-            'Fast delivery',
-            'Quality guarantee'
+            'Heavy-duty timber construction',
+            'Optimized for logistics',
+            'Stackable and stable',
+            'Weather-resistant finish',
+            'Designed for industrial handling'
         ]
     },
-    '4': {
-        title: 'Product Name 4',
-        image: 'images/products/product-4.jpg',
-        description: 'Professional grade product suitable for various applications. Trusted by customers nationwide with consistent quality and performance.',
+    '3a': {
+        title: 'Heavy Duty Pallets',
+        image: 'images/products/palettes-1.jpeg',
+        description: 'Industrial-grade pallets built for high-volume storage and heavy loads.',
         features: [
-            'Professional grade',
-            'Multi-application',
-            'Nationwide trusted',
-            'Consistent quality',
-            'Expert support'
+            'Reinforced for extra weight',
+            'Long-lasting construction',
+            'Perfect for heavy goods',
+            'Safe handling and transport',
+            'Quality-assured manufacturing'
         ]
     },
     '5': {
-        title: 'Product Name 5',
-        image: 'images/products/product-5.jpg',
-        description: 'Innovative solution with modern features. Designed to exceed your expectations with cutting-edge technology and superior craftsmanship.',
+        title: 'Railway Sleepers',
+        image: 'images/products/railway-sleepers.jpeg',
+        description: 'Durable railway sleepers engineered for track stability and long-term performance.',
         features: [
-            'Innovative design',
-            'Modern features',
-            'Cutting-edge tech',
-            'Superior craftsmanship',
-            'Future-proof'
+            'Quality timber for rail use',
+            'Consistent dimensions',
+            'Treated for weather resistance',
+            'Designed for stable rail installation',
+            'Trusted in infrastructure projects'
+        ]
+    },
+    '5a': {
+        title: 'Premium Railway Sleepers',
+        image: 'images/products/railway-sleepers.jpeg',
+        description: 'Premium-treated sleepers for high-traffic railway and industrial applications.',
+        features: [
+            'Premium-grade timber',
+            'Enhanced treatment protection',
+            'Excellent load-bearing capacity',
+            'Built for long service life',
+            'Suitable for demanding environments'
         ]
     },
     '6': {
-        title: 'Product Name 6',
-        image: 'images/products/product-6.jpg',
-        description: 'Customer favorite with proven track record. Quality you can trust and depend on for all your needs with excellent after-sales support.',
+        title: 'Structural Timber',
+        image: 'images/products/treated-timber.jpg',
+        description: 'Certified structural timber suited for construction, framing, and heavy-duty applications.',
         features: [
-            'Customer favorite',
-            'Proven track record',
-            'Trustworthy quality',
-            'After-sales support',
-            'Highly rated'
+            'Grade-certified structure timber',
+            'Stable and reliable for builds',
+            'Ideal for load-bearing use',
+            'Properly treated for long life',
+            'Consistent and uniform finish'
         ]
     }
 };

@@ -75,8 +75,10 @@ class GalleryManager {
         const isEager = index < this.imagesPerLoad;
         const loading = isEager ? 'eager' : 'lazy';
         
+        const webpFile = imageData.file.replace(/\.(jpe?g|JPG)$/i, '.webp');
         item.innerHTML = `
             <picture>
+                <source srcset="images/gallery/${webpFile}" type="image/webp">
                 <img 
                     src="images/gallery/${imageData.file}" 
                     alt="Pelano Resources - ${imageData.file}" 

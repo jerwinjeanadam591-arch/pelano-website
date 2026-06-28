@@ -63,7 +63,7 @@
                 <li><a href="services.html">Services</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="testimonials.html">Testimonials</a></li>
-                <li><a href="blog.html" class="active">Blog</a></li>
+                <li><a href="blog.html" class="active" aria-current="page">Blog</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </div>
@@ -73,10 +73,13 @@
     <div class="blog-hero" id="blog-hero"></div>
 
     <!-- Main Content -->
-    <main class="main-content">
+    <main id="main-content" class="main-content">
         <article class="blog-detail-container">
             <!-- Featured Image -->
-            <img id="blog-featured-image" class="blog-detail-featured-image" alt="" loading="lazy" decoding="async">
+            <picture id="blog-featured-picture">
+                <source id="blog-featured-source" type="image/webp">
+                <img id="blog-featured-image" class="blog-detail-featured-image" alt="" loading="lazy" decoding="async">
+            </picture>
 
             <!-- Article Content -->
             <div class="blog-detail-content" id="blog-content"></div>
@@ -203,8 +206,13 @@
             `;
 
             // Set featured image
-            document.getElementById('blog-featured-image').src = post.image;
-            document.getElementById('blog-featured-image').alt = DOM.escape(post.title);
+            const featuredSource = document.getElementById('blog-featured-source');
+            const featuredImage = document.getElementById('blog-featured-image');
+            if (featuredSource) {
+                featuredSource.srcset = post.image.replace(/\.(jpe?g|JPG)$/i, '.webp');
+            }
+            featuredImage.src = post.image;
+            featuredImage.alt = DOM.escape(post.title);
 
             // Render content
             const contentContainer = document.getElementById('blog-content');
