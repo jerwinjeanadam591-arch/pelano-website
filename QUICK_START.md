@@ -211,7 +211,7 @@ Replace emoji logo (🌿) with HTML image:
 <h1>🌿 Pelano Resources</h1>
 
 <!-- With: -->
-<img src="images/logo.png" alt="Pelano Resources Logo" height="40">
+<img src="images/pelano-newlogo.png" alt="Pelano Resources Logo" height="40">
 ```
 
 ### 10. **Performance Optimization**

@@ -784,7 +784,7 @@ section {
 /* ===== WHY CHOOSE US ===== */
 .why-choose-us {
     background: var(--white);
-    background-image: url('images/pelano-logo.png');
+    background-image: url('images/pelano-newlogo.png');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -1908,7 +1908,7 @@ body.dark-mode .logo-label p {
     transform: translateY(-50%);
     width: 320px;
     height: 320px;
-    background: url('../images/pelano-logo.png') no-repeat center/contain;
+    background: url('../images/pelano-newlogo.png') no-repeat center/contain;
     opacity: 0.06;
     pointer-events: none;
 }
