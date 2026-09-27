@@ -262,7 +262,7 @@ const Testimonials = (() => {
             <div class="testimonial-card">
                 ${getAvatarMarkup(testimonial)}
                 <div class="testimonial-content">
-                    <p class="testimonial-text">"${DOM.escape(testimonial.text)}"</p>
+                    <p class="testimonial-text">${DOM.escape(testimonial.text)}</p>
                     <div class="testimonial-rating">
                         ${renderStars(testimonial.rating)}
                     </div>

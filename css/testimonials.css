@@ -873,3 +873,89 @@
         min-height: 44px;
     }
 }
+
+/* Keep the testimonial and its navigation stacked instead of competing for width. */
+#testimonials-carousel {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: clamp(20px, 3vw, 32px);
+}
+
+#testimonials-carousel [data-testimonial-item],
+#testimonials-carousel .carousel-controls {
+    flex: 0 0 auto;
+    width: 100%;
+    min-width: 0;
+}
+
+#testimonials-carousel .carousel-controls {
+    justify-content: center;
+    margin-top: 0;
+}
+
+#testimonials-carousel [data-carousel-dots] {
+    flex: 0 1 auto;
+    gap: 0;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#testimonials-carousel .testimonial-dot,
+#testimonials-carousel .testimonial-dot.active {
+    display: grid;
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    place-items: center;
+    padding: 0;
+    border-radius: 50%;
+    background: transparent;
+}
+
+#testimonials-carousel .testimonial-dot::before {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #bbb;
+    content: "";
+    transition: width 0.2s ease, background-color 0.2s ease;
+}
+
+#testimonials-carousel .testimonial-dot.active::before {
+    width: 20px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--primary-color);
+}
+
+@media (max-width: 600px) {
+    #testimonials-carousel {
+        gap: 16px;
+        padding: 22px 18px;
+    }
+
+    #testimonials-carousel .carousel-controls {
+        overflow: visible;
+    }
+
+    #testimonials-carousel [data-carousel-dots] {
+        flex: 0 1 auto;
+        gap: 0;
+        justify-content: center;
+        flex-wrap: wrap;
+        overflow: visible;
+    }
+
+    #testimonials-carousel .testimonial-dot {
+        flex-basis: 44px;
+        min-width: 44px;
+        min-height: 44px;
+    }
+
+    #testimonials-carousel .testimonial-dot.active {
+        width: 44px;
+    }
+}
