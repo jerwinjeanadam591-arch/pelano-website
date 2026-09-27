@@ -8,6 +8,13 @@ const Blog = (() => {
     let draftPosts = [];
     const STORAGE_KEY_POSTS = 'pelano_blog_posts';
     const STORAGE_KEY_DRAFTS = 'pelano_blog_drafts';
+    const defaultPostImages = [
+        'images/products/treated-timber.jpg',
+        'images/products/utility-poles.jpg',
+        'images/products/telecom-poles.jpg',
+        'images/products/palettes-1.jpeg',
+        'images/products/railway-sleepers.jpeg'
+    ];
 
     /**
      * Initialize blog module
@@ -47,7 +54,7 @@ const Blog = (() => {
                 slug: 'future-quality-resources-tanzania',
                 excerpt: 'Exploring how Pelano Resources is shaping the future of quality resource supply in Tanzania.',
                 content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                image: 'images/blog-1.jpg',
+                image: defaultPostImages[0],
                 author: 'John Mwamba',
                 category: 'News',
                 tags: ['resources', 'tanzania', 'quality', 'supply'],
@@ -62,7 +69,7 @@ const Blog = (() => {
                 slug: 'top-5-tips-quality-resources',
                 excerpt: 'Learn how to identify and choose the best quality resources for your business needs.',
                 content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                image: 'images/blog-2.jpg',
+                image: defaultPostImages[1],
                 author: 'Sarah Ndoto',
                 category: 'Guide',
                 tags: ['quality', 'tips', 'resources', 'guide'],
@@ -77,7 +84,7 @@ const Blog = (() => {
                 slug: 'sustainable-resource-management',
                 excerpt: 'How sustainable practices are transforming the resource industry.',
                 content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                image: 'images/blog-3.jpg',
+                image: defaultPostImages[2],
                 author: 'David Kamau',
                 category: 'Sustainability',
                 tags: ['sustainability', 'environment', 'resources'],
@@ -92,7 +99,7 @@ const Blog = (() => {
                 slug: 'case-study-project-implementation',
                 excerpt: 'A detailed case study of how Pelano Resources successfully implemented a large-scale project.',
                 content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                image: 'images/blog-4.jpg',
+                image: defaultPostImages[3],
                 author: 'Maria Santos',
                 category: 'Case Study',
                 tags: ['case-study', 'implementation', 'success'],
@@ -107,7 +114,7 @@ const Blog = (() => {
                 slug: 'industry-trends-market-insights',
                 excerpt: 'Latest industry trends and market insights for resource businesses.',
                 content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                image: 'images/blog-5.jpg',
+                image: defaultPostImages[4],
                 author: 'Ahmed Hassan',
                 category: 'Insights',
                 tags: ['trends', 'market', 'insights', 'industry'],
@@ -157,7 +164,7 @@ const Blog = (() => {
         container.innerHTML = posts.map(post => `
             <article class="blog-card" data-post-id="${post.id}">
                 <div class="blog-image">
-                    <img src="${post.image}" alt="${DOM.escape(post.title)}" class="blog-img">
+                    <img src="${DOM.escape(getPostImage(post))}" alt="${DOM.escape(post.title)}" class="blog-img">
                     <span class="blog-category">${DOM.escape(post.category)}</span>
                 </div>
                 <div class="blog-content">
@@ -175,6 +182,14 @@ const Blog = (() => {
                 </div>
             </article>
         `).join('');
+    }
+
+    function getPostImage(post) {
+        const legacyImage = post.image?.match(/^images\/blog-([1-5])\.jpg$/);
+        if (legacyImage) {
+            return defaultPostImages[Number(legacyImage[1]) - 1];
+        }
+        return post.image || defaultPostImages[(post.id - 1) % defaultPostImages.length];
     }
 
     /**

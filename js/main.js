@@ -3,17 +3,42 @@ const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 
 if (hamburger && navMenu) {
+    hamburger.setAttribute('aria-controls', navMenu.id);
+    hamburger.setAttribute('aria-expanded', 'false');
+
+    const closeNavMenu = () => {
+        navMenu.classList.remove('active');
+        hamburger.textContent = '☰';
+        hamburger.setAttribute('aria-expanded', 'false');
+    };
+
     hamburger.addEventListener('click', () => {
-        navMenu.classList.toggle('active');
-        hamburger.textContent = navMenu.classList.contains('active') ? '✕' : '☰';
+        const isOpen = navMenu.classList.toggle('active');
+        hamburger.textContent = isOpen ? '✕' : '☰';
+        hamburger.setAttribute('aria-expanded', String(isOpen));
     });
 
-    // Close menu when clicking a link
-    document.querySelectorAll('.nav-menu a').forEach(link => {
+    navMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-            hamburger.textContent = '☰';
+            closeNavMenu();
         });
+    });
+
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && navMenu.classList.contains('active')) {
+            closeNavMenu();
+            hamburger.focus();
+        }
+    });
+
+    document.addEventListener('click', event => {
+        if (
+            navMenu.classList.contains('active') &&
+            !navMenu.contains(event.target) &&
+            !hamburger.contains(event.target)
+        ) {
+            closeNavMenu();
+        }
     });
 }
 
@@ -217,6 +242,19 @@ function createWhatsAppButton() {
 }
 
 createWhatsAppButton();
+
+function hideFloatingControlsOverFooter() {
+    const footer = document.querySelector('.footer');
+    if (!footer || !('IntersectionObserver' in window)) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+        document.body.classList.toggle('footer-in-view', entry.isIntersecting);
+    });
+
+    observer.observe(footer);
+}
+
+hideFloatingControlsOverFooter();
 
 // ===== COUNTER ANIMATION FOR STATISTICS =====
 function createCounterAnimation() {

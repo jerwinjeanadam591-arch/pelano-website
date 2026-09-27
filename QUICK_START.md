@@ -172,7 +172,6 @@ Add Google Analytics to track visitors:
 ├── 📄 gallery.html         Gallery page
 ├── 📄 contact.html         Contact page
 ├── 📄 README.md            Full documentation
-├── 📄 FEATURES.md          Feature checklist
 ├── 📄 QUICK_START.md       This file
 ├── 📁 css/
 │   ├── variables.css       Design tokens
@@ -289,7 +288,6 @@ git push -u origin main
 ### 15. **Getting Help**
 
 - Check `README.md` for detailed documentation
-- Review `FEATURES.md` for all available features
 - Check browser console for JavaScript errors (F12)
 - Use browser DevTools to debug CSS
 
@@ -326,6 +324,6 @@ Check using: Google PageSpeed Insights
 
 Your professional website is ready to go. Start with the basics, add your content, and deploy!
 
-For detailed feature information, see `README.md` and `FEATURES.md`.
+For detailed feature information, see `README.md`.
 
 **Happy website building! 🚀**

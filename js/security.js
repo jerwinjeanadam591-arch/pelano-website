@@ -141,26 +141,17 @@ const Security = {
     },
 
     /**
-     * Add security headers as meta tags (supported headers)
+     * Add browser-supported compatibility metadata.
+     * Security headers must be configured by the web server.
      */
-    addSecurityHeaders: () => {
-        const headers = [
-            { name: 'X-UA-Compatible', content: 'ie=edge' },
-            { name: 'X-Content-Type-Options', content: 'nosniff' },
-            { name: 'X-Frame-Options', content: 'SAMEORIGIN' },
-            { name: 'X-XSS-Protection', content: '1; mode=block' },
-            { name: 'Referrer-Policy', content: 'strict-origin-when-cross-origin' },
-        ];
-
-        headers.forEach(header => {
-            const meta = document.querySelector(`meta[http-equiv="${header.name}"]`);
-            if (!meta) {
-                const newMeta = document.createElement('meta');
-                newMeta.httpEquiv = header.name;
-                newMeta.content = header.content;
-                document.head.appendChild(newMeta);
-            }
-        });
+    addCompatibilityMeta: () => {
+        const compatibilityMeta = document.querySelector('meta[http-equiv="X-UA-Compatible"]');
+        if (!compatibilityMeta) {
+            const meta = document.createElement('meta');
+            meta.httpEquiv = 'X-UA-Compatible';
+            meta.content = 'ie=edge';
+            document.head.appendChild(meta);
+        }
     },
 
     /**
@@ -198,7 +189,7 @@ const Security = {
         Security.generateCSRFToken();
         
         // Add security headers
-        Security.addSecurityHeaders();
+        Security.addCompatibilityMeta();
 
         // Add secure cookie attributes to localStorage (if available)
         if ('scrollRestoration' in window.history) {
@@ -210,8 +201,8 @@ const Security = {
 };
 
 // Initialize on script load
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', Security.init);
+if (document.readyState === 'loading' || document.readyState === 'interactive') {
+    document.addEventListener('DOMContentLoaded', Security.init, { once: true });
 } else {
     Security.init();
 }
