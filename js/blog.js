@@ -54,7 +54,7 @@ const Blog = (() => {
                 slug: 'future-quality-resources-tanzania',
                 excerpt: 'Exploring how Pelano Resources is shaping the future of quality resource supply in Tanzania.',
                 content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                image: defaultPostImages[0],
+                image: 'images/gallery/IMG_5146.JPG',
                 author: 'John Mwamba',
                 category: 'News',
                 tags: ['resources', 'tanzania', 'quality', 'supply'],
@@ -69,7 +69,7 @@ const Blog = (() => {
                 slug: 'top-5-tips-quality-resources',
                 excerpt: 'Learn how to identify and choose the best quality resources for your business needs.',
                 content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                image: defaultPostImages[1],
+                image: 'images/gallery/IMG_5139.JPG',
                 author: 'Sarah Ndoto',
                 category: 'Guide',
                 tags: ['quality', 'tips', 'resources', 'guide'],
@@ -84,7 +84,7 @@ const Blog = (() => {
                 slug: 'sustainable-resource-management',
                 excerpt: 'How sustainable practices are transforming the resource industry.',
                 content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                image: defaultPostImages[2],
+                image: 'images/gallery/IMG_5137.JPG',
                 author: 'David Kamau',
                 category: 'Sustainability',
                 tags: ['sustainability', 'environment', 'resources'],
@@ -99,7 +99,7 @@ const Blog = (() => {
                 slug: 'case-study-project-implementation',
                 excerpt: 'A detailed case study of how Pelano Resources successfully implemented a large-scale project.',
                 content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                image: defaultPostImages[3],
+                image: 'images/gallery/IMG_5133.JPG',
                 author: 'Maria Santos',
                 category: 'Case Study',
                 tags: ['case-study', 'implementation', 'success'],
@@ -114,7 +114,7 @@ const Blog = (() => {
                 slug: 'industry-trends-market-insights',
                 excerpt: 'Latest industry trends and market insights for resource businesses.',
                 content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
-                image: defaultPostImages[4],
+                image: 'images/gallery/IMG_5121.JPG',
                 author: 'Ahmed Hassan',
                 category: 'Insights',
                 tags: ['trends', 'market', 'insights', 'industry'],
@@ -161,10 +161,15 @@ const Blog = (() => {
             return;
         }
 
-        container.innerHTML = posts.map(post => `
+        container.innerHTML = posts.map(post => {
+            const imageSrc = getPostImage(post);
+            return `
             <article class="blog-card" data-post-id="${post.id}">
                 <div class="blog-image">
-                    <img src="${DOM.escape(getPostImage(post))}" alt="${DOM.escape(post.title)}" class="blog-img">
+                    <picture>
+                        <source srcset="${DOM.escape(imageSrc.replace(/\.(jpe?g)$/i, '.webp'))}" type="image/webp">
+                        <img src="${DOM.escape(imageSrc)}" alt="${DOM.escape(post.title)}" class="blog-img" loading="lazy" decoding="async">
+                    </picture>
                     <span class="blog-category">${DOM.escape(post.category)}</span>
                 </div>
                 <div class="blog-content">
@@ -181,7 +186,8 @@ const Blog = (() => {
                     <a href="blog-detail.html?id=${post.id}" class="blog-read-more">Read More →</a>
                 </div>
             </article>
-        `).join('');
+        `;
+        }).join('');
     }
 
     function getPostImage(post) {
