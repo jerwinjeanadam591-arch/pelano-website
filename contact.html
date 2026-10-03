@@ -22,6 +22,7 @@
     <link rel="stylesheet" href="css/style.css?v=product-category-images-20261002-1">
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/business-tools.css?v=mobile-controls-phone-20261002-19">
+    <link rel="stylesheet" href="css/contact.css?v=contact-refresh-20261003-1">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
@@ -48,7 +49,7 @@
 }
     </script>
 </head>
-<body>    <a class="skip-link" href="#main-content">Skip to main content</a>
+<body class="contact-page">    <a class="skip-link" href="#main-content">Skip to main content</a>
     <!-- Navigation -->
     <nav class="navbar">
         <div class="container">
@@ -77,8 +78,9 @@
     <!-- Page Header -->
     <section id="main-content" class="page-header">
         <div class="container">
-            <h1>Contact Us</h1>
-            <p>Get in touch with Pelano Resources Ltd</p>
+            <p class="section-eyebrow">Pelano Resources Ltd · Mafinga, Tanzania</p>
+            <h1>Let’s talk about your project</h1>
+            <p>Tell us what you need. Our team can help with product enquiries, processing services and order-specific supply details.</p>
         </div>
     </section>
 
@@ -88,16 +90,17 @@
             <div class="contact-grid-large">
                 <!-- Contact Info -->
                 <div class="contact-info-large">
-                    <h2>Contact Pelano Resources</h2>
-                    <p>Reach out for forest product inquiries, bulk orders, custom quotes, or any questions about our treated timber, poles, and plywood solutions.</p>
+                    <p class="contact-panel-eyebrow">Get in touch</p>
+                    <h2>Connect with our team</h2>
+                    <p class="contact-panel-intro">Reach out about treated timber, poles, processing services or a project quote. Share your requirements and destination so we can direct your enquiry.</p>
 
                     <div class="contact-details">
                         <div class="contact-item-large">
                             <div class="contact-icon-large"><svg class="location-marker" style="height: 12px; width: 12px; margin-right: 4px;" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12c0 7 10 13 10 13s10-6 10-13c0-5.52-4.48-10-10-10zm0 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg></div>
                             <div>
                                 <h3>Address</h3>
-                                <p>Mafinga, Tanzania</p>
-                                <p>Iringa Region</p>
+                                <p>Mafinga, Iringa Region</p>
+                                <p>Tanzania</p>
                             </div>
                         </div>
 
@@ -105,8 +108,7 @@
                             <div class="contact-icon-large">📞</div>
                             <div>
                                 <h3>Phone</h3>
-                                <p>+255 755 885 888</p>
-                                <p>Available Mon - Sat, 8am - 6pm</p>
+                                <p><a href="tel:+255755885888">+255 755 885 888</a></p>
                             </div>
                         </div>
 
@@ -114,12 +116,12 @@
                             <div class="contact-icon-large">✉️</div>
                             <div>
                                 <h3>Email</h3>
-                                <p>info@pelanoresources.co.tz</p>
+                                <p><a href="mailto:info@pelanoresources.co.tz">info@pelanoresources.co.tz</a></p>
                                 <p>Response within 24 hours</p>
                             </div>
                         </div>
 
-                        <div class="contact-item-large">
+                        <div class="contact-item-large contact-hours">
                             <div class="contact-icon-large">🕒</div>
                             <div>
                                 <h3>Business Hours</h3>
@@ -132,19 +134,23 @@
 
                 <!-- Contact Form -->
                 <div class="contact-form-large">
-                    <h2>Send Us a Message</h2>
+                    <div class="contact-form-heading">
+                        <p class="section-eyebrow">Enquiry form</p>
+                        <h2>Send us a message</h2>
+                        <p>Fields marked <span aria-hidden="true">*</span> are required.</p>
+                    </div>
                     <form id="contact-form">
-                        <div class="form-group">
+                        <div class="form-group contact-field">
                             <label for="name">Full Name *</label>
                             <input type="text" id="name" name="name" data-person-name autocomplete="name" required minlength="2" maxlength="100">
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group contact-field">
                             <label for="email">Email Address *</label>
                             <input type="email" id="email" name="email" autocomplete="email" required maxlength="160" placeholder="your.email@example.com">
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group contact-field contact-phone-field">
                             <label for="phone">Phone Number</label>
                             <div class="phone-input">
                                 <label class="sr-only" for="phone-country-code">Country calling code</label>
@@ -177,7 +183,7 @@
                             <small id="phone-help">Digits only, without the leading zero or country code. Complete international numbers may contain up to 15 digits.</small>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group contact-field">
                             <label for="subject">Inquiry Type *</label>
                             <select id="subject" name="subject" required>
                                 <option value="">Select inquiry type...</option>
@@ -189,7 +195,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group">
+                        <div class="form-group contact-field contact-message-field">
                             <label for="message">Message *</label>
                             <textarea id="message" name="message" rows="6" required minlength="10" maxlength="2000" placeholder="Describe your inquiry, project details, or order specifications..."></textarea>
                         </div>
