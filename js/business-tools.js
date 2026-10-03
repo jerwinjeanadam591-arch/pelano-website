@@ -38,6 +38,7 @@
         ['Quick Links', 'Viungo vya Haraka'],
         ['Contact Info', 'Maelezo ya Mawasiliano'],
         ['Follow Us', 'Tufuatilie'],
+        ['Created by', 'Imetengenezwa na'],
         ['Request a tailored quote', 'Omba Bei kwa Mahitaji Yako'],
         ['For business and project enquiries', 'Kwa Maswali ya Biashara na Miradi'],
         ['Tell us what you need. We’ll prepare your enquiry for email or WhatsApp so our team can follow up with product specifications, availability and pricing.', 'Tueleze mahitaji yako. Tutakuandalia ujumbe wa barua pepe au WhatsApp ili timu yetu ithibitishe vipimo, upatikanaji na bei.'],

@@ -5683,6 +5683,17 @@ footer.footer .footer-bottom p {
     line-height: 1.5;
 }
 
+footer.footer .footer-credit-link {
+    color: #e5c282;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+footer.footer .footer-credit-link:hover,
+footer.footer .footer-credit-link:focus-visible {
+    color: #fff;
+}
+
 footer.footer .footer-bottom nav {
     display: flex;
     flex-wrap: wrap;

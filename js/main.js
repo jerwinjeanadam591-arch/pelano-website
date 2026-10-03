@@ -70,7 +70,7 @@ function renderSharedFooter() {
                     </section>
                 </div>
                 <div class="footer-bottom">
-                    <p>&copy; <span data-footer-year></span> Pelano Resources Ltd. All rights reserved.</p>
+                    <p>&copy; <span data-footer-year></span> Pelano Resources Ltd. All rights reserved. <span class="footer-credit">Created by <a class="footer-credit-link" href="https://digicoretech.co.tz" target="_blank" rel="noopener noreferrer">DigicoreTech</a></span></p>
                     <nav aria-label="Legal">
                         <a href="privacy.html">Privacy</a>
                         <a href="terms.html">Terms</a>
