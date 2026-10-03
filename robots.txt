@@ -4,7 +4,9 @@
 # Robots.txt for Pelano Resources Ltd
 # Allow all bots to crawl the public site assets
 User-agent: *
-Disallow:
+Disallow: /admin.html
 
 # Sitemap location
 Sitemap: https://pelanoresources.co.tz/sitemap.xml
+Sitemap: https://pelanoresources.co.tz/image-sitemap.xml
+Sitemap: https://pelanoresources.co.tz/video-sitemap.xml

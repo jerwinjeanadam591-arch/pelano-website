@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Staff dashboard | Pelano Resources</title>
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css?v=product-category-images-20261002-1">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+    <main class="admin-shell">
+        <header class="admin-header">
+            <a href="index.html">Pelano Resources</a>
+            <span>Staff dashboard</span>
+        </header>
+        <section id="admin-login" class="admin-panel" aria-labelledby="login-title">
+            <h1 id="login-title">Staff sign in</h1>
+            <p>Use an authenticated Supabase staff account to access quote requests.</p>
+            <form id="admin-login-form">
+                <label for="admin-email">Work email</label>
+                <input id="admin-email" name="email" type="email" autocomplete="username" required>
+                <label for="admin-password">Password</label>
+                <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
+                <button class="btn btn-primary" type="submit">Sign in</button>
+                <p id="admin-login-status" class="admin-status" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+        <section id="admin-dashboard" class="admin-panel" aria-labelledby="dashboard-title" hidden>
+            <div class="admin-panel-heading">
+                <div>
+                    <h1 id="dashboard-title">Quote requests</h1>
+                    <p id="admin-dashboard-status" class="admin-status" role="status" aria-live="polite"></p>
+                </div>
+                <button id="admin-logout" class="btn btn-secondary" type="button">Sign out</button>
+            </div>
+            <div class="admin-table-wrap">
+                <table>
+                    <caption class="sr-only">Customer quote requests</caption>
+                    <thead><tr><th>Reference</th><th>Name</th><th>Company</th><th>Email</th><th>Status</th><th>Created</th><th>Update</th></tr></thead>
+                    <tbody id="quote-table-body"></tbody>
+                </table>
+            </div>
+            <section class="admin-cms" aria-labelledby="cms-title">
+                <h2 id="cms-title">Blog content management</h2>
+                <form id="cms-post-form">
+                    <label for="cms-title-input">Article title</label>
+                    <input id="cms-title-input" name="title" required maxlength="180">
+                    <label for="cms-slug">URL slug</label>
+                    <input id="cms-slug" name="slug" required maxlength="180" pattern="[a-z0-9-]+">
+                    <label for="cms-category">Category</label>
+                    <input id="cms-category" name="category" required maxlength="60">
+                    <label for="cms-excerpt">Summary</label>
+                    <textarea id="cms-excerpt" name="excerpt" required maxlength="500"></textarea>
+                    <label for="cms-content">Article body (plain text)</label>
+                    <textarea id="cms-content" name="content" required rows="8"></textarea>
+                    <label for="cms-image">Image URL (optional)</label>
+                    <input id="cms-image" name="image" type="url">
+                    <label for="cms-tags">Tags (comma separated)</label>
+                    <input id="cms-tags" name="tags">
+                    <label for="cms-author">Author</label>
+                    <input id="cms-author" name="author" value="Pelano Resources Ltd" required>
+                    <button class="btn btn-primary" type="submit">Save draft</button>
+                </form>
+                <p id="cms-status" class="admin-status" role="status" aria-live="polite"></p>
+                <div class="admin-table-wrap">
+                    <table>
+                        <caption class="sr-only">Managed blog articles</caption>
+                        <thead><tr><th>Article</th><th>Category</th><th>Status</th><th>Change status</th></tr></thead>
+                        <tbody id="cms-posts-body"></tbody>
+                    </table>
+                </div>
+            </section>
+            <section class="admin-cms" aria-labelledby="social-moderation-title">
+                <h2 id="social-moderation-title">Social post moderation</h2>
+                <p>Only approved posts appear in the public social feed.</p>
+                <form id="social-post-form">
+                    <label for="social-platform">Platform</label>
+                    <select id="social-platform" name="platform" required><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="linkedin">LinkedIn</option><option value="youtube">YouTube</option></select>
+                    <label for="social-caption">Caption</label>
+                    <textarea id="social-caption" name="caption" required maxlength="500"></textarea>
+                    <label for="social-image">Image URL (optional)</label>
+                    <input id="social-image" name="image_url" type="url">
+                    <label for="social-url">Public post URL</label>
+                    <input id="social-url" name="post_url" type="url" required>
+                    <button class="btn btn-primary" type="submit">Submit for moderation</button>
+                </form>
+                <p id="social-moderation-status" class="admin-status" role="status" aria-live="polite"></p>
+                <div class="admin-table-wrap">
+                    <table>
+                        <caption class="sr-only">Moderated social posts</caption>
+                        <thead><tr><th>Platform</th><th>Caption</th><th>Link</th><th>Status</th><th>Moderate</th></tr></thead>
+                        <tbody id="social-posts-body"></tbody>
+                    </table>
+                </div>
+            </section>
+        </section>
+    </main>
+    <script src="js/supabase-config.js" defer></script>
+    <script src="js/admin-api.js" defer></script>
+    <script src="js/admin.js" defer></script>
+</body>
+</html>

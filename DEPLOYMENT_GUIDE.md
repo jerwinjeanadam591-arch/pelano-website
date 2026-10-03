@@ -10,17 +10,15 @@
 
 ### Security Verification
 - [x] Security module loaded (`js/security.js`)
-- [x] Contact form sanitization enabled
-- [x] Rate limiting implemented (5 attempts/minute)
-- [x] CSRF token generation active
-- [x] Security headers added to pages
-- [x] Input validation on all forms
-- [x] XSS pattern detection active
+- [x] Client-side required-field and format validation
+- [x] Contact-form client-side attempt limit
+- [x] Form details are URL-encoded before opening email or WhatsApp
+- [ ] Configure and verify server-side validation, spam controls, and access controls before adding an enquiry backend
 
 ### Privacy & Compliance
 - [x] Privacy Policy published (`privacy.html`)
 - [x] Terms of Service published (`terms.html`)
-- [x] GDPR compliance statements included
+- [x] Privacy notice describes browser-local preferences and enquiry references
 - [x] Contact information accuracy verified
 - [x] Footer links to legal pages
 - [x] Data handling procedures documented
@@ -36,7 +34,7 @@
 ### Functionality Testing
 - [x] All HTML pages valid
 - [x] Navigation working
-- [x] Forms submitting correctly
+- [x] Enquiry forms validate and prepare email/WhatsApp messages for the visitor to send
 - [x] Dark mode functionality
 - [x] Mobile menu working
 - [x] Responsive design verified
@@ -186,6 +184,8 @@ curl -I https://pelanoresources.co.tz/terms.html
 ```
 
 ### 3. Form Submission Setup (Optional)
+
+The current static-site forms do not submit enquiries to a server. They prepare an email or WhatsApp message for the visitor to send. If a central inbox or CRM is needed, select and configure a backend endpoint first, then update the site privacy notice and test server-side validation, spam protection, retention, and access controls.
 
 **Using Formspree:**
 ```javascript

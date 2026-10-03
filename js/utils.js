@@ -4,16 +4,41 @@
 
 // ===== STORAGE HELPERS =====
 const Storage = {
-    set: (key, value) => localStorage.setItem(key, JSON.stringify(value)),
+    set: (key, value) => {
+        try {
+            localStorage.setItem(key, JSON.stringify(value));
+            return true;
+        } catch (error) {
+            console.error(`Unable to save "${key}" in browser storage.`, error);
+            return false;
+        }
+    },
     get: (key) => {
         try {
             return JSON.parse(localStorage.getItem(key));
-        } catch {
+        } catch (error) {
+            console.error(`Unable to read "${key}" from browser storage.`, error);
             return null;
         }
     },
-    remove: (key) => localStorage.removeItem(key),
-    clear: () => localStorage.clear()
+    remove: (key) => {
+        try {
+            localStorage.removeItem(key);
+            return true;
+        } catch (error) {
+            console.error(`Unable to remove "${key}" from browser storage.`, error);
+            return false;
+        }
+    },
+    clear: () => {
+        try {
+            localStorage.clear();
+            return true;
+        } catch (error) {
+            console.error('Unable to clear browser storage.', error);
+            return false;
+        }
+    }
 };
 
 // ===== DARK MODE MANAGER =====
@@ -29,11 +54,13 @@ const DarkMode = {
     enable: () => {
         document.body.classList.add('dark-mode');
         Storage.set('dark-mode', true);
+        DarkMode.updateToggle();
     },
     
     disable: () => {
         document.body.classList.remove('dark-mode');
         Storage.set('dark-mode', false);
+        DarkMode.updateToggle();
     },
     
     toggle: () => {
@@ -57,17 +84,87 @@ const DarkMode = {
         }
 
         if (toggle) {
-            const updateIcon = () => {
-                toggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
-            };
-
             toggle.addEventListener('click', () => {
                 DarkMode.toggle();
-                updateIcon();
             });
-
-            updateIcon();
+            DarkMode.updateToggle();
         }
+    },
+
+    updateToggle: () => {
+        const toggle = document.getElementById('dark-mode-toggle');
+        if (!toggle) return;
+        const isDark = document.body.classList.contains('dark-mode');
+        toggle.textContent = isDark ? '☀️' : '🌙';
+        toggle.setAttribute('aria-pressed', String(isDark));
+        toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+        toggle.title = isDark ? 'Switch to light mode' : 'Switch to dark mode';
+    }
+};
+
+const PelanoPhone = {
+    getFullNumber(form, inputName = 'phone') {
+        const input = form?.querySelector(`input[name="${inputName}"]`);
+        const countrySelect = form?.querySelector(`select[name="${inputName}_country_code"]`);
+        if (!input?.value) return '';
+        const code = countrySelect?.value === 'other'
+            ? form.querySelector(`input[name="${inputName}_custom_code"]`)?.value || ''
+            : countrySelect?.value || '';
+        return `${code}${input.value}`;
+    },
+
+    init() {
+        document.querySelectorAll('[data-person-name]').forEach(input => {
+            const validate = () => {
+                const value = input.value.trim();
+                const validName = !value || /^[\p{L}\p{M}][\p{L}\p{M} .'\-]{0,98}[\p{L}\p{M}]$/u.test(value);
+                input.setCustomValidity(validName ? '' : 'Enter a name using letters, spaces, apostrophes, periods, or hyphens.');
+            };
+            input.addEventListener('input', validate);
+            input.addEventListener('blur', validate);
+            validate();
+        });
+
+        document.querySelectorAll('.phone-input').forEach(group => {
+            const countrySelect = group.querySelector('select[data-phone-country]');
+            const nationalInput = group.querySelector('input[type="tel"][data-phone-national]');
+            const customCode = group.querySelector('input[data-phone-custom-code]');
+            if (!countrySelect || !nationalInput) return;
+
+            const updateValidity = () => {
+                const hasNumber = nationalInput.value.length > 0;
+                if (customCode) {
+                    const useCustomCode = countrySelect.value === 'other';
+                    customCode.hidden = !useCustomCode;
+                    customCode.required = useCustomCode && hasNumber;
+                    customCode.setAttribute('aria-hidden', String(!useCustomCode));
+                    if (!useCustomCode) customCode.value = '';
+                }
+                const callingCode = countrySelect.value === 'other'
+                    ? customCode?.value || ''
+                    : countrySelect.value;
+                const internationalLength = callingCode.replace(/\D/g, '').length + nationalInput.value.length;
+                nationalInput.setCustomValidity(
+                    hasNumber && (nationalInput.value.length < 7 || internationalLength > 15)
+                        ? 'Enter 7–12 national digits; the complete international number must not exceed 15 digits.'
+                        : ''
+                );
+            };
+
+            nationalInput.addEventListener('input', () => {
+                const digits = nationalInput.value.replace(/\D/g, '').slice(0, 12);
+                if (nationalInput.value !== digits) nationalInput.value = digits;
+                updateValidity();
+            });
+            countrySelect.addEventListener('change', updateValidity);
+            customCode?.addEventListener('input', () => {
+                const cleaned = customCode.value.replace(/[^\d+]/g, '').replace(/(?!^)\+/g, '').slice(0, 4);
+                if (customCode.value !== cleaned) customCode.value = cleaned;
+                customCode.setCustomValidity(/^\+[1-9]\d{0,2}$/.test(cleaned) ? '' : 'Enter a valid country calling code, such as +81.');
+                updateValidity();
+            });
+            updateValidity();
+        });
     }
 };
 
@@ -307,4 +404,5 @@ const Device = {
 document.addEventListener('DOMContentLoaded', () => {
     DarkMode.init();
     LazyLoad.init();
+    PelanoPhone.init();
 });

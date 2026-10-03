@@ -156,32 +156,7 @@ const Social = (() => {
      * @returns {Array} Array of Instagram post objects
      */
     function getInstagramPosts() {
-        return [
-            {
-                id: 1,
-                image: 'images/instagram-1.jpg',
-                caption: 'Amazing project with our team',
-                likes: 234,
-                comments: 12,
-                url: 'https://instagram.com/p/SAMPLE1'
-            },
-            {
-                id: 2,
-                image: 'images/instagram-2.jpg',
-                caption: 'Innovation in action',
-                likes: 456,
-                comments: 23,
-                url: 'https://instagram.com/p/SAMPLE2'
-            },
-            {
-                id: 3,
-                image: 'images/instagram-3.jpg',
-                caption: 'Meet our talented team',
-                likes: 345,
-                comments: 18,
-                url: 'https://instagram.com/p/SAMPLE3'
-            }
-        ];
+        return [];
     }
 
     /**

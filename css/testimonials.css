@@ -8,8 +8,27 @@
     margin: var(--spacing-2xl) 0;
 }
 
+.testimonials-section--home {
+    position: relative;
+    isolation: isolate;
+}
+
+.testimonials-section--home::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    background: url('../images/home/IMG_5123.JPG') center / cover no-repeat;
+    content: '';
+    opacity: 0.12;
+    pointer-events: none;
+}
+
 .dark-mode .testimonials-section {
     background: linear-gradient(135deg, var(--bg-dark), var(--bg-dark-secondary));
+}
+
+.dark-mode .testimonials-section--home::before {
+    opacity: 0.08;
 }
 
 .testimonials-container {
@@ -125,6 +144,13 @@
     opacity: 0.3;
 }
 
+.testimonial-text::after {
+    content: '"';
+    margin-left: 2px;
+    color: var(--primary-color);
+    opacity: 0.3;
+}
+
 /* Rating Stars */
 .testimonial-rating {
     margin-bottom: var(--spacing-md);
@@ -152,68 +178,6 @@
 .testimonial-title {
     color: var(--text-tertiary);
     font-weight: 500;
-}
-
-/* Carousel Controls */
-.carousel-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: var(--spacing-lg);
-}
-
-[data-carousel-prev],
-[data-carousel-next] {
-    background: var(--primary-color);
-    color: white;
-    border: none;
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    transition: all 0.3s ease;
-}
-
-[data-carousel-prev]:hover,
-[data-carousel-next]:hover {
-    background: var(--primary-dark);
-    transform: scale(1.1);
-}
-
-[data-carousel-prev]:active,
-[data-carousel-next]:active {
-    transform: scale(0.95);
-}
-
-/* Carousel Dots */
-[data-carousel-dots] {
-    display: flex;
-    justify-content: center;
-    gap: var(--spacing-sm);
-}
-
-.testimonial-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: #ddd;
-    border: none;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.testimonial-dot.active {
-    background: var(--primary-color);
-    width: 30px;
-    border-radius: 5px;
-}
-
-.testimonial-dot:hover {
-    background: var(--primary-light);
 }
 
 /* ========================================
@@ -447,17 +411,6 @@
         gap: var(--spacing-md);
     }
 
-    .carousel-controls {
-        gap: var(--spacing-lg);
-    }
-
-    [data-carousel-prev],
-    [data-carousel-next] {
-        width: 40px;
-        height: 40px;
-        font-size: 16px;
-    }
-
     #instagram-feed {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
@@ -495,8 +448,6 @@
 /* Accessibility */
 @media (prefers-reduced-motion: reduce) {
     .testimonial-card,
-    [data-carousel-prev],
-    [data-carousel-next],
     .instagram-post {
         transition: none;
         animation: none;
@@ -789,63 +740,6 @@
         line-height: 1.4;
     }
 
-    .carousel-controls {
-        flex: 0 0 auto;
-        width: 100%;
-        max-width: 100%;
-        min-width: 0;
-        gap: 8px;
-        overflow: hidden;
-        margin-top: 14px;
-    }
-
-    [data-carousel-dots] {
-        flex: 1 1 0;
-        min-width: 0;
-        justify-content: flex-start;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        overscroll-behavior-x: contain;
-        scrollbar-width: none;
-        scroll-snap-type: x mandatory;
-    }
-
-    [data-carousel-dots]::-webkit-scrollbar {
-        display: none;
-    }
-
-    .testimonial-dot {
-        display: grid;
-        flex: 0 0 44px;
-        min-width: 44px;
-        min-height: 44px;
-        place-items: center;
-        padding: 0;
-        background: transparent;
-        scroll-snap-align: center;
-    }
-
-    .testimonial-dot::before {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: #bbb;
-        content: "";
-        transition: width 0.2s ease, background-color 0.2s ease;
-    }
-
-    .testimonial-dot.active {
-        width: 44px;
-        background: transparent;
-    }
-
-    .testimonial-dot.active::before {
-        width: 18px;
-        height: 8px;
-        border-radius: 999px;
-        background: var(--primary-color);
-    }
-
     .testimonials-social-section {
         margin-top: 24px;
         padding: 20px 14px;
@@ -882,80 +776,15 @@
     gap: clamp(20px, 3vw, 32px);
 }
 
-#testimonials-carousel [data-testimonial-item],
-#testimonials-carousel .carousel-controls {
+#testimonials-carousel [data-testimonial-item] {
     flex: 0 0 auto;
     width: 100%;
     min-width: 0;
-}
-
-#testimonials-carousel .carousel-controls {
-    justify-content: center;
-    margin-top: 0;
-}
-
-#testimonials-carousel [data-carousel-dots] {
-    flex: 0 1 auto;
-    gap: 0;
-    justify-content: center;
-    flex-wrap: wrap;
-}
-
-#testimonials-carousel .testimonial-dot,
-#testimonials-carousel .testimonial-dot.active {
-    display: grid;
-    flex: 0 0 44px;
-    width: 44px;
-    height: 44px;
-    min-width: 44px;
-    min-height: 44px;
-    place-items: center;
-    padding: 0;
-    border-radius: 50%;
-    background: transparent;
-}
-
-#testimonials-carousel .testimonial-dot::before {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: #bbb;
-    content: "";
-    transition: width 0.2s ease, background-color 0.2s ease;
-}
-
-#testimonials-carousel .testimonial-dot.active::before {
-    width: 20px;
-    height: 8px;
-    border-radius: 999px;
-    background: var(--primary-color);
 }
 
 @media (max-width: 600px) {
     #testimonials-carousel {
         gap: 16px;
         padding: 22px 18px;
-    }
-
-    #testimonials-carousel .carousel-controls {
-        overflow: visible;
-    }
-
-    #testimonials-carousel [data-carousel-dots] {
-        flex: 0 1 auto;
-        gap: 0;
-        justify-content: center;
-        flex-wrap: wrap;
-        overflow: visible;
-    }
-
-    #testimonials-carousel .testimonial-dot {
-        flex-basis: 44px;
-        min-width: 44px;
-        min-height: 44px;
-    }
-
-    #testimonials-carousel .testimonial-dot.active {
-        width: 44px;
     }
 }

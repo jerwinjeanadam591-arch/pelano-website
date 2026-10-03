@@ -224,6 +224,19 @@
     justify-content: center;
 }
 
+.newsletter-consent {
+    display: block;
+    flex-basis: 100%;
+    margin-top: 10px;
+    font-size: 0.85rem;
+}
+
+#newsletter-status {
+    flex-basis: 100%;
+    min-height: 1.5em;
+    margin: 0;
+}
+
 #blog-search {
     width: 100%;
     max-width: 400px;

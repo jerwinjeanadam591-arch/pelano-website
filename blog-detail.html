@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta property="og:type" content="website">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">        <meta property="og:type" content="article">
+    <meta name="description" content="Pelano Resources Ltd - Premium forest products supplier in Tanzania.">
     <meta property="og:site_name" content="Pelano Resources Ltd">
     <meta property="og:title" content="Blog Article - Pelano Resources Ltd">
     <meta property="og:description" content="Pelano Resources Ltd - Premium forest products supplier in Tanzania.">
@@ -16,16 +17,16 @@
     <link rel="canonical" href="https://pelanoresources.co.tz/blog-detail.html">
 <title>Blog Article - Pelano Resources Ltd</title>
     <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=product-category-images-20261002-1">
     <link rel="stylesheet" href="css/components.css">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#4CAF50">
 <link rel="stylesheet" href="css/blog.css">
-            <script type="application/ld+json">
+            <script id="page-schema" type="application/ld+json">
 {
     "@context": "https://schema.org",
     "@type": "WebPage",
@@ -70,7 +71,13 @@
     </nav>
 
     <!-- Blog Hero -->
-    <div class="blog-hero" id="blog-hero"></div>
+    <div class="blog-hero" id="blog-hero">
+        <div class="container">
+            <div class="blog-detail-header">
+                <h1 id="article-heading">Article</h1>
+            </div>
+        </div>
+    </div>
 
     <!-- Main Content -->
     <main id="main-content" class="main-content">
@@ -97,13 +104,13 @@
 
             <!-- Related Posts -->
             <div class="blog-related">
-                <h3 class="blog-related-title">Related Articles</h3>
+                <h2 class="blog-related-title">Related Articles</h2>
                 <div class="blog-related-grid" id="related-posts"></div>
             </div>
         </article>
 
         <!-- CTA Section -->
-        <section id="main-content" style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: white; padding: var(--spacing-2xl) var(--spacing-lg); text-align: center; margin-top: var(--spacing-2xl);">
+        <section id="article-contact-cta" style="background: linear-gradient(135deg, var(--primary-color), var(--accent-color)); color: white; padding: var(--spacing-2xl) var(--spacing-lg); text-align: center; margin-top: var(--spacing-2xl);">
             <div class="container">
                 <h2>Ready to Work With Us?</h2>
                 <p style="margin: var(--spacing-lg) 0; opacity: 0.9; font-size: var(--font-size-lg);">Learn more about our services and how we can help your business</p>
@@ -164,22 +171,30 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="js/utils.js" defer></script>
-    <script src="js/main.js" defer></script>
-    <script src="js/blog.js" defer></script>
+    <script src="js/utils.js?v=phone-controls-20261002-2" defer></script>
+    <script src="js/main.js?v=floating-controls-20261002-2" defer></script>
+    <script src="js/business-tools.js?v=mobile-controls-phone-20261002-19" defer></script>
+    <script src="js/supabase-config.js" defer></script>
+    <script src="js/content-api.js?v=newsletter-double-optin-20261002-1" defer></script>
+    <script src="js/analytics.js?v=consent-placeholder-guard-20261002-1" defer></script>
+    <script src="js/blog.js?v=buyer-content-20261002-2" defer></script>
     <script src="js/social.js" defer></script>
+    <script src="js/seo.js?v=reviewed-hreflang-20261002-1" defer></script>
+    <script src="js/performance-monitor.js?v=metrics-consent-20261002-2" defer></script>
     <script>
         // Get post ID from URL
         const params = new URLSearchParams(window.location.search);
-        const postId = parseInt(params.get('id'));
+        const postId = parseInt(params.get('id'), 10);
+        const postSlug = params.get('slug');
 
-        if (!postId) {
+        if (!postId && !postSlug) {
             window.location.href = 'blog.html';
         }
 
         // Load and display blog post
         document.addEventListener('DOMContentLoaded', () => {
-            const post = Blog.getPostById(postId);
+            Blog.ready.then(() => {
+            const post = postSlug ? Blog.getPostBySlug(postSlug) : Blog.getPostById(postId);
 
             if (!post) {
                 document.body.innerHTML = '<div class="container"><h1>Article not found</h1><p><a href="blog.html">Back to Blog</a></p></div>';
@@ -187,14 +202,17 @@
             }
 
             // Update page title
-            document.title = `${post.title} - Pelano Resources Blog`;
+            const articleTitle = `${post.title} - Pelano Resources Blog`;
+            document.title = articleTitle;
+            const titleNode = document.querySelector('head > title');
+            if (titleNode) titleNode.dataset.pelanoEnglishText = articleTitle;
 
             // Render hero section
             const heroContainer = document.getElementById('blog-hero');
             heroContainer.innerHTML = `
                 <div class="container">
                     <div class="blog-detail-header">
-                        <h1>${DOM.escape(post.title)}</h1>
+                        <h1 id="article-heading">${DOM.escape(post.title)}</h1>
                         <div class="blog-detail-meta">
                             <span class="blog-author">By ${DOM.escape(post.author)}</span>
                             <span class="blog-date">${Blog.formatDate(post.date)}</span>
@@ -217,19 +235,75 @@
             // Render content
             const contentContainer = document.getElementById('blog-content');
             contentContainer.innerHTML = `
-                <p>${post.content}</p>
+                <p style="white-space: pre-line;">${DOM.escape(post.content)}</p>
                 <div class="blog-tags">
-                    ${post.tags.map(tag => `<a href="blog.html?tag=${tag}" class="blog-tag">#${DOM.escape(tag)}</a>`).join('')}
+                    ${post.tags.map(tag => `<a href="blog.html?tag=${encodeURIComponent(tag)}" class="blog-tag">#${DOM.escape(tag)}</a>`).join('')}
                 </div>
             `;
 
             // Update meta tags for social sharing
-            document.querySelector('meta[name="description"]').setAttribute('content', post.excerpt);
-            document.querySelector('meta[property="og:title"]').setAttribute('content', post.title);
-            document.querySelector('meta[property="og:description"]').setAttribute('content', post.excerpt);
+            const updateMeta = (selector, content) => {
+                const meta = document.querySelector(selector);
+                if (!meta) return;
+                meta.content = content;
+                meta.dataset.pelanoEnglishContent = content;
+            };
+            const articleUrl = new URL(document.querySelector('link[rel="canonical"]')?.href || window.location.href);
+            articleUrl.search = '';
+            articleUrl.hash = '';
+            if (post.slug) articleUrl.searchParams.set('slug', post.slug);
+            else articleUrl.searchParams.set('id', String(post.id));
+            const canonicalUrl = articleUrl.href;
+            updateMeta('meta[name="description"]', post.excerpt);
+            updateMeta('meta[property="og:title"]', post.title);
+            updateMeta('meta[property="og:description"]', post.excerpt);
+            updateMeta('meta[property="og:image"]', new URL(post.image, articleUrl).href);
+            document.querySelector('link[rel="canonical"]')?.setAttribute('href', canonicalUrl);
+            updateMeta('meta[property="og:url"]', canonicalUrl);
+            updateMeta('meta[name="twitter:title"]', post.title);
+            updateMeta('meta[name="twitter:description"]', post.excerpt);
+            const articleSchema = {
+                '@context': 'https://schema.org',
+                '@type': 'Article',
+                headline: post.title,
+                description: post.excerpt,
+                image: new URL(post.image, articleUrl).href,
+                datePublished: post.date,
+                author: { '@type': 'Person', name: post.author },
+                publisher: {
+                    '@type': 'Organization',
+                    name: 'Pelano Resources Ltd',
+                    url: 'https://pelanoresources.co.tz'
+                },
+                mainEntityOfPage: canonicalUrl
+            };
+            const schemaNode = document.getElementById('page-schema');
+            if (schemaNode) {
+                schemaNode.textContent = JSON.stringify(articleSchema);
+                schemaNode.dataset.pelanoEnglishSchema = schemaNode.textContent;
+            }
+            const breadcrumbSchema = document.getElementById('breadcrumb-schema');
+            if (breadcrumbSchema) {
+                const data = JSON.parse(breadcrumbSchema.textContent);
+                const currentItem = data.itemListElement?.at(-1);
+                if (currentItem) {
+                    currentItem.name = post.title;
+                    currentItem.item = canonicalUrl;
+                    breadcrumbSchema.textContent = JSON.stringify(data);
+                    breadcrumbSchema.dataset.pelanoEnglishSchema = breadcrumbSchema.textContent;
+                }
+            }
+            document.querySelectorAll('link[hreflang="en"], link[hreflang="sw"]').forEach(link => {
+                if (link.hreflang === 'sw') link.remove();
+                else link.href = canonicalUrl;
+            });
+            const defaultLanguageLink = document.querySelector('link[hreflang="x-default"]');
+            if (defaultLanguageLink) defaultLanguageLink.href = canonicalUrl;
+            const breadcrumbCurrent = document.querySelector('.seo-breadcrumb [aria-current="page"]');
+            if (breadcrumbCurrent) breadcrumbCurrent.textContent = post.title;
 
             // Increment view count
-            Blog.incrementViews(postId);
+            Blog.incrementViews(post.id);
 
             // Render related posts
             const relatedContainer = document.getElementById('related-posts');
@@ -251,8 +325,9 @@
                         text: post.excerpt,
                         url: window.location.href
                     });
-                    Blog.incrementViews(postId); // Track share as engagement
+                    Blog.incrementViews(post.id); // Track share as engagement
                 });
+            });
             });
         });
     </script>

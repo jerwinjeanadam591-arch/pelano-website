@@ -1,6 +1,17 @@
 # Pelano Resources Ltd - Professional Frontend Website
 
-A modern, professional frontend-only website built with pure HTML, CSS, and JavaScript. No backend dependencies required.
+A modern website built with HTML, CSS, and JavaScript. Public browsing and email/WhatsApp enquiry preparation remain available without backend configuration. Optional Supabase features are enabled only after the company configures them.
+
+## Optional Supabase quote capture
+
+The quote builder continues to prepare email and WhatsApp enquiries when Supabase is not configured. To enable server-backed quote capture:
+
+1. Create a Supabase project.
+2. Run [`supabase/schema.sql`](supabase/schema.sql) in the Supabase SQL editor.
+3. Set the project URL and publishable/anon key in [`js/supabase-config.js`](js/supabase-config.js).
+4. Never place a service-role key in browser code.
+
+The schema permits anonymous quote creation only. Customer records and staff dashboard access should be added with authenticated policies before exposing internal operations.
 
 ## 🎯 Professional Features Implemented
 
@@ -27,12 +38,10 @@ A modern, professional frontend-only website built with pure HTML, CSS, and Java
 - ✅ Scroll animations (fade-in, slide-in)
 
 ### 4. **Professional Form Handling**
-- ✅ Real-time form validation
-- ✅ Field-level error messages
+- ✅ Browser-side required-field validation
 - ✅ Email format validation
-- ✅ Phone number validation
-- ✅ Toast/notification system
-- ✅ Accessible form labels
+- ✅ Prepared email and WhatsApp messages (visitor sends explicitly)
+- ✅ Consent notice and delivery limitations clearly shown
 
 ### 5. **Notification System**
 - ✅ Success notifications
@@ -136,17 +145,41 @@ Provides reusable functions for:
 - Form validation
 
 ### `js/contact.js` - Contact Form
-- Advanced form validation
-- Real-time field validation
-- Error message display
-- Form submission handling
-- Message storage in localStorage
+- Client-side form validation
+- Prepares an email or WhatsApp message for the visitor to send
+- Creates a browser-local reference without storing contact details
 
 ### `js/products.js` - Product Page
 - Product filtering by category
 - Product search functionality
 - Modal/lightbox for details
-- Product data management
+- Product comparison and quote selection
+
+### `js/business-tools.js` - Customer Tools
+- English / Kiswahili interface toggle covering page copy, navigation, forms, product cards, dynamic content, accessibility labels, and metadata
+- Browser-local enquiry references (up to 20 references per browser)
+- Assistant that searches published public pages, guides and published CMS articles
+- No external AI provider, backend, enquiry dashboard, stock feed, or CRM connection
+
+## 📬 Enquiries and product comparison
+
+The product page includes a quote builder and comparison for up to three products. Visitors enter their project requirements, then choose to open their own email app or WhatsApp with a prepared message. The website does not send that message itself or confirm delivery.
+
+Enquiry reference codes are stored in the browser with the date, selected channel, and product names only. They are device/browser-specific and do not indicate that Pelano Resources received or processed an enquiry. Contact details are included only in the visitor's prepared email/WhatsApp message.
+
+The assistant builds an in-browser search index from public pages in `sitemap.xml` when a visitor opens it, including the public download centre and published CMS articles when configured. It returns relevant published passages with links to their source pages; it does not use an external generative-AI service or index staff/admin pages. Exact pricing, technical specifications, live stock and lead times must still be confirmed with the company.
+
+The language toggle applies curated Kiswahili translations across site pages and dynamically rendered content, then restores the original English when switched back. Have a fluent Kiswahili reviewer verify the complete translation before public launch.
+
+## 📈 Marketing measurement and SEO operations
+
+Industry and location pages provide project-specific enquiry paths; the resources centre offers a timber selection guide, procurement checklist and product catalogue. The product quote builder uses four steps: choose products, share project requirements, enter contact details, and review before opening email or WhatsApp. Product detail prompts vary by category without inventing product technical specifications. The blog's built-in articles are buyer-focused and searchable by category, title, tags and article text.
+
+The newsletter has an optional double opt-in backend using Supabase Edge Functions and Resend. It is not enabled by default. Without both function endpoints configured, the form clearly reports that sign-up is inactive and does not store the address locally or send it to the CMS table. Setup, secrets and pre-launch testing are documented in [`SEO_SETUP.md`](SEO_SETUP.md).
+
+Privacy-safe marketing events are available through `js/analytics.js`. Google Analytics is **off by default**; configure a GA4 `G-...` measurement ID in that file to show the consent choices and load Google Analytics only after opt-in. Events intentionally exclude form details and search terms. Contact handoffs indicate that a prepared email or WhatsApp link was opened, not that a message was sent or received. Search Console, Bing Webmaster Tools and Google Business Profile still require verification and access through company-owned accounts; see [`SEO_SETUP.md`](SEO_SETUP.md).
+
+The quality workflow checks JavaScript syntax, internal links, SEO metadata and sitemap coverage on changes, and also runs weekly. It validates the repository, not live Search Console/Bing account data or laboratory Core Web Vitals scores.
 
 ## 🎨 CSS Structure
 
@@ -278,7 +311,7 @@ DOM.hide(element);
 This website is **completely frontend-based** with:
 - ✅ No backend server needed
 - ✅ No database dependencies
-- ✅ All data stored in localStorage
+- ✅ Only preferences and non-personal enquiry reference metadata stored in browser localStorage
 - ✅ Pure HTML/CSS/JavaScript
 - ✅ Can be hosted on any static hosting service
 
@@ -292,17 +325,7 @@ This website is **completely frontend-based** with:
 
 ## 🎯 Contact Form Notes
 
-Currently, the contact form:
-1. Validates all fields locally
-2. Shows success/error notifications
-3. Stores messages in browser localStorage
-4. Can be integrated with services like:
-   - Formspree
-   - Firebase
-   - EmailJS
-   - Netlify Forms
-
-To integrate with a backend service, modify `contact.js` to send data to your preferred endpoint.
+The contact form validates fields in the browser and prepares an email or WhatsApp message. Personal details are not sent to this website or persisted in its local storage. A real server-side inbox, CRM, or staff dashboard requires a separately configured backend and privacy/security review.
 
 ## 🌐 WhatsApp Integration
 
@@ -350,8 +373,8 @@ Add Google Analytics script tag to HTML `<head>`:
 
 ## 🔐 Security Best Practices
 
-- ✅ Input sanitization in form validation
 - ✅ No sensitive data in localStorage
+- ✅ Enquiry content is URL-encoded for email/WhatsApp handoff
 - ✅ CSP headers recommended
 - ✅ HTTPS recommended
 - ✅ Regular security audits

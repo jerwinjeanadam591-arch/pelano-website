@@ -25,7 +25,6 @@ const HeroCarousel = (() => {
         if (!carousel) return;
 
         const slides = carousel.querySelectorAll('.hero-slide');
-        const dotsContainer = carousel.querySelector('.hero-carousel-dots');
 
         if (slides.length === 0) return;
 
@@ -33,16 +32,6 @@ const HeroCarousel = (() => {
         if (slides[0]) {
             slides[0].classList.add('active');
         }
-
-        // Create navigation dots
-        slides.forEach((_, index) => {
-            const dot = document.createElement('button');
-            dot.className = `hero-carousel-dot ${index === 0 ? 'active' : ''}`;
-            dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
-            dot.setAttribute('type', 'button');
-            dot.addEventListener('click', () => goToSlide(index));
-            dotsContainer.appendChild(dot);
-        });
 
         // Previous button
         const prevBtn = carousel.querySelector('.hero-carousel-prev');
@@ -97,16 +86,10 @@ const HeroCarousel = (() => {
         if (!carousel) return;
 
         const slides = carousel.querySelectorAll('.hero-slide');
-        const dots = carousel.querySelectorAll('.hero-carousel-dot');
 
         // Update active slide
         slides.forEach((slide, index) => {
             slide.classList.toggle('active', index === currentIndex);
-        });
-
-        // Update active dot
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentIndex);
         });
     }
 

@@ -6,14 +6,17 @@
 const Blog = (() => {
     let blogPosts = [];
     let draftPosts = [];
+    let contentReady = Promise.resolve();
+    let activeCategory = 'all';
+    let activeQuery = '';
     const STORAGE_KEY_POSTS = 'pelano_blog_posts';
     const STORAGE_KEY_DRAFTS = 'pelano_blog_drafts';
     const defaultPostImages = [
-        'images/products/treated-timber.jpg',
-        'images/products/utility-poles.jpg',
-        'images/products/telecom-poles.jpg',
-        'images/products/palettes-1.jpeg',
-        'images/products/railway-sleepers.jpeg'
+        'images/gallery/products/treated-timber.jpg',
+        'images/gallery/products/utility-poles.jpg',
+        'images/gallery/products/telecom-poles.jpg',
+        'images/gallery/products/palettes-1.jpeg',
+        'images/gallery/products/railway-sleepers.jpeg'
     ];
 
     /**
@@ -22,6 +25,36 @@ const Blog = (() => {
     function init() {
         loadBlogPosts();
         setupBlogPage();
+        contentReady = loadManagedPosts();
+    }
+
+    async function loadManagedPosts() {
+        if (!window.PelanoContentApi?.isConfigured) return;
+        try {
+            const managed = await window.PelanoContentApi.getPublishedPosts();
+            if (!Array.isArray(managed)) return;
+            const mapped = managed.map(post => ({
+                ...post,
+                readTime: post.read_time || 3,
+                status: 'published'
+            }));
+            const managedSlugs = new Set(mapped.map(post => post.slug));
+            blogPosts = [...mapped, ...getPublishedPosts().filter(post => !managedSlugs.has(post.slug))];
+            const filterContainer = document.getElementById('blog-filters');
+            if (filterContainer) {
+                filterContainer.querySelectorAll('[data-blog-filter]:not([data-blog-filter="all"])').forEach(button => button.remove());
+                getCategories().forEach(category => {
+                    const button = document.createElement('button');
+                    button.type = 'button';
+                    button.dataset.blogFilter = category;
+                    button.textContent = category;
+                    filterContainer.append(button);
+                });
+            }
+            renderCurrentResults();
+        } catch (error) {
+            console.error('Managed blog content could not be loaded; retaining the published local content.', error);
+        }
     }
 
     /**
@@ -52,75 +85,70 @@ const Blog = (() => {
                 id: 1,
                 title: 'The Future of Quality Resources in Tanzania',
                 slug: 'future-quality-resources-tanzania',
-                excerpt: 'Exploring how Pelano Resources is shaping the future of quality resource supply in Tanzania.',
-                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                excerpt: 'A practical framework for comparing forest-product suppliers and preparing a clear project enquiry in Tanzania.',
+                content: 'A useful supplier comparison starts with a clear requirement, not a headline claim. Record the product type, intended application, estimated quantity, preferred dimensions and destination before requesting a quotation.\n\nAsk suppliers to confirm which specifications and quality documents apply to the exact product being offered. Availability, treatment details, transport and lead times can vary by order, so get those points confirmed in writing before making a procurement decision.\n\nPelano Resources supplies treated timber, utility and telecom poles, pallets and railway sleepers. Share your project requirements with the team to confirm current product details and delivery options.',
                 image: 'images/gallery/IMG_5146.JPG',
-                author: 'John Mwamba',
+                author: 'Pelano Resources Ltd',
                 category: 'News',
                 tags: ['resources', 'tanzania', 'quality', 'supply'],
                 date: '2026-05-20',
                 readTime: 5,
-                views: 234,
                 status: 'published'
             },
             {
                 id: 2,
                 title: 'Top 5 Tips for Choosing Quality Resources',
                 slug: 'top-5-tips-quality-resources',
-                excerpt: 'Learn how to identify and choose the best quality resources for your business needs.',
-                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                excerpt: 'Five questions to ask when selecting treated timber for a construction or infrastructure project.',
+                content: '1. Define the application. Explain whether the timber is for a structural, outdoor, packaging or other use so the supplier can discuss relevant options.\n\n2. State the dimensions and quantity you need. If these are still estimates, label them as estimates and ask what sizes are currently available.\n\n3. Describe the exposure and treatment requirements specified by your project team. Do not assume that a general product description proves suitability for a particular design or environment.\n\n4. Ask which grading, treatment or quality documents are available for the offered product and confirm that they match your requirements.\n\n5. Agree the delivery destination, access constraints and required timeframe. Confirm final specifications, availability, price and transport arrangements before placing an order.',
                 image: 'images/gallery/IMG_5139.JPG',
-                author: 'Sarah Ndoto',
+                author: 'Pelano Resources Ltd',
                 category: 'Guide',
                 tags: ['quality', 'tips', 'resources', 'guide'],
                 date: '2026-05-15',
                 readTime: 7,
-                views: 456,
                 status: 'published'
             },
             {
                 id: 3,
-                title: 'Sustainable Resource Management',
+                title: 'Responsible Timber Procurement: Questions to Ask',
                 slug: 'sustainable-resource-management',
-                excerpt: 'How sustainable practices are transforming the resource industry.',
-                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                excerpt: 'A buyer checklist for understanding product origin, documentation and responsible procurement requirements.',
+                content: 'Responsible procurement begins by identifying the requirements that apply to your project and market. Ask what origin, chain-of-custody or other supporting documentation is available for the specific product and order; do not rely on broad sustainability language alone.\n\nCheck that product descriptions, quantities and supporting documents refer to the same goods. Where your organization has sourcing or environmental criteria, share them before ordering so the supplier can confirm what can be provided.\n\nThis checklist is a starting point, not a certification or legal determination. Confirm applicable requirements with your project team and the relevant authorities.',
                 image: 'images/gallery/IMG_5137.JPG',
-                author: 'David Kamau',
+                author: 'Pelano Resources Ltd',
                 category: 'Sustainability',
-                tags: ['sustainability', 'environment', 'resources'],
+                tags: ['responsible procurement', 'documentation', 'timber', 'sourcing'],
                 date: '2026-05-10',
                 readTime: 6,
-                views: 345,
                 status: 'published'
             },
             {
                 id: 4,
-                title: 'Case Study: Successful Project Implementation',
+                title: 'Planning a Forest-Product Supply Project',
                 slug: 'case-study-project-implementation',
-                excerpt: 'A detailed case study of how Pelano Resources successfully implemented a large-scale project.',
-                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                excerpt: 'Prepare a complete enquiry with product, quantity, specification, documentation and delivery details.',
+                content: 'A complete supply enquiry helps both sides identify open questions early. Start with the product category, intended use, estimated quantity and any dimensions or treatment requirements already defined by your project.\n\nInclude the delivery location, target timeframe, site access considerations and documents required for approval. If some information is not yet known, say so rather than guessing; the supplier can then explain what must be confirmed before a quotation is final.\n\nUse the procurement checklist in the resources centre to organize these details. Final availability, price, specifications and delivery arrangements should be confirmed for each order.',
                 image: 'images/gallery/IMG_5133.JPG',
-                author: 'Maria Santos',
-                category: 'Case Study',
-                tags: ['case-study', 'implementation', 'success'],
+                author: 'Pelano Resources Ltd',
+                category: 'Guide',
+                tags: ['project planning', 'procurement', 'delivery', 'checklist'],
                 date: '2026-05-05',
                 readTime: 8,
-                views: 567,
                 status: 'published'
             },
             {
                 id: 5,
-                title: 'Industry Trends and Market Insights',
+                title: 'Pallets and Timber for Storage and Logistics',
                 slug: 'industry-trends-market-insights',
-                excerpt: 'Latest industry trends and market insights for resource businesses.',
-                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+                excerpt: 'What to include when enquiring about pallets or timber packaging for storage and transport.',
+                content: 'Start by describing the goods being handled, the expected load, storage conditions and how the pallet will move through your operation. Share required dimensions, quantities, handling equipment and any return or reuse needs that affect the design.\n\nFor transport or export use, check which packaging rules and documents apply to your route and cargo with the relevant logistics provider or authority. Do not assume a general-purpose pallet meets a specific shipping or regulatory requirement.\n\nAsk the supplier to confirm available options, specifications, quantity, price and delivery plan for your order. Browse Pelano Resources products or send an enquiry with your handling requirements.',
                 image: 'images/gallery/IMG_5121.JPG',
-                author: 'Ahmed Hassan',
+                author: 'Pelano Resources Ltd',
                 category: 'Insights',
-                tags: ['trends', 'market', 'insights', 'industry'],
+                tags: ['pallets', 'logistics', 'storage', 'procurement'],
                 date: '2026-04-28',
                 readTime: 9,
-                views: 678,
                 status: 'published'
             }
         ];
@@ -130,22 +158,89 @@ const Blog = (() => {
      * Setup blog page functionality
      */
     function setupBlogPage() {
-        const filterButtons = document.querySelectorAll('[data-blog-filter]');
         const searchInput = document.getElementById('blog-search');
+        const filterContainer = document.getElementById('blog-filters');
+        const postsContainer = document.getElementById('blog-posts');
 
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const category = btn.getAttribute('data-blog-filter');
-                filterPostsByCategory(category);
-                updateActiveFilter(btn);
+        if (filterContainer && filterContainer.querySelectorAll('[data-blog-filter]').length === 1) {
+            getCategories().forEach(category => {
+                const button = document.createElement('button');
+                button.type = 'button';
+                button.dataset.blogFilter = category;
+                button.textContent = category;
+                filterContainer.append(button);
             });
+        }
+
+        filterContainer?.addEventListener('click', event => {
+            const button = event.target.closest('[data-blog-filter]');
+            if (!button) return;
+            activeCategory = button.dataset.blogFilter || 'all';
+            updateActiveFilter(button);
+            renderCurrentResults();
         });
 
         if (searchInput) {
             searchInput.addEventListener('input', (e) => {
-                searchPosts(e.target.value);
+                activeQuery = e.target.value;
+                renderCurrentResults();
             });
         }
+
+        renderPosts(getPublishedPosts(), postsContainer);
+        setupNewsletter();
+    }
+
+    function renderCurrentResults() {
+        const matchesCategory = activeCategory === 'all' ? getPublishedPosts() : getByCategory(activeCategory);
+        const query = activeQuery.trim().toLocaleLowerCase();
+        const posts = query ? matchesCategory.filter(post => {
+            const searchable = `${post.title} ${post.excerpt} ${post.content} ${post.category} ${post.tags.join(' ')}`.toLocaleLowerCase();
+            return searchable.includes(query);
+        }) : matchesCategory;
+        renderPosts(posts, document.getElementById('blog-posts'));
+    }
+
+    function setupNewsletter() {
+        const emailInput = document.getElementById('newsletter-email');
+        const consent = document.getElementById('newsletter-consent');
+        const status = document.getElementById('newsletter-status');
+        const form = document.getElementById('newsletter-form');
+        const button = form?.querySelector('[data-newsletter-submit]');
+        if (!emailInput || !consent || !status || !form || !button) return;
+        let isSubmitting = false;
+        form.addEventListener('submit', async event => {
+            event.preventDefault();
+            if (isSubmitting) return;
+            if (!form.reportValidity() || !consent.checked) {
+                status.textContent = 'Enter a valid email and accept the newsletter consent.';
+                return;
+            }
+            isSubmitting = true;
+            button.disabled = true;
+            const email = emailInput.value.trim();
+            try {
+                if (window.PelanoContentApi?.isNewsletterConfigured) {
+                    const result = await window.PelanoContentApi.subscribe(email, true);
+                    status.textContent = result.submitted
+                        ? 'Please check your inbox to confirm your subscription. You can unsubscribe at any time.'
+                        : 'Newsletter sign-up could not be completed. Please contact us directly.';
+                    if (result.submitted) window.PelanoAnalytics?.track('newsletter_subscribe', { form: 'newsletter' });
+                } else {
+                    status.textContent = 'Newsletter sign-up is not active yet. Your email has not been saved; please contact us to receive updates.';
+                }
+                if (window.PelanoContentApi?.isNewsletterConfigured) {
+                    emailInput.value = '';
+                    consent.checked = false;
+                }
+            } catch (error) {
+                console.error('Newsletter subscription could not be sent to the configured service.', error);
+                status.textContent = 'Subscription could not be completed right now. Please contact us directly.';
+            } finally {
+                isSubmitting = false;
+                button.disabled = false;
+            }
+        });
     }
 
     /**
@@ -173,7 +268,7 @@ const Blog = (() => {
                     <span class="blog-category">${DOM.escape(post.category)}</span>
                 </div>
                 <div class="blog-content">
-                    <h3 class="blog-title"><a href="blog-detail.html?id=${post.id}">${DOM.escape(post.title)}</a></h3>
+                    <h3 class="blog-title"><a href="blog-detail.html?slug=${encodeURIComponent(post.slug)}">${DOM.escape(post.title)}</a></h3>
                     <p class="blog-excerpt">${DOM.escape(post.excerpt)}</p>
                     <div class="blog-meta">
                         <span class="blog-author">By ${DOM.escape(post.author)}</span>
@@ -181,9 +276,9 @@ const Blog = (() => {
                         <span class="blog-read-time">${post.readTime} min read</span>
                     </div>
                     <div class="blog-tags">
-                        ${post.tags.map(tag => `<a href="blog.html?tag=${tag}" class="blog-tag">#${DOM.escape(tag)}</a>`).join('')}
+                        ${post.tags.map(tag => `<a href="blog.html?tag=${encodeURIComponent(tag)}" class="blog-tag">#${DOM.escape(tag)}</a>`).join('')}
                     </div>
-                    <a href="blog-detail.html?id=${post.id}" class="blog-read-more">Read More →</a>
+                    <a href="blog-detail.html?slug=${encodeURIComponent(post.slug)}" class="blog-read-more">Read More →</a>
                 </div>
             </article>
         `;
@@ -269,9 +364,8 @@ const Blog = (() => {
      * @param {string} category - Category name
      */
     function filterPostsByCategory(category) {
-        const container = document.getElementById('blog-posts');
-        const posts = getByCategory(category);
-        renderPosts(posts, container);
+        activeCategory = category;
+        renderCurrentResults();
     }
 
     /**
@@ -279,9 +373,8 @@ const Blog = (() => {
      * @param {string} query - Search query
      */
     function searchPosts(query) {
-        const container = document.getElementById('blog-posts');
-        const results = search(query);
-        renderPosts(results, container);
+        activeQuery = query;
+        renderCurrentResults();
     }
 
     /**
@@ -379,6 +472,7 @@ const Blog = (() => {
     // Public API
     return {
         init,
+        get ready() { return contentReady; },
         loadBlogPosts,
         getPublishedPosts,
         getPostById,
@@ -397,6 +491,8 @@ const Blog = (() => {
         formatDate
     };
 })();
+
+window.PelanoBlog = Blog;
 
 // Auto-initialize when DOM is ready
 if (document.readyState === 'loading') {

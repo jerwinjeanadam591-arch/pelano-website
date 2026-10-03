@@ -7,6 +7,23 @@ const Testimonials = (() => {
     let testimonialsList = [];
     let currentIndex = 0;
     const STORAGE_KEY = 'pelano_testimonials';
+    const DEFAULT_TESTIMONIALS = [
+        { id: 1, name: 'JerwinJ. severian', title: 'CEO, DigiCore tech SolutionsLtd', image: '', text: 'Pelano Resources provided exceptional service. Their expertise and dedication transformed our business operations. Highly recommended for any organization!', rating: 5, date: '2025-05-15' },
+        { id: 2, name: 'Sarah Ndoto', title: 'Marketing Director, Growth Corp', image: '', text: 'Professional team with outstanding results. They understood our needs and delivered beyond expectations with remarkable efficiency.', rating: 5, date: '2025-05-10' },
+        { id: 3, name: 'David Kamau', title: 'Business Owner, E-commerce Plus', image: '', text: 'Fantastic collaboration. The services provided by Pelano Resources are top-notch, reliable, and truly exceed industry standards.', rating: 5, date: '2025-05-05' },
+        { id: 4, name: 'Maria Santos', title: 'Project Manager, Digital Solutions', image: '', text: 'Excellent experience working with Pelano Resources. They are responsive, professional, and truly care about delivering results.', rating: 5, date: '2025-04-28' },
+        { id: 5, name: 'Ahmed Hassan', title: 'Operations Lead, Trade Hub', image: '', text: 'Reliable partner for our business needs. Great support and consistent quality throughout the engagement. A trusted resource.', rating: 4, date: '2025-04-20' },
+        { id: 6, name: 'Elizabeth Mwangi', title: 'Supply Chain Manager, LogiFirst', image: '', text: 'Working with Pelano Resources has been a game-changer for our supply chain. Efficient, professional, and highly dependable team.', rating: 5, date: '2025-04-15' },
+        { id: 7, name: 'James Kipchoge', title: 'Financial Director, Capital Plus', image: '', text: 'Outstanding service quality and attention to detail. Pelano Resources consistently delivers excellent results that exceed our expectations.', rating: 5, date: '2025-04-10' },
+        { id: 8, name: 'Amina Juma', title: 'HR Manager, Premier Services', image: '', text: 'Impressive professionalism and dedication to client satisfaction. Pelano Resources is our go-to partner for quality solutions.', rating: 5, date: '2025-04-05' },
+        { id: 9, name: 'Robert Okonkwo', title: 'Production Manager, Quality Industries', image: '', text: 'Top-tier service and commitment to excellence. Pelano Resources has been instrumental in improving our operational efficiency.', rating: 4, date: '2025-03-30' },
+        { id: 10, name: 'Fatima Al-Rashid', title: 'Business Development, Global Trade Ltd', image: '', text: 'Exceptional quality and remarkable customer service. Pelano Resources stands out as an innovative and reliable business partner.', rating: 5, date: '2026-03-25' },
+        { id: 11, name: 'Michael Mutua', title: 'Project Coordinator, Build Solutions', image: '', text: 'Reliable, efficient, and highly professional. Pelano Resources has proven to be an invaluable asset to our organization.', rating: 5, date: '2026-03-20' },
+        { id: 12, name: 'Grace Muthoni', title: 'Quality Assurance Lead, TechCore', image: '', text: 'Consistent excellence in all their deliverables. Pelano Resources demonstrates exceptional commitment to quality and customer satisfaction.', rating: 5, date: '2026-03-15' },
+        { id: 13, name: 'Charles Mutuku', title: 'Operations Director, MainStream Corp', image: '', text: 'Professional, responsive, and results-driven. Pelano Resources has been a key factor in our business success and growth.', rating: 4, date: '2026-03-10' },
+        { id: 14, name: 'Naomi Kiplagat', title: 'Partnership Manager, Venture Plus', image: '', text: 'Impressive dedication and outstanding service delivery. Pelano Resources continues to exceed our expectations in every engagement.', rating: 5, date: '2026-03-05' },
+        { id: 15, name: 'Peter Owuor', title: 'Executive Manager, Prime Resources', image: '', text: 'Exceptional partner for quality products and services. Pelano Resources has earned our complete trust and confidence.', rating: 5, date: '2026-02-28' }
+    ];
 
     /**
      * Initialize testimonials
@@ -22,160 +39,34 @@ const Testimonials = (() => {
      * Load testimonials from storage or use defaults
      */
     function loadTestimonials() {
-        // Clear old storage to force reload defaults
-        Storage.remove(STORAGE_KEY);
-        
-        const stored = Storage.get(STORAGE_KEY);
-        if (stored && stored.length > 0) {
-            testimonialsList = stored;
-        } else {
-            testimonialsList = getDefaultTestimonials();
-            Storage.set(STORAGE_KEY, testimonialsList);
-        }
-    }
-
-    /**
-     * Get default testimonials
-     * @returns {Array} Array of testimonial objects
-     */
-    function getDefaultTestimonials() {
-        return [
-            {
-                id: 1,
-                name: 'JerwinJ. severian',
-                title: 'CEO, DigiCore tech SolutionsLtd',
-                image: '',
-                text: 'Pelano Resources provided exceptional service. Their expertise and dedication transformed our business operations. Highly recommended for any organization!',
-                rating: 5,
-                date: '2025-05-15'
-            },
-            {
-                id: 2,
-                name: 'Sarah Ndoto',
-                title: 'Marketing Director, Growth Corp',
-                image: '',
-                text: 'Professional team with outstanding results. They understood our needs and delivered beyond expectations with remarkable efficiency.',
-                rating: 5,
-                date: '2025-05-10'
-            },
-            {
-                id: 3,
-                name: 'David Kamau',
-                title: 'Business Owner, E-commerce Plus',
-                image: '',
-                text: 'Fantastic collaboration. The services provided by Pelano Resources are top-notch, reliable, and truly exceed industry standards.',
-                rating: 5,
-                date: '2025-05-05'
-            },
-            {
-                id: 4,
-                name: 'Maria Santos',
-                title: 'Project Manager, Digital Solutions',
-                image: '',
-                text: 'Excellent experience working with Pelano Resources. They are responsive, professional, and truly care about delivering results.',
-                rating: 5,
-                date: '2025-04-28'
-            },
-            {
-                id: 5,
-                name: 'Ahmed Hassan',
-                title: 'Operations Lead, Trade Hub',
-                image: '',
-                text: 'Reliable partner for our business needs. Great support and consistent quality throughout the engagement. A trusted resource.',
-                rating: 4,
-                date: '2025-04-20'
-            },
-            {
-                id: 6,
-                name: 'Elizabeth Mwangi',
-                title: 'Supply Chain Manager, LogiFirst',
-                image: '',
-                text: 'Working with Pelano Resources has been a game-changer for our supply chain. Efficient, professional, and highly dependable team.',
-                rating: 5,
-                date: '2025-04-15'
-            },
-            {
-                id: 7,
-                name: 'James Kipchoge',
-                title: 'Financial Director, Capital Plus',
-                image: '',
-                text: 'Outstanding service quality and attention to detail. Pelano Resources consistently delivers excellent results that exceed our expectations.',
-                rating: 5,
-                date: '2025-04-10'
-            },
-            {
-                id: 8,
-                name: 'Amina Juma',
-                title: 'HR Manager, Premier Services',
-                image: '',
-                text: 'Impressive professionalism and dedication to client satisfaction. Pelano Resources is our go-to partner for quality solutions.',
-                rating: 5,
-                date: '2025-04-05'
-            },
-            {
-                id: 9,
-                name: 'Robert Okonkwo',
-                title: 'Production Manager, Quality Industries',
-                image: '',
-                text: 'Top-tier service and commitment to excellence. Pelano Resources has been instrumental in improving our operational efficiency.',
-                rating: 4,
-                date: '2025-03-30'
-            },
-            {
-                id: 10,
-                name: 'Fatima Al-Rashid',
-                title: 'Business Development, Global Trade Ltd',
-                image: '',
-                text: 'Exceptional quality and remarkable customer service. Pelano Resources stands out as an innovative and reliable business partner.',
-                rating: 5,
-                date: '2026-03-25'
-            },
-            {
-                id: 11,
-                name: 'Michael Mutua',
-                title: 'Project Coordinator, Build Solutions',
-                image: '',
-                text: 'Reliable, efficient, and highly professional. Pelano Resources has proven to be an invaluable asset to our organization.',
-                rating: 5,
-                date: '2026-03-20'
-            },
-            {
-                id: 12,
-                name: 'Grace Muthoni',
-                title: 'Quality Assurance Lead, TechCore',
-                image: '',
-                text: 'Consistent excellence in all their deliverables. Pelano Resources demonstrates exceptional commitment to quality and customer satisfaction.',
-                rating: 5,
-                date: '2026-03-15'
-            },
-            {
-                id: 13,
-                name: 'Charles Mutuku',
-                title: 'Operations Director, MainStream Corp',
-                image: '',
-                text: 'Professional, responsive, and results-driven. Pelano Resources has been a key factor in our business success and growth.',
-                rating: 4,
-                date: '2026-03-10'
-            },
-            {
-                id: 14,
-                name: 'Naomi Kiplagat',
-                title: 'Partnership Manager, Venture Plus',
-                image: '',
-                text: 'Impressive dedication and outstanding service delivery. Pelano Resources continues to exceed our expectations in every engagement.',
-                rating: 5,
-                date: '2026-03-05'
-            },
-            {
-                id: 15,
-                name: 'Peter Owuor',
-                title: 'Executive Manager, Prime Resources',
-                image: '',
-                text: 'Exceptional partner for quality products and services. Pelano Resources has earned our complete trust and confidence.',
-                rating: 5,
-                date: '2026-02-28'
+        const savedTestimonials = Storage.get(STORAGE_KEY);
+        if (!Array.isArray(savedTestimonials)) {
+            if (savedTestimonials !== null) {
+                console.error('Saved testimonials must be an array; loading the supplied testimonials instead.');
             }
-        ];
+            testimonialsList = DEFAULT_TESTIMONIALS.map(testimonial => ({ ...testimonial }));
+            Storage.set(STORAGE_KEY, testimonialsList);
+            return;
+        }
+
+        const validTestimonials = savedTestimonials.filter(testimonial =>
+            testimonial &&
+            typeof testimonial === 'object' &&
+            typeof testimonial.name === 'string' &&
+            typeof testimonial.title === 'string' &&
+            typeof testimonial.text === 'string' &&
+            Number.isInteger(Number(testimonial.rating)) &&
+            Number(testimonial.rating) >= 1 &&
+            Number(testimonial.rating) <= 5
+        );
+
+        if (validTestimonials.length !== savedTestimonials.length) {
+            console.error('Some saved testimonials were invalid and could not be displayed.');
+        }
+        testimonialsList = validTestimonials.length
+            ? validTestimonials
+            : DEFAULT_TESTIMONIALS.map(testimonial => ({ ...testimonial }));
+        if (!validTestimonials.length) Storage.set(STORAGE_KEY, testimonialsList);
     }
 
     /**
@@ -185,28 +76,11 @@ const Testimonials = (() => {
         const carousel = document.getElementById('testimonials-carousel');
         if (!carousel) return;
 
-        const prevBtn = carousel.querySelector('[data-carousel-prev]');
-        const nextBtn = carousel.querySelector('[data-carousel-next]');
-        const dotsContainer = carousel.querySelector('[data-carousel-dots]');
-
-        if (prevBtn) prevBtn.addEventListener('click', () => previousTestimonial());
-        if (nextBtn) nextBtn.addEventListener('click', () => nextTestimonial());
-
-        // Setup dots
-        if (dotsContainer) {
-            testimonialsList.forEach((_, index) => {
-                const dot = document.createElement('button');
-                dot.className = `testimonial-dot ${index === 0 ? 'active' : ''}`;
-                dot.setAttribute('aria-label', `Go to testimonial ${index + 1}`);
-                dot.addEventListener('click', () => goToTestimonial(index));
-                dotsContainer.appendChild(dot);
-            });
+        if (testimonialsList.length > 1) {
+            setInterval(() => {
+                nextTestimonial();
+            }, 6000);
         }
-
-        // Auto-advance carousel every 6 seconds
-        setInterval(() => {
-            nextTestimonial();
-        }, 6000);
 
         // Touch/swipe support
         setupTouchSupport(carousel);
@@ -256,16 +130,17 @@ const Testimonials = (() => {
         if (!container) return;
 
         const testimonial = testimonialsList[currentIndex];
-        if (!testimonial) return;
+        if (!testimonial) {
+            container.innerHTML = '<p class="testimonial-empty">No testimonials are available yet.</p>';
+            return;
+        }
 
         container.innerHTML = `
             <div class="testimonial-card">
                 ${getAvatarMarkup(testimonial)}
                 <div class="testimonial-content">
                     <p class="testimonial-text">${DOM.escape(testimonial.text)}</p>
-                    <div class="testimonial-rating">
-                        ${renderStars(testimonial.rating)}
-                    </div>
+                    <div class="testimonial-rating">${renderStars(testimonial.rating)}</div>
                     <p class="testimonial-author">
                         <strong>${DOM.escape(testimonial.name)}</strong><br>
                         <span class="testimonial-title">${DOM.escape(testimonial.title)}</span>
@@ -273,8 +148,6 @@ const Testimonials = (() => {
                 </div>
             </div>
         `;
-
-        updateDots();
     }
 
     /**
@@ -291,21 +164,15 @@ const Testimonials = (() => {
     }
 
     /**
-     * Update carousel dots
-     */
-    function updateDots() {
-        const dots = document.querySelectorAll('.testimonial-dot');
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentIndex);
-        });
-    }
-
-    /**
      * Render testimonials grid
      */
     function renderTestimonialGrid() {
         const gridContainer = document.getElementById('testimonials-grid');
         if (!gridContainer) return;
+        if (testimonialsList.length === 0) {
+            gridContainer.innerHTML = '<p class="testimonial-empty">We are preparing customer feedback for publication. Contact us to discuss product requirements and request relevant order documentation.</p>';
+            return;
+        }
 
         gridContainer.innerHTML = testimonialsList.map(testimonial => `
             <div class="testimonial-grid-item">
@@ -327,6 +194,7 @@ const Testimonials = (() => {
      * Go to next testimonial
      */
     function nextTestimonial() {
+        if (testimonialsList.length === 0) return;
         currentIndex = (currentIndex + 1) % testimonialsList.length;
         renderTestimonials();
     }
@@ -335,6 +203,7 @@ const Testimonials = (() => {
      * Go to previous testimonial
      */
     function previousTestimonial() {
+        if (testimonialsList.length === 0) return;
         currentIndex = (currentIndex - 1 + testimonialsList.length) % testimonialsList.length;
         renderTestimonials();
     }

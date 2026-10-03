@@ -19,13 +19,14 @@
 <meta name="keywords" content="contact forest products, timber supplier inquiry, poles quote, plywood order, Mafinga Tanzania">
 <title>Contact Pelano Resources Ltd - Mafinga | Get In Touch</title>
     <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=product-category-images-20261002-1">
     <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/business-tools.css?v=mobile-controls-phone-20261002-19">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#4CAF50">
     <script type="application/ld+json">
 {
@@ -135,17 +136,45 @@
                     <form id="contact-form">
                         <div class="form-group">
                             <label for="name">Full Name *</label>
-                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                            <input type="text" id="name" name="name" data-person-name autocomplete="name" required minlength="2" maxlength="100">
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email Address *</label>
-                            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+                            <input type="email" id="email" name="email" autocomplete="email" required maxlength="160" placeholder="your.email@example.com">
                         </div>
 
                         <div class="form-group">
                             <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" placeholder="+255 755 885 888">
+                            <div class="phone-input">
+                                <label class="sr-only" for="phone-country-code">Country calling code</label>
+                                <select id="phone-country-code" name="phone_country_code" data-phone-country aria-label="Country calling code">
+                                    <option value="+255" selected>🇹🇿 Tanzania (+255)</option>
+                                    <option value="+254">🇰🇪 Kenya (+254)</option>
+                                    <option value="+256">🇺🇬 Uganda (+256)</option>
+                                    <option value="+250">🇷🇼 Rwanda (+250)</option>
+                                    <option value="+257">🇧🇮 Burundi (+257)</option>
+                                    <option value="+260">🇿🇲 Zambia (+260)</option>
+                                    <option value="+1">🇺🇸/🇨🇦 +1</option>
+                                    <option value="+44">🇬🇧 United Kingdom (+44)</option>
+                                    <option value="+91">🇮🇳 India (+91)</option>
+                                    <option value="+86">🇨🇳 China (+86)</option>
+                                    <option value="+971">🇦🇪 UAE (+971)</option>
+                                    <option value="+27">🇿🇦 South Africa (+27)</option>
+                                    <option value="+61">Australia (+61)</option>
+                                    <option value="+49">Germany (+49)</option>
+                                    <option value="+33">France (+33)</option>
+                                    <option value="+81">Japan (+81)</option>
+                                    <option value="+65">Singapore (+65)</option>
+                                    <option value="+55">Brazil (+55)</option>
+                                    <option value="+234">Nigeria (+234)</option>
+                                    <option value="+233">Ghana (+233)</option>
+                                    <option value="other">Other code</option>
+                                </select>
+                                <input type="tel" id="phone" name="phone" data-phone-national inputmode="numeric" autocomplete="tel-national" maxlength="12" pattern="[0-9]{7,12}" placeholder="755885888" aria-describedby="phone-help">
+                                <input type="tel" id="phone-custom-code" name="phone_custom_code" data-phone-custom-code inputmode="tel" autocomplete="off" maxlength="4" pattern="\+[1-9][0-9]{0,2}" placeholder="+81" aria-label="Enter country calling code" hidden>
+                            </div>
+                            <small id="phone-help">Digits only, without the leading zero or country code. Complete international numbers may contain up to 15 digits.</small>
                         </div>
 
                         <div class="form-group">
@@ -162,13 +191,41 @@
 
                         <div class="form-group">
                             <label for="message">Message *</label>
-                            <textarea id="message" name="message" rows="6" required placeholder="Describe your inquiry, project details, or order specifications..."></textarea>
+                            <textarea id="message" name="message" rows="6" required minlength="10" maxlength="2000" placeholder="Describe your inquiry, project details, or order specifications..."></textarea>
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-full">Send Message</button>
+                        <label class="rfq-consent">
+                            <input id="contact-consent" type="checkbox" name="consent" required>
+                            <span>I agree that Pelano Resources may use these details to respond to my enquiry. I will send the message using my email or WhatsApp app.</span>
+                        </label>
+                        <p class="rfq-privacy-note">This static website does not submit or store your personal details. Your selected email or WhatsApp app will open with a prepared message.</p>
+                        <div class="rfq-actions">
+                            <button type="submit" class="btn btn-primary" data-contact-channel="email" disabled>Prepare email</button>
+                            <button type="submit" class="btn btn-secondary rfq-whatsapp" data-contact-channel="whatsapp" disabled>Prepare WhatsApp</button>
+                        </div>
+                        <p id="contact-status" class="rfq-status" role="status" aria-live="polite"></p>
+                        <noscript><p class="rfq-privacy-note">Enable JavaScript to prepare an enquiry, or contact us directly at <a href="mailto:info@pelanoresources.co.tz">info@pelanoresources.co.tz</a> or <a href="https://wa.me/255755885888">WhatsApp</a>.</p></noscript>
                     </form>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="reference-section" aria-labelledby="reference-title">
+        <div class="container reference-panel">
+            <div>
+                <p class="section-eyebrow">Follow up on this device</p>
+                <h2 id="reference-title">Find an enquiry reference</h2>
+                <p>References are stored only in this browser and identify a prepared message, not receipt or processing by Pelano Resources.</p>
+            </div>
+            <form id="reference-lookup" class="reference-lookup">
+                <label for="reference-code">Enquiry reference</label>
+                <div class="reference-input-row">
+                    <input id="reference-code" name="reference" autocomplete="off" inputmode="text" maxlength="18" pattern="PR-[0-9]{8}-[A-Fa-f0-9]{6}" placeholder="e.g. PR-20261001-AB12CD" aria-describedby="reference-status" required>
+                    <button class="btn btn-primary" type="submit">Check reference</button>
+                </div>
+                <p id="reference-status" class="rfq-status" role="status" aria-live="polite"></p>
+            </form>
         </div>
     </section>
 
@@ -241,8 +298,12 @@
     </footer>
 
     <script src="js/security.js" defer></script>
-    <script src="js/utils.js" defer></script>
-    <script src="js/main.js" defer></script>
-    <script src="js/contact.js" defer></script>
+    <script src="js/utils.js?v=phone-controls-20261002-2" defer></script>
+    <script src="js/main.js?v=floating-controls-20261002-2" defer></script>
+    <script src="js/business-tools.js?v=mobile-controls-phone-20261002-19" defer></script>
+    <script src="js/analytics.js?v=consent-placeholder-guard-20261002-1" defer></script>
+    <script src="js/seo.js?v=reviewed-hreflang-20261002-1" defer></script>
+    <script src="js/performance-monitor.js?v=metrics-consent-20261002-2" defer></script>
+    <script src="js/contact.js?v=phone-controls-20261002-1" defer></script>
 </body>
 </html>

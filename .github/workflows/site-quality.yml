@@ -1,0 +1,40 @@
+name: Site quality
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '19 5 * * 1'
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    env:
+      PELANO_SUPABASE_URL: ${{ secrets.PELANO_SUPABASE_URL }}
+      PELANO_SUPABASE_ANON_KEY: ${{ secrets.PELANO_SUPABASE_ANON_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Check JavaScript syntax
+        run: find js scripts -type f \( -name '*.js' -o -name '*.cjs' \) -print0 | xargs -0 -n1 node --check
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Type-check newsletter edge functions
+        run: deno check supabase/functions/newsletter-subscribe/index.ts supabase/functions/newsletter-manage/index.ts
+      - name: Test consent-aware analytics
+        run: node scripts/test-analytics.cjs
+      - name: Check static accessibility
+        run: node scripts/check-accessibility.cjs
+      - name: Check local links
+        run: node scripts/check-links.cjs
+      - name: Generate sitemaps
+        run: node scripts/generate-sitemaps.cjs
+      - name: Check SEO metadata
+        run: node scripts/check-seo.cjs
+      - name: Validate sitemap XML
+        run: python3 -c "import xml.etree.ElementTree as ET; [ET.parse(p) for p in ('sitemap.xml', 'image-sitemap.xml', 'video-sitemap.xml')]"

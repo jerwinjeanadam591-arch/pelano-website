@@ -21,13 +21,13 @@
     <meta name="robots" content="index, follow">
     <title>Blog - Pelano Resources Ltd | News & Insights</title>
     <link rel="stylesheet" href="css/variables.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css?v=product-category-images-20261002-1">
     <link rel="stylesheet" href="css/components.css">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
     <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="manifest" href="site.webmanifest">
     <meta name="theme-color" content="#4CAF50">
 <link rel="stylesheet" href="css/blog.css">
             <script type="application/ld+json">
@@ -111,20 +111,25 @@
             <div class="container">
                 <h2>Subscribe to Our Newsletter</h2>
                 <p style="margin: var(--spacing-lg) 0; opacity: 0.9; font-size: var(--font-size-lg);">Get the latest insights and updates delivered to your inbox</p>
-                <div style="display: flex; justify-content: center; gap: var(--spacing-md); flex-wrap: wrap; max-width: 500px; margin: 0 auto; padding: 0 10px;">
-                    <input 
+                <form id="newsletter-form" style="display: flex; justify-content: center; gap: var(--spacing-md); flex-wrap: wrap; max-width: 500px; margin: 0 auto; padding: 0 10px;">
+                    <label class="sr-only" for="newsletter-email">Email address for newsletter updates</label>
+                    <input
                         type="email" 
                         placeholder="Your email..." 
                         id="newsletter-email"
                         style="flex: 1; min-width: 150px; padding: var(--spacing-sm) var(--spacing-lg); border: none; border-radius: var(--border-radius-md); font-size: var(--font-size-sm); width: 100%;"
                         aria-label="Email for newsletter subscription"
+                        required
                     >
+                    <label class="newsletter-consent"><input type="checkbox" id="newsletter-consent"> I agree to receive Pelano Resources updates.</label>
                     <button 
                         class="btn btn-light"
-                        onclick="subscribeNewsletter()"
+                        type="submit"
+                        data-newsletter-submit
                         aria-label="Subscribe to newsletter"
                     >Subscribe</button>
-                </div>
+                    <p id="newsletter-status" role="status" aria-live="polite"></p>
+                </form>
             </div>
         </section>
     </main>
@@ -181,10 +186,16 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="js/utils.js" defer></script>
-    <script src="js/main.js" defer></script>
-    <script src="js/blog.js" defer></script>
+    <script src="js/utils.js?v=phone-controls-20261002-2" defer></script>
+    <script src="js/main.js?v=floating-controls-20261002-2" defer></script>
+    <script src="js/business-tools.js?v=mobile-controls-phone-20261002-19" defer></script>
+    <script src="js/supabase-config.js" defer></script>
+    <script src="js/content-api.js?v=newsletter-double-optin-20261002-1" defer></script>
+    <script src="js/analytics.js?v=consent-placeholder-guard-20261002-1" defer></script>
+    <script src="js/blog.js?v=buyer-content-20261002-2" defer></script>
     <script src="js/social.js" defer></script>
+    <script src="js/seo.js?v=reviewed-hreflang-20261002-1" defer></script>
+    <script src="js/performance-monitor.js?v=metrics-consent-20261002-2" defer></script>
     <script>
         // Initialize blog page
         document.addEventListener('DOMContentLoaded', () => {
@@ -198,6 +209,9 @@
             const filtersContainer = document.getElementById('blog-filters');
             const categories = Blog.getCategories();
             categories.forEach(category => {
+                const existingFilter = [...filtersContainer.querySelectorAll('[data-blog-filter]')]
+                    .some(button => button.dataset.blogFilter?.toLocaleLowerCase() === category.toLocaleLowerCase());
+                if (existingFilter) return;
                 const btn = document.createElement('button');
                 btn.setAttribute('data-blog-filter', category.toLowerCase());
                 btn.textContent = category;
@@ -229,24 +243,6 @@
             Blog.renderPosts(posts, container);
         });
 
-        // Newsletter subscription
-        function subscribeNewsletter() {
-            const email = document.getElementById('newsletter-email').value;
-            if (!email || !Validation.email(email)) {
-                Notify.error('Please enter a valid email address');
-                return;
-            }
-
-            const subscribers = Storage.get('newsletter_subscribers') || [];
-            if (!subscribers.includes(email)) {
-                subscribers.push(email);
-                Storage.set('newsletter_subscribers', subscribers);
-            }
-
-            document.getElementById('newsletter-email').value = '';
-            Notify.success('Thank you for subscribing!');
-            Analytics.trackEvent('newsletter_subscribe', 'email');
-        }
     </script>
 </body>
 </html>

@@ -117,33 +117,11 @@ whatsappBtn.href = 'https://wa.me/255XXXXXXXXX'; // Replace with your number
 # 3. Serve with nginx/Apache
 ```
 
-### 6. **Connect Contact Form to Backend**
+### 6. **How enquiries work**
 
-Currently, contact form stores messages in browser. To send emails:
+The product quote builder and contact form prepare an email or WhatsApp message for the visitor to send. No request is delivered to or stored by this static website. The browser stores only enquiry reference metadata (reference, date, channel, and selected product names) to support local lookup.
 
-#### Using Formspree (Easiest)
-```html
-<!-- In contact.html, update the form: -->
-<form id="contact-form" action="https://formspree.io/f/YOUR_ID" method="POST">
-```
-
-#### Using Firebase
-```javascript
-// In contact.js, replace fetch with Firebase
-import { addDoc, collection } from "firebase/firestore";
-
-// Add code to send to Firebase
-```
-
-#### Using EmailJS
-```html
-<!-- Add to <head> -->
-<script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.6.4/email.min.js"></script>
-
-<script>
-  emailjs.init('YOUR_PUBLIC_KEY');
-</script>
-```
+To receive enquiries centrally, choose and configure a trusted form endpoint or backend separately. Review its data retention, access controls, privacy notice, and spam protections before connecting it to the public website.
 
 ### 7. **Set Up Analytics**
 

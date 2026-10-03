@@ -1,33 +1,44 @@
-// Simple performance monitoring - tracks key metrics
-if (window.performance && window.performance.timing) {
-    window.addEventListener('load', function() {
-        const timing = window.performance.timing;
-        const navigationStart = timing.navigationStart;
-        
-        const metrics = {
-            'DNS Lookup': timing.domainLookupEnd - timing.domainLookupStart,
-            'TCP Connection': timing.connectEnd - timing.connectStart,
-            'DOM Loading': timing.domComplete - timing.navigationStart,
-            'Page Load': timing.loadEventEnd - timing.navigationStart,
-            'First Paint': timing.responseEnd - timing.navigationStart
-        };
-        
-        // Log metrics only if navigation timing API is supported
-        if (timing.navigationStart > 0) {
-            console.log('%cPerformance Metrics', 'color: #1b7034; font-weight: bold;');
-            Object.entries(metrics).forEach(([key, value]) => {
-                if (value > 0) {
-                    console.log(`  ${key}: ${value.toFixed(0)}ms`);
-                }
-            });
-        }
-    });
-}
+(() => {
+    if (!('PerformanceObserver' in window)) return;
+    const metrics = { lcp: 0, cls: 0, inp: 0 };
+    const supported = PerformanceObserver.supportedEntryTypes || [];
+    const observers = [];
 
-// Lazy load non-critical functionality
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize non-critical features after DOM is ready
-    if (window.initializeNonCriticalFeatures) {
-        window.initializeNonCriticalFeatures();
-    }
-});
+    const observe = (type, callback) => {
+        if (!supported.includes(type)) return;
+        const observer = new PerformanceObserver(list => list.getEntries().forEach(callback));
+        observer.observe({ type, buffered: true });
+        observers.push(observer);
+    };
+
+    observe('largest-contentful-paint', entry => { metrics.lcp = entry.startTime; });
+    observe('layout-shift', entry => {
+        if (!entry.hadRecentInput) metrics.cls += entry.value;
+    });
+    observe('event', entry => {
+        if (entry.interactionId) metrics.inp = Math.max(metrics.inp, entry.duration);
+    });
+
+    let reported = false;
+    const report = () => {
+        if (reported) return;
+        reported = true;
+        const navigation = performance.getEntriesByType('navigation')[0];
+        const payload = {
+            ...metrics,
+            ttfb: navigation ? Math.round(navigation.responseStart - navigation.requestStart) : 0,
+            page_path: location.pathname
+        };
+        if (window.PelanoAnalytics?.hasConsent()) {
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'pelano_web_vitals', ...payload });
+        }
+        window.dispatchEvent(new CustomEvent('pelano:webvitals', { detail: payload }));
+        observers.forEach(observer => observer.disconnect());
+    };
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.visibilityState === 'hidden') report();
+    }, { once: true });
+    window.addEventListener('pagehide', report, { once: true });
+})();
