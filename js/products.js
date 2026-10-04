@@ -687,7 +687,7 @@ if (productCards.length > 0) {
                 const body = fields.map(([label, value]) => `${label}: ${String(value).trim()}`).join('\n');
                 const destination = channel === 'whatsapp'
                     ? `https://wa.me/255755885888?text=${encodeURIComponent(`${subject}\n\n${body}`)}`
-                    : `mailto:info@pelanoresources.co.tz?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+                    : `mailto:pelanotz@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
                 window.PelanoAnalytics?.track('contact_handoff_prepared', { channel, form: 'product_quote' });
                 quoteStatus.textContent = language()
                     ? `${translationsMessage(true)} ${reference.code}`

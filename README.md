@@ -405,7 +405,7 @@ Proprietary - Pelano Resources Ltd
 
 ## 📞 Support
 
-For questions or issues, contact: info@pelanoresources.co.tz
+For questions or issues, contact: pelanotz@gmail.com
 
 ---
 

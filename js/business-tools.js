@@ -741,7 +741,7 @@
                 heading: 'Contact and business hours',
                 intent: 'contact',
                 path: 'contact.html',
-                text: 'Contact Pelano Resources at info@pelanoresources.co.tz or +255 755 885 888. Published business hours are Monday to Saturday, 8:00 AM to 6:00 PM Tanzania time.'
+                text: 'Contact Pelano Resources at pelanotz@gmail.com or +255 755 885 888. Published business hours are Monday to Saturday, 8:00 AM to 6:00 PM Tanzania time.'
             },
             {
                 title: 'Availability and price',

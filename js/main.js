@@ -46,9 +46,9 @@ function renderSharedFooter() {
                                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.24 11.3 11.3 0 0 0 3.55.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.3 11.3 0 0 0 .57 3.55 1 1 0 0 1-.24 1Z"/></svg>
                                 <span>+255 755 885 888</span>
                             </a>
-                            <a class="footer-contact-item" href="mailto:info@pelanoresources.co.tz">
+                            <a class="footer-contact-item" href="mailto:pelanotz@gmail.com">
                                 <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5L4 8V6l8 5 8-5Z"/></svg>
-                                <span>info@pelanoresources.co.tz</span>
+                                <span>pelanotz@gmail.com</span>
                             </a>
                         </address>
                         <h3 class="footer-social-heading">Connect with us</h3>

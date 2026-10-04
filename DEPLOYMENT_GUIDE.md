@@ -375,7 +375,7 @@ Your Pelano Resources website is now **enterprise-grade professional** and ready
 
 **Estimated Time to Deploy**: 30-60 minutes  
 **Estimated Skill Level**: Beginner to Intermediate  
-**Support**: Available via email: info@pelanoresources.co.tz
+**Support**: Available via email: pelanotz@gmail.com
 
 ---
 

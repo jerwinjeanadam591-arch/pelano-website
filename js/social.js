@@ -16,7 +16,7 @@ const Social = (() => {
         instagram: 'https://instagram.com/pelanoresources',
         youtube: 'https://youtube.com/@pelanoresources',
         whatsapp: 'https://wa.me/255755885888',
-        email: 'info@pelanoresources.co.tz'
+        email: 'pelanotz@gmail.com'
     };
 
     /**

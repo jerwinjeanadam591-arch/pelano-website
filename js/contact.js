@@ -60,7 +60,7 @@
         ].filter(([, value]) => value).map(([label, value]) => `${label}: ${value}`).join('\n\n');
         const destination = channel === 'whatsapp'
             ? `https://wa.me/255755885888?text=${encodeURIComponent(`${subject}\n\n${body}`)}`
-            : `mailto:info@pelanoresources.co.tz?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            : `mailto:pelanotz@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
         window.PelanoAnalytics?.track('contact_handoff_prepared', { channel, form: 'contact' });
         status.textContent = language()

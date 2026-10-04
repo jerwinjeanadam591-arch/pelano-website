@@ -48,7 +48,7 @@ Edit these files and replace placeholder info:
 ```html
 <!-- Find and update these values -->
 <p>+255 XXX XXX XXX</p>
-<p>info@pelanoresources.co.tz</p>
+<p>pelanotz@gmail.com</p>
 <p>Mafinga, Tanzania</p>
 ```
 
@@ -62,7 +62,7 @@ whatsappBtn.href = 'https://wa.me/255XXXXXXXXX'; // Replace with your number
 **File**: `index.html` (JSON-LD schema, line ~45)
 ```javascript
 "telephone": "+255XXXXXXXXX",
-"email": "info@pelanoresources.co.tz",
+"email": "pelanotz@gmail.com",
 ```
 
 ### 4. **Key Features to Know**
