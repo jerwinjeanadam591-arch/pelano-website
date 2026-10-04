@@ -129,132 +129,10 @@
         </div>
     </section>
 
-    <section class="rfq-section" id="request-quote" aria-labelledby="rfq-title">
-        <div class="container">
-            <div class="rfq-intro">
-                <p class="section-eyebrow" data-i18n="rfqEyebrow">For business and project enquiries</p>
-                <h2 class="section-title" id="rfq-title" data-i18n="rfqTitle">Request a tailored quote</h2>
-                <p data-i18n="rfqIntro">Tell us what you need. We’ll prepare your enquiry for email or WhatsApp so our team can follow up with product specifications, availability and pricing.</p>
-            </div>
-            <form id="rfq-form" class="rfq-form">
-                <fieldset class="rfq-products">
-                    <legend data-i18n="rfqProducts">Products for your enquiry</legend>
-                    <div id="rfq-selected-products" class="rfq-selected-products" aria-live="polite">
-                        <p data-i18n="rfqEmpty">No products selected yet. Add products from the catalogue below.</p>
-                    </div>
-                </fieldset>
-                <div class="rfq-field-grid">
-                    <div class="form-group">
-                        <label for="rfq-name" data-i18n="rfqName">Full name *</label>
-                        <input id="rfq-name" name="name" data-person-name type="text" autocomplete="name" required minlength="2" maxlength="100">
-                    </div>
-                    <div class="form-group">
-                        <label for="rfq-company" data-i18n="rfqCompany">Company / organisation</label>
-                        <input id="rfq-company" name="company" autocomplete="organization" maxlength="120">
-                    </div>
-                    <div class="form-group">
-                        <label for="rfq-email" data-i18n="rfqEmail">Business email *</label>
-                        <input id="rfq-email" name="email" type="email" autocomplete="email" required maxlength="160">
-                    </div>
-                    <div class="form-group">
-                        <label for="rfq-phone" data-i18n="rfqPhone">Phone / WhatsApp</label>
-                        <div class="phone-input">
-                            <label class="sr-only" for="rfq-phone-country-code">Country calling code</label>
-                            <select id="rfq-phone-country-code" name="phone_country_code" data-phone-country aria-label="Country calling code">
-                                <option value="+255" selected>Tanzania (+255)</option>
-                                <option value="+254">Kenya (+254)</option>
-                                <option value="+256">Uganda (+256)</option>
-                                <option value="+250">Rwanda (+250)</option>
-                                <option value="+257">Burundi (+257)</option>
-                                <option value="+260">Zambia (+260)</option>
-                                <option value="+1">United States / Canada (+1)</option>
-                                <option value="+44">United Kingdom (+44)</option>
-                                <option value="+91">India (+91)</option>
-                                <option value="+86">China (+86)</option>
-                                <option value="+971">United Arab Emirates (+971)</option>
-                                <option value="+27">South Africa (+27)</option>
-                                <option value="+61">Australia (+61)</option>
-                                <option value="+49">Germany (+49)</option>
-                                <option value="+33">France (+33)</option>
-                                <option value="+81">Japan (+81)</option>
-                                <option value="+65">Singapore (+65)</option>
-                                <option value="+55">Brazil (+55)</option>
-                                <option value="+234">Nigeria (+234)</option>
-                                <option value="+233">Ghana (+233)</option>
-                                <option value="other">Other country code</option>
-                            </select>
-                            <input id="rfq-phone" name="phone" data-phone-national type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="12" pattern="[0-9]{7,12}" aria-describedby="rfq-phone-help">
-                            <input id="rfq-phone-custom-code" name="phone_custom_code" data-phone-custom-code type="tel" inputmode="tel" autocomplete="off" maxlength="4" pattern="\+[1-9][0-9]{0,2}" placeholder="+81" aria-label="Enter country calling code" hidden>
-                        </div>
-                        <small id="rfq-phone-help">Digits only, without the leading zero or country code. Complete international numbers may contain up to 15 digits.</small>
-                    </div>
-                    <div class="form-group">
-                        <label for="rfq-quantity" data-i18n="rfqQuantity">Estimated quantity</label>
-                        <div class="quantity-input">
-                            <input id="rfq-quantity" name="quantity" type="number" min="1" step="any" inputmode="decimal" autocomplete="off" placeholder="e.g. 500">
-                            <label class="sr-only" for="rfq-quantity-unit">Quantity unit</label>
-                            <select id="rfq-quantity-unit" name="quantity_unit" aria-label="Quantity unit">
-                                <option value="pieces">Pieces</option>
-                                <option value="m³">Cubic metres (m³)</option>
-                                <option value="metres">Metres</option>
-                                <option value="tonnes">Tonnes</option>
-                                <option value="pallets">Pallets</option>
-                                <option value="sets">Sets</option>
-                                <option value="other">Other (specify in project details)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="rfq-location" data-i18n="rfqLocation">Delivery location</label>
-                        <input id="rfq-location" name="location" type="text" autocomplete="address-level2" maxlength="120">
-                    </div>
-                    <div class="form-group">
-                        <label for="rfq-timeline" data-i18n="rfqTimeline">Required timeframe</label>
-                        <input id="rfq-timeline" name="timeline" type="text" maxlength="80" placeholder="e.g. Within 6 weeks">
-                    </div>
-                    <div class="form-group">
-                        <label for="rfq-specifications" data-i18n="rfqSpecs">Dimensions / treatment / project details</label>
-                        <textarea id="rfq-specifications" name="specifications" rows="4" maxlength="1200"></textarea>
-                    </div>
-                </div>
-                <label class="rfq-consent">
-                <input id="rfq-consent-control" type="checkbox" name="consent" required>
-                    <span data-i18n="rfqConsent">I agree that Pelano Resources may use these details to respond to this enquiry. Information is not submitted to this site; I will send it using my chosen email or WhatsApp app.</span>
-                </label>
-                <p class="rfq-privacy-note" data-i18n="rfqPrivacy">Your details are used to prepare this enquiry. When server-backed quote capture is enabled, the request is also sent securely to Pelano Resources for follow-up.</p>
-                <div class="rfq-actions">
-                    <button class="btn btn-primary" type="submit" data-rfq-channel="email" data-i18n="rfqEmailAction" disabled>Prepare email enquiry</button>
-                    <button class="btn btn-secondary rfq-whatsapp" type="submit" data-rfq-channel="whatsapp" data-i18n="rfqWhatsAppAction" disabled>Prepare WhatsApp enquiry</button>
-                    <button class="btn btn-secondary" id="download-quote-pdf" type="button" disabled>Save quotation as PDF</button>
-                </div>
-                <p id="rfq-status" class="rfq-status" role="status" aria-live="polite"></p>
-                <noscript><p class="rfq-privacy-note">Enable JavaScript to prepare an enquiry, or contact us directly at <a href="mailto:pelanotz@gmail.com">pelanotz@gmail.com</a> or <a href="https://wa.me/255755885888">WhatsApp</a>.</p></noscript>
-            </form>
-        </div>
-    </section>
-
-    <section class="procurement-section" aria-labelledby="procurement-title">
-        <div class="container procurement-panel">
-            <div>
-                <p class="section-eyebrow" data-i18n="procurementEyebrow">Clear information for every project</p>
-                <h2 id="procurement-title" data-i18n="procurementTitle">Specifications and supply details, confirmed for your order</h2>
-                <p data-i18n="procurementText">Dimensions, treatment requirements, current availability, lead times and delivery arrangements depend on the product and project. Share your requirements and our team can confirm the details before you place an order.</p>
-            </div>
-            <a class="btn btn-primary" href="about.html#main-content" data-i18n="qualityCredentials">View company and quality information</a>
-        </div>
-    </section>
-    <section class="content-section" aria-labelledby="product-faq-title">
-        <div class="container">
-            <h2 id="product-faq-title">Frequently asked questions</h2>
-            <details><summary>How can I request product pricing?</summary><p>Select products and share your quantity, specifications and delivery location in the quote request. Our team will confirm pricing and availability for your project.</p></details>
-            <details><summary>Can product dimensions and treatment be confirmed?</summary><p>Include the required dimensions, treatment and application in your enquiry. Product-specific specifications and documents are confirmed for each order.</p></details>
-            <details><summary>Can you deliver to my project location?</summary><p>Provide the destination in your quote request. Delivery options, costs and lead times are confirmed for each order.</p></details>
-        </div>
-    </section>
-
     <!-- Products Grid -->
     <section class="products-section" id="products">
         <div class="container">
+            <h2 class="section-title">Browse our product catalogue</h2>
             <div class="products-grid">
                 <!-- Product 1: Treated Timber -->
                 <div class="product-card" data-category="timber">
@@ -376,6 +254,129 @@
         </div>
     </section>
 
+    <section class="rfq-section" id="request-quote" aria-labelledby="rfq-title">
+        <div class="container">
+            <div class="rfq-intro">
+                <p class="section-eyebrow" data-i18n="rfqEyebrow">For business and project enquiries</p>
+                <h2 class="section-title" id="rfq-title" data-i18n="rfqTitle">Request a tailored quote</h2>
+                <p data-i18n="rfqIntro">Tell us what you need. We’ll prepare your enquiry for email or WhatsApp so our team can follow up with product specifications, availability and pricing.</p>
+            </div>
+            <form id="rfq-form" class="rfq-form">
+                <fieldset class="rfq-products">
+                    <legend data-i18n="rfqProducts">Products for your enquiry</legend>
+                    <div id="rfq-selected-products" class="rfq-selected-products" aria-live="polite">
+                        <p data-i18n="rfqEmpty">No products selected yet. Add products from the catalogue above.</p>
+                    </div>
+                </fieldset>
+                <div class="rfq-field-grid">
+                    <div class="form-group">
+                        <label for="rfq-name" data-i18n="rfqName">Full name *</label>
+                        <input id="rfq-name" name="name" data-person-name type="text" autocomplete="name" required minlength="2" maxlength="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="rfq-company" data-i18n="rfqCompany">Company / organisation</label>
+                        <input id="rfq-company" name="company" autocomplete="organization" maxlength="120">
+                    </div>
+                    <div class="form-group">
+                        <label for="rfq-email" data-i18n="rfqEmail">Business email *</label>
+                        <input id="rfq-email" name="email" type="email" autocomplete="email" required maxlength="160">
+                    </div>
+                    <div class="form-group">
+                        <label for="rfq-phone" data-i18n="rfqPhone">Phone / WhatsApp</label>
+                        <div class="phone-input">
+                            <label class="sr-only" for="rfq-phone-country-code">Country calling code</label>
+                            <select id="rfq-phone-country-code" name="phone_country_code" data-phone-country aria-label="Country calling code">
+                                <option value="+255" selected>Tanzania (+255)</option>
+                                <option value="+254">Kenya (+254)</option>
+                                <option value="+256">Uganda (+256)</option>
+                                <option value="+250">Rwanda (+250)</option>
+                                <option value="+257">Burundi (+257)</option>
+                                <option value="+260">Zambia (+260)</option>
+                                <option value="+1">United States / Canada (+1)</option>
+                                <option value="+44">United Kingdom (+44)</option>
+                                <option value="+91">India (+91)</option>
+                                <option value="+86">China (+86)</option>
+                                <option value="+971">United Arab Emirates (+971)</option>
+                                <option value="+27">South Africa (+27)</option>
+                                <option value="+61">Australia (+61)</option>
+                                <option value="+49">Germany (+49)</option>
+                                <option value="+33">France (+33)</option>
+                                <option value="+81">Japan (+81)</option>
+                                <option value="+65">Singapore (+65)</option>
+                                <option value="+55">Brazil (+55)</option>
+                                <option value="+234">Nigeria (+234)</option>
+                                <option value="+233">Ghana (+233)</option>
+                                <option value="other">Other country code</option>
+                            </select>
+                            <input id="rfq-phone" name="phone" data-phone-national type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="12" pattern="[0-9]{7,12}" aria-describedby="rfq-phone-help">
+                            <input id="rfq-phone-custom-code" name="phone_custom_code" data-phone-custom-code type="tel" inputmode="tel" autocomplete="off" maxlength="4" pattern="\+[1-9][0-9]{0,2}" placeholder="+81" aria-label="Enter country calling code" hidden>
+                        </div>
+                        <small id="rfq-phone-help">Digits only, without the leading zero or country code. Complete international numbers may contain up to 15 digits.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="rfq-quantity" data-i18n="rfqQuantity">Estimated quantity</label>
+                        <div class="quantity-input">
+                            <input id="rfq-quantity" name="quantity" type="number" min="1" step="any" inputmode="decimal" autocomplete="off" placeholder="e.g. 500">
+                            <label class="sr-only" for="rfq-quantity-unit">Quantity unit</label>
+                            <select id="rfq-quantity-unit" name="quantity_unit" aria-label="Quantity unit">
+                                <option value="pieces">Pieces</option>
+                                <option value="m³">Cubic metres (m³)</option>
+                                <option value="metres">Metres</option>
+                                <option value="tonnes">Tonnes</option>
+                                <option value="pallets">Pallets</option>
+                                <option value="sets">Sets</option>
+                                <option value="other">Other (specify in project details)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="rfq-location" data-i18n="rfqLocation">Delivery location</label>
+                        <input id="rfq-location" name="location" type="text" autocomplete="address-level2" maxlength="120">
+                    </div>
+                    <div class="form-group">
+                        <label for="rfq-timeline" data-i18n="rfqTimeline">Required timeframe</label>
+                        <input id="rfq-timeline" name="timeline" type="text" maxlength="80" placeholder="e.g. Within 6 weeks">
+                    </div>
+                    <div class="form-group">
+                        <label for="rfq-specifications" data-i18n="rfqSpecs">Dimensions / treatment / project details</label>
+                        <textarea id="rfq-specifications" name="specifications" rows="4" maxlength="1200"></textarea>
+                    </div>
+                </div>
+                <label class="rfq-consent">
+                <input id="rfq-consent-control" type="checkbox" name="consent" required>
+                    <span data-i18n="rfqConsent">I agree that Pelano Resources may use these details to respond to this enquiry. Information is not submitted to this site; I will send it using my chosen email or WhatsApp app.</span>
+                </label>
+                <p class="rfq-privacy-note" data-i18n="rfqPrivacy">Your details are used to prepare this enquiry. When server-backed quote capture is enabled, the request is also sent securely to Pelano Resources for follow-up.</p>
+                <div class="rfq-actions">
+                    <button class="btn btn-primary" type="submit" data-rfq-channel="email" data-i18n="rfqEmailAction" disabled>Prepare email enquiry</button>
+                    <button class="btn btn-secondary rfq-whatsapp" type="submit" data-rfq-channel="whatsapp" data-i18n="rfqWhatsAppAction" disabled>Prepare WhatsApp enquiry</button>
+                    <button class="btn btn-secondary" id="download-quote-pdf" type="button" disabled>Save quotation as PDF</button>
+                </div>
+                <p id="rfq-status" class="rfq-status" role="status" aria-live="polite"></p>
+                <noscript><p class="rfq-privacy-note">Enable JavaScript to prepare an enquiry, or contact us directly at <a href="mailto:pelanotz@gmail.com">pelanotz@gmail.com</a> or <a href="https://wa.me/255755885888">WhatsApp</a>.</p></noscript>
+            </form>
+        </div>
+    </section>
+
+    <section class="procurement-section" aria-labelledby="procurement-title">
+        <div class="container procurement-panel">
+            <div>
+                <p class="section-eyebrow" data-i18n="procurementEyebrow">Clear information for every project</p>
+                <h2 id="procurement-title" data-i18n="procurementTitle">Specifications and supply details, confirmed for your order</h2>
+                <p data-i18n="procurementText">Dimensions, treatment requirements, current availability, lead times and delivery arrangements depend on the product and project. Share your requirements and our team can confirm the details before you place an order.</p>
+            </div>
+            <a class="btn btn-primary" href="about.html#main-content" data-i18n="qualityCredentials">View company and quality information</a>
+        </div>
+    </section>
+    <section class="content-section" aria-labelledby="product-faq-title">
+        <div class="container">
+            <h2 id="product-faq-title">Frequently asked questions</h2>
+            <details><summary>How can I request product pricing?</summary><p>Select products and share your quantity, specifications and delivery location in the quote request. Our team will confirm pricing and availability for your project.</p></details>
+            <details><summary>Can product dimensions and treatment be confirmed?</summary><p>Include the required dimensions, treatment and application in your enquiry. Product-specific specifications and documents are confirmed for each order.</p></details>
+            <details><summary>Can you deliver to my project location?</summary><p>Provide the destination in your quote request. Delivery options, costs and lead times are confirmed for each order.</p></details>
+        </div>
+    </section>
+
     <!-- Product Modal -->
     <div class="modal" id="product-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" aria-describedby="modal-description" hidden>
         <div class="modal-content">
@@ -452,12 +453,12 @@
 
     <script src="js/utils.js?v=phone-controls-20261002-2" defer></script>
     <script src="js/main.js?v=contact-email-20261004-1" defer></script>
-    <script src="js/business-tools.js?v=contact-email-20261004-1" defer></script>
+    <script src="js/business-tools.js?v=product-order-20261004-1" defer></script>
     <script src="js/analytics.js?v=consent-placeholder-guard-20261002-1" defer></script>
     <script src="js/seo.js?v=reviewed-hreflang-20261002-1" defer></script>
     <script src="js/performance-monitor.js?v=metrics-consent-20261002-2" defer></script>
     <script src="js/supabase-config.js" defer></script>
     <script src="js/quote-api.js" defer></script>
-    <script src="js/products.js?v=contact-email-20261004-1" defer></script>
+    <script src="js/products.js?v=product-order-20261004-1" defer></script>
 </body>
 </html>

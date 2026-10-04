@@ -43,7 +43,7 @@
         ['For business and project enquiries', 'Kwa Maswali ya Biashara na Miradi'],
         ['Tell us what you need. We’ll prepare your enquiry for email or WhatsApp so our team can follow up with product specifications, availability and pricing.', 'Tueleze mahitaji yako. Tutakuandalia ujumbe wa barua pepe au WhatsApp ili timu yetu ithibitishe vipimo, upatikanaji na bei.'],
         ['Products for your enquiry', 'Bidhaa za Ombi Lako'],
-        ['No products selected yet. Add products from the catalogue below.', 'Bado hujachagua bidhaa. Ongeza bidhaa kutoka kwenye orodha hapa chini.'],
+        ['No products selected yet. Add products from the catalogue above.', 'Bado hujachagua bidhaa. Ongeza bidhaa kutoka kwenye orodha hapo juu.'],
         ['Full name *', 'Jina kamili *'],
         ['Company / organisation', 'Kampuni / taasisi'],
         ['Business email *', 'Barua pepe ya kazi *'],

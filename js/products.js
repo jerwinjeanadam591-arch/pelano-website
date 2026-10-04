@@ -390,8 +390,8 @@ if (productCards.length > 0) {
                 if (selectedProducts.size === 0) {
                     const empty = document.createElement('p');
                     empty.textContent = language()
-                        ? 'Bado hujachagua bidhaa. Ongeza bidhaa kutoka kwenye orodha hapa chini.'
-                        : 'No products selected yet. Add products from the catalogue below.';
+                        ? 'Bado hujachagua bidhaa. Ongeza bidhaa kutoka kwenye orodha hapo juu.'
+                        : 'No products selected yet. Add products from the catalogue above.';
                     selectedProductsContainer.append(empty);
                     return;
                 }
