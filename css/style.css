@@ -5491,15 +5491,15 @@ footer.footer {
 footer.footer .container {
     width: min(100% - 48px, 1240px);
     max-width: 1240px;
-    padding-top: 40px;
+    padding-top: 30px;
 }
 
 footer.footer .footer-grid {
     display: grid;
     grid-template-columns: minmax(250px, 1.5fr) repeat(2, minmax(130px, 0.75fr)) minmax(230px, 1.2fr);
-    gap: clamp(20px, 3vw, 40px);
+    gap: clamp(18px, 2.5vw, 32px);
     margin: 0;
-    padding-bottom: 30px;
+    padding-bottom: 22px;
 }
 
 footer.footer .footer-section {
@@ -5510,7 +5510,7 @@ footer.footer .footer-section {
 
 footer.footer .footer-section h2,
 footer.footer .footer-social-heading {
-    margin: 0 0 12px;
+    margin: 0 0 9px;
     padding: 0;
     border: 0;
     color: #fff;
@@ -5524,8 +5524,8 @@ footer.footer .footer-social-heading {
 footer.footer .footer-brand-link {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
-    margin: -6px 0 10px;
+    gap: 10px;
+    margin: -4px 0 7px;
     color: #fff;
     font-size: 1.08rem;
     font-weight: 700;
@@ -5534,8 +5534,8 @@ footer.footer .footer-brand-link {
 
 footer.footer .footer-brand-link img {
     display: block;
-    width: 42px;
-    height: 42px;
+    width: 38px;
+    height: 38px;
     padding: 3px;
     border-radius: 10px;
     background: #fff;
@@ -5546,24 +5546,24 @@ footer.footer .footer-brand p {
     max-width: 37ch;
     margin: 0;
     color: #c0cec5;
-    font-size: 0.86rem;
-    line-height: 1.55;
+    font-size: 0.82rem;
+    line-height: 1.45;
 }
 
 footer.footer .footer-cta {
     display: inline-flex;
     align-items: center;
     gap: 9px;
-    margin-top: 12px;
+    margin-top: 8px;
     color: #e7c18c;
-    font-size: 0.9rem;
+    font-size: 0.84rem;
     font-weight: 650;
     text-decoration: none;
 }
 
 footer.footer .footer-links ul {
     display: grid;
-    gap: 5px;
+    gap: 3px;
     margin: 0;
     padding: 0;
     list-style: none;
@@ -5574,7 +5574,7 @@ footer.footer .footer-links li {
     margin: 0;
     padding: 0;
     color: #c0cec5;
-    font-size: 0.88rem;
+    font-size: 0.83rem;
 }
 
 footer.footer .footer-links a {
@@ -5596,7 +5596,7 @@ footer.footer .footer-links a:focus-visible {
 
 footer.footer .footer-contact address {
     display: grid;
-    gap: 9px;
+    gap: 7px;
     margin: 0;
     font-size: 0.88rem;
     font-style: normal;
@@ -5605,10 +5605,10 @@ footer.footer .footer-contact address {
 footer.footer .footer-contact-item {
     display: flex;
     align-items: flex-start;
-    gap: 11px;
+    gap: 9px;
     min-width: 0;
     color: #c0cec5;
-    line-height: 1.55;
+    line-height: 1.45;
     text-decoration: none;
     overflow-wrap: anywhere;
 }
@@ -5627,14 +5627,14 @@ footer.footer .footer-contact-item svg {
 }
 
 footer.footer .footer-social-heading {
-    margin: 17px 0 9px;
+    margin: 13px 0 7px;
     font-size: 0.7rem;
 }
 
 footer.footer .footer-social-links {
     display: flex;
     flex-wrap: wrap;
-    gap: 7px;
+    gap: 6px;
     margin: 0;
 }
 
@@ -5642,8 +5642,8 @@ footer.footer .footer-social-links a {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
+    width: 31px;
+    height: 31px;
     border: 1px solid rgba(232, 239, 234, 0.18);
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.055);
@@ -5671,8 +5671,8 @@ footer.footer .footer-bottom {
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    min-height: 52px;
-    padding: 12px 0;
+    min-height: 44px;
+    padding: 9px 0;
     border-top: 1px solid rgba(232, 239, 234, 0.13);
 }
 
@@ -5720,7 +5720,7 @@ body.dark-mode footer.footer {
 @media (max-width: 960px) {
     footer.footer .footer-grid {
         grid-template-columns: minmax(0, 1.2fr) repeat(2, minmax(0, 0.8fr));
-        gap: 26px 22px;
+        gap: 20px 18px;
     }
 
     footer.footer .footer-brand {
@@ -5735,14 +5735,14 @@ body.dark-mode footer.footer {
 
 @media (max-width: 600px) {
     footer.footer .container {
-        width: min(100% - 36px, 520px);
-        padding-top: 24px;
+        width: min(100% - 32px, 520px);
+        padding-top: 18px;
     }
 
     footer.footer .footer-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 18px 14px;
-        padding-bottom: 20px;
+        gap: 13px 12px;
+        padding-bottom: 14px;
     }
 
     footer.footer .footer-brand,
@@ -5750,60 +5750,73 @@ body.dark-mode footer.footer {
         grid-column: 1 / -1;
     }
 
+    footer.footer .footer-grid:not(.footer-grid-compact) > .footer-links {
+        grid-column: auto;
+    }
+
     footer.footer .footer-brand-link {
-        margin: 0 0 8px;
-        font-size: 1rem;
+        margin: 0 0 6px;
+        font-size: 0.96rem;
     }
 
     footer.footer .footer-brand p {
-        font-size: 0.82rem;
-        line-height: 1.45;
+        font-size: 0.76rem;
+        line-height: 1.4;
     }
 
     footer.footer .footer-cta {
-        margin-top: 9px;
+        margin-top: 6px;
+        font-size: 0.78rem;
     }
 
     footer.footer .footer-section h2 {
-        margin-bottom: 9px;
+        margin-bottom: 6px;
     }
 
     footer.footer .footer-links ul {
-        gap: 4px;
+        grid-template-columns: minmax(0, 1fr);
+        grid-auto-flow: row;
+        gap: 2px;
     }
 
     footer.footer .footer-links li,
     footer.footer .footer-contact address {
-        font-size: 0.8rem;
+        font-size: 0.75rem;
     }
 
     footer.footer .footer-contact address {
-        gap: 7px;
+        gap: 5px;
     }
 
     footer.footer .footer-social-heading {
-        margin: 14px 0 8px;
+        margin: 10px 0 6px;
     }
 
     footer.footer .footer-social-links a {
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
     }
 
     footer.footer .footer-bottom {
         align-items: center;
         flex-wrap: wrap;
-        gap: 8px 12px;
-        padding: 10px 0;
+        gap: 6px 10px;
+        padding: 8px 0;
     }
 
     footer.footer .footer-bottom nav {
-        gap: 14px;
+        gap: 12px;
     }
 
     footer.footer .footer-bottom p,
     footer.footer .footer-bottom nav a {
-        font-size: 0.72rem;
+        font-size: 0.68rem;
+    }
+}
+
+@media (max-width: 340px) {
+    footer.footer .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     }
 }
 

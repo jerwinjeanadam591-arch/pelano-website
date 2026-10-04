@@ -13,7 +13,7 @@ function renderSharedFooter() {
                             <img src="images/pelano-newlogo.png" alt="" width="48" height="48">
                             <span>Pelano Resources Ltd</span>
                         </a>
-                        <p>Forest products and supply solutions from Mafinga, Tanzania. Share your requirements and our team will confirm specifications, availability and delivery for your project.</p>
+                        <p>Forest products and supply solutions from Mafinga, Tanzania.</p>
                         <a class="footer-cta" href="contact.html">Talk to our team <span aria-hidden="true">→</span></a>
                     </section>
                     <nav class="footer-section footer-links" aria-label="Explore">
