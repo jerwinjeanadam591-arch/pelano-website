@@ -5751,7 +5751,7 @@ body.dark-mode footer.footer {
     }
 
     footer.footer .footer-grid:not(.footer-grid-compact) > .footer-links {
-        grid-column: auto;
+        grid-column: 1 / -1;
     }
 
     footer.footer .footer-brand-link {
@@ -5777,6 +5777,29 @@ body.dark-mode footer.footer {
         grid-template-columns: minmax(0, 1fr);
         grid-auto-flow: row;
         gap: 2px;
+    }
+
+    footer.footer .footer-grid:not(.footer-grid-compact) > .footer-links ul {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 16px;
+    }
+
+    footer.footer .footer-links li,
+    footer.footer .footer-links a {
+        min-width: 0;
+        overflow-wrap: normal;
+        word-break: normal;
+    }
+
+    footer.footer .footer-links a {
+        display: flex;
+        min-height: 40px;
+        align-items: center;
+        padding: 7px 0;
+    }
+
+    footer.footer .footer-grid:not(.footer-grid-compact) > .footer-links ul li a {
+        min-height: 40px;
     }
 
     footer.footer .footer-links li,
